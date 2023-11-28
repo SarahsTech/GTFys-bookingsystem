@@ -41,5 +41,20 @@ namespace GTFys.ViewModels
 
             return connection;
         }
+
+        // Disconnect from the database
+        public void Disconnect(IDbConnection connection)
+        {
+            try
+            {
+                connection.Close();
+                Console.WriteLine("Disconnected from the database");
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error disconnecting from the database: {ex.Message}");
+            }
+        }
     }
 }

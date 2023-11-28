@@ -1,12 +1,36 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GTFys.ViewModels
 {
-    internal class DatabaseAccess
+    public class DatabaseAccess
     {
+        private string ConnectionString;
+
+        public DatabaseAccess(string connectionString)
+        {
+            ConnectionString = connectionString;
+        }
+
+        public async Task<IEnumerable<T>> ExecuteQueryAsync<T>(string sqlStatement, object parameter = null)
+        {
+            using (IDbConnection connection = new DatabaseConnection(ConnectionString).Connect())
+            using (SqlCommand command = new SqlCommand(sqlStatement, (SqlConnection)connection))
+            {
+                if (parameter != null)
+                {
+                    foreach (var property in parameter.GetType().GetProperties())
+                    {
+                        command.Parameters.AddWithValue("@" +  property.Name, parameter.GetValue(parameter));
+                    }
+                }
+                await command.ExecuteNonQueryAsync();
+            }
+        }
     }
 }
