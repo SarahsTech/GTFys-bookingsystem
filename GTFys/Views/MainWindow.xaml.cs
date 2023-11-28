@@ -24,5 +24,23 @@ namespace GTFys.Views
         {
             InitializeComponent();
         }
+
+        private void physioButtonClicked(object sender, RoutedEventArgs e)
+        {
+            // Create an instance of PhysioLoginWindow
+            PhysioLoginWindow physioLoginWindow = new PhysioLoginWindow();
+            // Open a new PhysioLoginWindow
+            physioLoginWindow.Show();
+        }
+
+        private void patientButtonClicked(object sender, RoutedEventArgs e)
+        {
+            // Create an instance of PatientLoginWindow
+            PatientLoginWindow patientLoginWindow = new PatientLoginWindow();
+            // Open a new PhysioLoginWindow
+            patientLoginWindow.Show();
+        }
+
+
     }
 }

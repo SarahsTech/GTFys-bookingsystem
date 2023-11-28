@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:GTFys.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+    <Grid Background="#161813">
+        <TextBlock Text="Velkommen til GT Fys" HorizontalAlignment="Center" Margin="0,58,0,0" TextWrapping="Wrap" TextAlignment="Center" FontSize="50" FontWeight="DemiBold" FontFamily="Poppins" VerticalAlignment="Top" Height="58" Width="631" Foreground="White"/>
+        <Button x:Name="btnPhysio" Content="Fysioterapeut" FontFamily="Times New Roman" TextElement.Foreground="#161813" Background="#2ecc71" FontSize="20" HorizontalAlignment="Left" Margin="312,254,0,0" VerticalAlignment="Top" Height="56" Width="141" Click="physioButtonClicked" BorderBrush="#FF707070"/>
+        <Button x:Name="btnPatient" Content="Patient" FontFamily="Times New Roman" TextElement.Foreground="#161813" Background="#2ecc71" FontSize="20" HorizontalAlignment="Left" Margin="333,161,0,0" VerticalAlignment="Top" Height="56" Width="99" Click="patientButtonClicked" BorderBrush="#FF707070" RenderTransformOrigin="0.171,0.494"/>
     </Grid>
 </Window>
