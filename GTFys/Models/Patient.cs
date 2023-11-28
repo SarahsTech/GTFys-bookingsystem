@@ -6,54 +6,31 @@ using System.Threading.Tasks;
 
 namespace GTFys.Models
 {
+    // The Patient class represents information about a patient
     public class Patient
     {
-        public int PatientID { get; set; }
+        // Properties representing various attributes of a patient
+        public int PatientID { get; set; }                // Unique identifier for the patient
+        public string PatientCPR { get; set; }            // CPR number of the patient
+        public string PatientUsername { get; set; }       // Username chosen by the patient
+        public string PatientPassword { get; set; }       // Password for patient authentication
+        public string PatientProfilePicture { get; set; } // Profile picture uploaded by patient or generated 
+        public int PatientPhoneNumber { get; set; }       // Phone number of the patient
+        public string PatientEmail { get; set; }          // Email address of the patient
+        public string PatientAddress { get; set; }        // Residential address of the patient
+        public string PatientCity { get; set; }           // City of residence for the patient
+        public int PatientPostalCode { get; set; }        // Postal code of the patient's location
 
-        public string PatientCPR { get; set; }
-
-        public string PatientUsername { get; set; }
-
-        public string PatientPassword { get; set; }
-
-        public string PatientProfilePicture { get; set; }
-
-        public int PatientPhoneNumber { get; set; }
-
-        public string PatientEmail { get; set; }
-
-        public string PatientAddress { get; set; }
-
-        public string PatientCity { get; set; }
-
-        public int PatientPostalCode { get; set; }
-
-        // Constructor to initiliaze physio properties
-        public Patient(int patientID, string patientCPR, string patientUsername, string patientPassword,
+        // Constructor to initialize a Patient object with an additional profile picture attribute
+        public Patient(int patientID, string patientCPR, string patientUsername, string patientPassword, string imagePath,
             int patientPhoneNumber, string patientEmail, string patientAddress, string patientCity, int patientPostalCode)
         {
-            // Set the values of physio properties based on constructor parameters
+            // Set the properties of the Patient object based on the provided parameters
             PatientID = patientID;
             PatientCPR = patientCPR;
             PatientUsername = patientUsername;
             PatientPassword = patientPassword;
-            PatientPhoneNumber = patientPhoneNumber;
-            PatientEmail = patientEmail;
-            PatientAddress = patientAddress;
-            PatientCity = patientCity;
-            PatientPostalCode = patientPostalCode;
-        }
-
-        // Overloaded constructor to initialize physio properties with image 
-        public Patient(int patientID, string patientCPR, string patientUsername, string patientPassword,string imagePath,
-            int patientPhoneNumber, string patientEmail, string patientAddress, string patientCity, int patientPostalCode)
-        {
-            // Set the values of physio properties based on constructor parameters
-            PatientID = patientID;
-            PatientCPR = patientCPR;
-            PatientUsername = patientUsername;
-            PatientPassword = patientPassword;
-            PatientProfilePicture = imagePath;
+            PatientProfilePicture = imagePath; // imagePath: Path to the profile picture of the patient
             PatientPhoneNumber = patientPhoneNumber;
             PatientEmail = patientEmail;
             PatientAddress = patientAddress;
@@ -61,4 +38,5 @@ namespace GTFys.Models
             PatientPostalCode = patientPostalCode;
         }
     }
+
 }

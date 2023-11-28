@@ -10,10 +10,10 @@ namespace GTFys.Models
     public class Consultation
     {
         // Properties for the Patient, Physio, TreatmentType, and DateTime of the consultation
-        public Patient Patient { get; set; } // The patient involved in the consultation
-        public Physio Physio { get; set; } // The physiotherapist involved in the consultation
+        public Patient Patient { get; set; }             // The patient involved in the consultation
+        public Physio Physio { get; set; }               // The physiotherapist involved in the consultation
         public TreatmentType TreatmentType { get; set; } // The type of treatment provided during the consultation
-        public DateTime DateAndTime { get; set; } // The date and time of the consultation
+        public DateTime DateAndTime { get; set; }        // The date and time of the consultation
 
         // Constructor to initialize Consultation properties
         public Consultation(Patient patient, Physio physio, TreatmentType treatmenType, DateTime dateTime)
