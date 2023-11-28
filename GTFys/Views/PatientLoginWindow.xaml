@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="PatientLoginWindow" Height="450" Width="800">
     <Grid>
-        
+        <TextBlock Text="Patient Login" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="0,77,0,0" Height="36" Width="120"/>
+        <Label Content="CPR nummer:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="279,149,0,0"/>
+        <TextBox x:Name="txtSSN" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="413,149,0,0" Width="169" Height="22"/>
+        <Label Content="Kodeord:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="279,195,0,0"/>
+        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="413,195,0,0" Width="169" Height="22"/>
+        <Button Content="Login" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,271,0,0" Click="patientLoginButtonClicked" Height="29" Width="64"/>
+
     </Grid>
 </Window>

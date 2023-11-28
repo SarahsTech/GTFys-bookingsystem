@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GTFys.Models
 {
-    internal class Consultation
+    public class Consultation
     {
+
     }
 }
