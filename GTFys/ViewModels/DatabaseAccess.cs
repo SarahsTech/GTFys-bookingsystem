@@ -10,16 +10,14 @@ namespace GTFys.ViewModels
 {
     public class DatabaseAccess
     {
-        private string ConnectionString;
 
-        public DatabaseAccess(string connectionString)
+        public DatabaseAccess()
         {
-            ConnectionString = connectionString;
         }
 
         public async Task<IEnumerable<T>> ExecuteQueryAsync<T>(string sqlStatement, object parameter = null)
         {
-            using (IDbConnection connection = new DatabaseConnection(ConnectionString).Connect())
+            using (IDbConnection connection = new DatabaseConnection().Connect())
             using (SqlCommand command = new SqlCommand(sqlStatement, (SqlConnection)connection))
             {
                 if (parameter != null)
