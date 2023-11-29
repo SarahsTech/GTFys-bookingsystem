@@ -7,37 +7,34 @@ using GTFys.Models;
 
 namespace GTFys.ViewModels
 {
-    internal class PhysioRepo
+    public class PhysioRepo
     {
         private DatabaseAccess dbAccess;
         public PhysioRepo(DatabaseAccess dbAccess)
         {
             this.dbAccess = dbAccess;
         }
+
+        // Method for authenticating a physiotherapist login
+        // Returns a boolean indicating whether the authentication was successful or not
         public async Task<bool> physioAuthenticateLogin(string physioUsername, string physioPassword)
         {
-            try
-            {
-                var query = "SELECT COUNT(*) FROM gtPhysio WHERE PhysioUsername = @PhysioUsername AND PhysioPassword = @PhysioPassword";
-                var parameters = new { PhysioUsername = physioUsername, PhysioPassword = physioPassword };
+            // Create a new Physio object with the provided username and password
+            Physio physio = new Physio(physioUsername, physioPassword);
 
-                var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters);
+            // Call the generic AuthenticateLoginAsync method in DatabaseAccess
+            // to perform the authentication for the physiotherapist
+            bool physioAuthResult = await dbAccess.AuthenticateLoginAsync(physio);
 
-                // Check if any rows were affected (indicating successful authentication)
-                return rowsAffected > 0;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error authenticating physiotherapist: {ex.Message}");
-                return false;
-            }
+            // Return the result of the authentication (true if successful, false otherwise)
+            return physioAuthResult;
         }
 
         public async Task<bool> physioUpdateUser(Physio physio)
         {
             try
             {
-                var query = "UPDATE gtPhysio SET " +
+                var query = "UPDATE gtPHYSIO SET " +
                     "PhysioCPR = @PhysioCPR, " +
                     "PhysioFirstName = @PhysioFirstName, " +
                     "PhysioLastName = @PhysioLastName, " +

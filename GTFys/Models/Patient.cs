@@ -22,11 +22,10 @@ namespace GTFys.Models
         public int PatientPostalCode { get; set; }        // Postal code of the patient's location
 
         // Constructor to initialize a Patient object with an additional profile picture attribute
-        public Patient(int patientID, string patientCPR, string patientUsername, string patientPassword, string imagePath,
+        public Patient(string patientCPR, string patientUsername, string patientPassword, string imagePath,
             int patientPhoneNumber, string patientEmail, string patientAddress, string patientCity, int patientPostalCode)
         {
             // Set the properties of the Patient object based on the provided parameters
-            PatientID = patientID;
             PatientCPR = patientCPR;
             PatientUsername = patientUsername;
             PatientPassword = patientPassword;
@@ -37,6 +36,15 @@ namespace GTFys.Models
             PatientCity = patientCity;
             PatientPostalCode = patientPostalCode;
         }
+
+        // Overloaded constructor to authenticate login
+        public Patient(string patientUsername, string patientPassword)
+        {
+            // Set the properties of the Physio object based on the provided parameters
+            PatientUsername = patientUsername;
+            PatientPassword = patientPassword;
+        }
+
     }
 
 }

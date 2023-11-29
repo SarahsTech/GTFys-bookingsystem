@@ -24,11 +24,10 @@ namespace GTFys.Models
         public string PhysioProfilePicture { get; set; } // Profile picture uploaded by physiotherapist or generated 
 
         // Constructor to initialize a Physio object with essential attributes
-        public Physio(int physioID, string physioCPR, string physioFirstName, string physioLastName, string physioUsername, string physioPassword,
+        public Physio(string physioCPR, string physioFirstName, string physioLastName, string physioUsername, string physioPassword,
             int physioPhoneNumber, string physioEmail, string physioAddress, string physioCity, int physioZipCode, string imagePath)
         {
             // Set the properties of the Physio object based on the provided parameters
-            PhysioID = physioID;
             PhysioCPR = physioCPR;
             PhysioFirstName = physioFirstName;
             PhysioLastName = physioLastName;
@@ -40,6 +39,14 @@ namespace GTFys.Models
             PhysioCity = physioCity;
             PhysioZipCode = physioZipCode;
             PhysioProfilePicture = imagePath; //  imagePath: Path to the profile picture of the physiotherapist
+        }
+
+        // Overloaded constructor to authenticate login
+        public Physio(string physioUsername, string physioPassword)
+        {
+            // Set the properties of the Physio object based on the provided parameters
+            PhysioUsername = physioUsername;
+            PhysioPassword = physioPassword;
         }
     }
 
