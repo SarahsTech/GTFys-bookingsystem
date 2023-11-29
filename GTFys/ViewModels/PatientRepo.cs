@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GTFys.ViewModels
 {
-    internal class PatientRepo
+    public class PatientRepo
     {
+
     }
 }

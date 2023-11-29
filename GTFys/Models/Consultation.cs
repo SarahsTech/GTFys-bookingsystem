@@ -20,25 +20,29 @@ namespace GTFys.Models
         // Properties for the Patient, Physio, TreatmentType, and DateTime of the consultation
         public Patient Patient { get; set; }             // The patient involved in the consultation
         public Physio Physio { get; set; }               // The physiotherapist involved in the consultation
-        public TreatmentTypes TreatmentType { get; set; } // The type of treatment provided during the consultation
-        public DateTime DateAndTime { get; set; }        // The date and time of the consultation
+        public TreatmentTypes TreatmentType { get; set; }// The type of treatment provided during the consultation
+        public DateTime StartTime { get; set; }          // The date and starttime of the consultation
+        public DateTime EndTime { get; set; }            // The date and endtime of the consultation
         public TimeSpan TimeSpan { get; set; }           // Timespan is calculated and set in the constructor, represents the length of a consultation
         public double Price { get; set; }                // Price is set in the constructur determined by the chosen treatment type
 
         // Constructor to initialize Consultation properties
-        public Consultation(Patient patient, Physio physio, TreatmentTypes treatmenType, DateTime dateTime)
+        public Consultation(Patient patient, Physio physio, TreatmentTypes treatmenType, DateTime startTime)
         {
             // Set the properties of the Consultation object based on the provided parameters
             Patient = patient;
             Physio = physio;
             TreatmentType = treatmenType;
-            DateAndTime = dateTime;
+            StartTime = startTime;
 
             // Calculate and set TimeSpan based on TreatmentType
             SetTimeSpan();
 
             // Set Price based on TreatmentType
             SetPrice();
+
+            // Calculate and set EndTime based on StartTime and TimeSpan
+            EndTime = StartTime + TimeSpan;
         }
 
         // Method to set the TimeSpan based on TreatmentType
