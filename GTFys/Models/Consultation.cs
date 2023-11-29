@@ -8,7 +8,7 @@ namespace GTFys.Models
 {
     // Enum to represent the treatment type 
     // The values represents the costs of the treatment type
-    public enum TreatmentTypes // Change name to TreatmentType if we delete the other class 
+    public enum TreatmentTypes 
     {
         FirstConsultation = 800,
         TrainingInstruction = 550
