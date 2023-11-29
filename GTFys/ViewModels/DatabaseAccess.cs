@@ -10,25 +10,25 @@ namespace GTFys.ViewModels
 {
     public class DatabaseAccess
     {
-
         public DatabaseAccess()
         {
         }
 
-        //public async Task<IEnumerable<T>> ExecuteQueryAsync<T>(string sqlStatement, object parameter = null)
-        //{
-        //    using (IDbConnection connection = new DatabaseConnection().Connect())
-        //    using (SqlCommand command = new SqlCommand(sqlStatement, (SqlConnection)connection))
-        //    {
-        //        if (parameter != null)
-        //        {
-        //            foreach (var property in parameter.GetType().GetProperties())
-        //            {
-        //                command.Parameters.AddWithValue("@" +  property.Name, parameter.GetValue(parameter));
-        //            }
-        //        }
-        //        await command.ExecuteNonQueryAsync();
-        //    }
-        //}
+        public async Task<int> ExecuteNonQueryAsync(string sqlStatement, object parameters = null)
+        {
+            using (IDbConnection connection = new DatabaseConnection().Connect())
+            using (SqlCommand command = new SqlCommand(sqlStatement, (SqlConnection)connection))
+            {
+                if (parameters != null)
+                {
+                    foreach (var property in parameters.GetType().GetProperties())
+                    {
+                        command.Parameters.AddWithValue("@" + property.Name, property.GetValue(parameters));
+                    }
+                }
+                return await command.ExecuteNonQueryAsync();
+            }
+        }
     }
+
 }
