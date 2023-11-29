@@ -34,7 +34,7 @@ namespace GTFys.ViewModels
 
         // Method to insert a new patient using the stored procedure gtspInsertPatient
         // Returns a boolean indicating whether the insertion was successful or not
-        public async Task<bool> InsertPatient(Patient patient)
+        public async Task<bool> PatientCreateUser(Patient patient)
         {
             bool insertionSuccessful = false;
             try {
@@ -79,11 +79,9 @@ namespace GTFys.ViewModels
             }
         }
 
-
-
         // Method to update patient profile information
         // Returns a boolean indicating whether the profile update was successful or not
-        public async Task<bool> patientUpdateUser(Patient patient)
+        public async Task<bool> PatientUpdateUser(Patient patient)
         {
             bool updateSuccessful = false;
             try {
@@ -134,6 +132,41 @@ namespace GTFys.ViewModels
             catch (Exception ex) {
                 // Show a message box with the error details
                 MessageBox.Show($"Fejl ved opdatering af patient: {ex.Message}");
+
+                // Log the error, and rethrow the exception for further handling
+                throw;
+            }
+        }
+
+        // Method to delete a patient based on the CPR
+        // Returns a boolean indicating whether the deletion was successful or not
+        public async Task<bool> PatientDeleteUser(string patientCPR)
+        {
+            bool deletionSuccessful = false;
+            try {
+                // SQL query to delete a patient from the "gtPATIENT" table based on CPR
+                var query = "DELETE FROM gtPATIENT WHERE PatientCPR = @PatientCPR";
+
+                // Parameters for the SQL query
+                var parameters = new { PatientCPR = patientCPR };
+
+                // Execute the SQL query and get the number of affected rows
+                var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters);
+
+                // Return true if at least one row was affected, indicating a successful deletion
+                if (rowsAffected > 0) {
+                    MessageBox.Show($"Sletning succesfuld.");
+                    deletionSuccessful = true;
+                }
+                else {
+                    MessageBox.Show($"Fejl ved sletning af patient.");
+                    deletionSuccessful = false;
+                }
+                return deletionSuccessful;
+            }
+            catch (Exception ex) {
+                // Show a message box with the error details
+                MessageBox.Show($"Fejl ved sletning af patient: {ex.Message}");
 
                 // Log the error, and rethrow the exception for further handling
                 throw;
