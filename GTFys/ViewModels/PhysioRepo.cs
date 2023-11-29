@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using GTFys.Models;
 
 namespace GTFys.ViewModels
@@ -30,6 +31,7 @@ namespace GTFys.ViewModels
             return physioAuthResult;
         }
 
+        // Method to update physio profile information
         public async Task<bool> physioUpdateUser(Physio physio)
         {
             try
@@ -66,7 +68,7 @@ namespace GTFys.ViewModels
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error updating physiotherapist: {ex.Message}");
+                MessageBox.Show($"Fejl ved opdatering af fysioterapuet: {ex.Message}");
                 // Log the error, and rethrow the exception
                 throw;
             }

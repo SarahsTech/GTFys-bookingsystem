@@ -44,21 +44,31 @@ namespace GTFys.ViewModels
         }
 
 
-        public async Task<int> ExecuteNonQueryAsync(string sqlStatement, object parameters = null)
+        // Execute a non-query asynchronously, such as an SQL command or stored procedure, and return the number of affected rows.
+        // Returns an integer representing the number of rows affected by the executed command.
+        public async Task<int> ExecuteNonQueryAsync(string query, object parameters = null, CommandType commandType = CommandType.Text)
         {
-            using (IDbConnection connection = new DatabaseConnection().Connect())
-            using (SqlCommand command = new SqlCommand(sqlStatement, (SqlConnection)connection))
-            {
-                if (parameters != null)
-                {
-                    foreach (var property in parameters.GetType().GetProperties())
-                    {
-                        command.Parameters.AddWithValue("@" + property.Name, property.GetValue(parameters));
+            // Establish a new database connection
+            using (IDbConnection connection = new DatabaseConnection().Connect()) {
+                // Create a new SQL command using the provided query and connection
+                using (SqlCommand command = new SqlCommand(query, (SqlConnection)connection)) {
+                    // Set the command type (e.g., Text or StoredProcedure)
+                    command.CommandType = commandType;
+
+                    // If parameters are provided, add them to the command
+                    if (parameters != null) {
+                        foreach (var property in parameters.GetType().GetProperties()) {
+                            // Add parameters to the command based on the properties of the parameters object
+                            command.Parameters.AddWithValue("@" + property.Name, property.GetValue(parameters));
+                        }
                     }
+
+                    // Execute the command asynchronously and return the number of affected rows
+                    return await command.ExecuteNonQueryAsync();
                 }
-                return await command.ExecuteNonQueryAsync();
             }
         }
+
     }
 
 }

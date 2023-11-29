@@ -12,6 +12,8 @@ namespace GTFys.Models
         // Properties representing various attributes of a patient
         public int PatientID { get; set; }                // Unique identifier for the patient
         public string PatientCPR { get; set; }            // CPR number of the patient
+        public string PatientFirstName { get; set; }      // First name of the patient
+        public string PatientLastName { get; set; }       // Last name of the patient
         public string PatientUsername { get; set; }       // Username chosen by the patient
         public string PatientPassword { get; set; }       // Password for patient authentication
         public string PatientProfilePicture { get; set; } // Profile picture uploaded by patient or generated 
@@ -19,22 +21,24 @@ namespace GTFys.Models
         public string PatientEmail { get; set; }          // Email address of the patient
         public string PatientAddress { get; set; }        // Residential address of the patient
         public string PatientCity { get; set; }           // City of residence for the patient
-        public int PatientPostalCode { get; set; }        // Postal code of the patient's location
+        public int PatientZipCode { get; set; }        // Zip code of the patient's location
 
         // Constructor to initialize a Patient object with an additional profile picture attribute
-        public Patient(string patientCPR, string patientUsername, string patientPassword, string imagePath,
-            int patientPhoneNumber, string patientEmail, string patientAddress, string patientCity, int patientPostalCode)
+        public Patient(string patientCPR, string patientFirstName, string patientLastName, string patientUsername, string patientPassword,
+            int patientPhoneNumber, string patientEmail, string patientAddress, string patientCity, int patientZipCode, string imagePath)
         {
             // Set the properties of the Patient object based on the provided parameters
             PatientCPR = patientCPR;
+            PatientFirstName = patientFirstName;
+            PatientLastName = patientLastName;
             PatientUsername = patientUsername;
-            PatientPassword = patientPassword;
-            PatientProfilePicture = imagePath; // imagePath: Path to the profile picture of the patient
+            PatientPassword = patientPassword;      
             PatientPhoneNumber = patientPhoneNumber;
             PatientEmail = patientEmail;
             PatientAddress = patientAddress;
             PatientCity = patientCity;
-            PatientPostalCode = patientPostalCode;
+            PatientZipCode = patientZipCode;
+            PatientProfilePicture = imagePath; // imagePath: Path to the profile picture of the patient
         }
 
         // Overloaded constructor to authenticate login
