@@ -33,6 +33,7 @@ namespace GTFys.Views
             if (isAuthenticated) {
                 PhysioFrontPageWindow physioFrontPageWindow = new PhysioFrontPageWindow();
                 physioFrontPageWindow.Show();
+                this.Close();
             }
             else {
 

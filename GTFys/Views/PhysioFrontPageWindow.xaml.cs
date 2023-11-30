@@ -31,8 +31,18 @@ namespace GTFys.Views
 
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            // Show a message with option to accept or cancel
+            MessageBoxResult result = MessageBox.Show("Er du sikker på, at du vil logge ud?", "Log ud", MessageBoxButton.OKCancel, MessageBoxImage.Error);
 
+            if (result == MessageBoxResult.OK) {
+                // User has confirmed
+                this.Close();
+                PhysioLoginWindow physioLoginWindow = new PhysioLoginWindow();
+                physioLoginWindow.Show();
+            }
+            else {
+                // User has cancelled
+            }
         }
     }
 }
