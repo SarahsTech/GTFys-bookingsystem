@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace GTFys.Views
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for PhysioFrontPageWindow.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class PhysioFrontPageWindow : Window
     {
-        public Window1()
+        public PhysioFrontPageWindow()
         {
             InitializeComponent();
         }
