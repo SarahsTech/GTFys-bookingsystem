@@ -23,5 +23,15 @@ namespace GTFys.Views
         {
             InitializeComponent();
         }
+
+        private void PhysioButtonClicked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PatientButtonClicked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
