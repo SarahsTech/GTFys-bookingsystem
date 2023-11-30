@@ -26,7 +26,8 @@ namespace GTFys.Views
 
         private void btnProfilePage_Click(object sender, RoutedEventArgs e)
         {
-
+            PhysioProfilePage physioProfilePage = new PhysioProfilePage();
+            Content = physioProfilePage;
         }
 
         private void btnLogOut_Click(object sender, RoutedEventArgs e)

@@ -18,7 +18,7 @@ namespace GTFys.ViewModels
 
         // Method for authenticating a physiotherapist login
         // Returns a boolean indicating whether the authentication was successful or not
-        public async Task<bool> physioAuthenticateLogin(string username, string password)
+        public async Task<bool> PhysioAuthenticateLogin(string username, string password)
         {
             // Create a new Physio object with the provided username and password
             Physio physio = new Physio(username, password);
@@ -32,7 +32,8 @@ namespace GTFys.ViewModels
         }
 
         // Method to update physio profile information
-        public async Task<bool> physioUpdateUser(Physio physio)
+        public async Task<bool> PhysioUpdateUser(string firstName, string lastName, string username, string password,
+            string email, string phone, string cpr, string address, int zipCode, string city, string imagePath)
         {
             try
             {
@@ -44,22 +45,23 @@ namespace GTFys.ViewModels
                  "Password = @Password, " +
                  "Phone = @Phone, " +
                  "Email = @Email, " +
-                 "Adress = @Address, " +
+                 "Address = @Address, " +
                  "ZipCode = @ZipCode, " +
                  "City = @City, " +
                  "ProfilePicture = @ProfilePicture";
 
                 var parameters = new {
-                    physio.CPR,
-                    physio.FirstName,
-                    physio.LastName,
-                    physio.Username,
-                    physio.Password,
-                    physio.Phone,
-                    physio.Email,
-                    physio.Address,
-                    physio.City,
-                    physio.ZipCode,
+                    cpr,
+                    firstName,
+                    lastName,
+                    username,
+                    password,
+                    phone,
+                    email,
+                    address,
+                    city,
+                    zipCode,
+                    imagePath
                 };
 
                 var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters);

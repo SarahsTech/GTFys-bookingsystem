@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GTFys.Views"
         mc:Ignorable="d"
-        Title="PhysioFrontPageWindow" Height="450" Width="800">
+        Title="PhysioFrontPageWindow" Height="500" Width="900">
     <Grid>
+        
         <Button x:Name="btnProfilePage" Content="Profil" HorizontalAlignment="Left" Margin="731,24,0,0" VerticalAlignment="Top" Click="btnProfilePage_Click" Width="41"/>
         <Button x:Name="btnLogOut" Content="Log ud" HorizontalAlignment="Left" Margin="731,70,0,0" VerticalAlignment="Top" Click="btnLogOut_Click" />
 

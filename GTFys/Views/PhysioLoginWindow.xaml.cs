@@ -28,7 +28,7 @@ namespace GTFys.Views
 
         private async void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
-            bool isAuthenticated = await physioRepo.physioAuthenticateLogin(tbPhysioUsername.Text, tbPhysioPassword.Text);
+            bool isAuthenticated = await physioRepo.PhysioAuthenticateLogin(tbPhysioUsername.Text, tbPhysioPassword.Text);
 
             if (isAuthenticated) {
                 PhysioFrontPageWindow physioFrontPageWindow = new PhysioFrontPageWindow();
@@ -41,7 +41,7 @@ namespace GTFys.Views
                  * når du har fået svar på, om login er godkendt eller ej. Dette adskiller præsentationslogikken fra din dataadgangslogik, 
                  * hvilket gør din kode mere modulær og lettere at vedligeholde.
                  */ 
-                // Vis en fejlmeddelelse til brugeren
+                // Show an error message to the user
                 MessageBox.Show("Login fejlede. Kontroller dit brugernavn og adgangskode og prøv igen.", "Login Fejl", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
