@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GTFys.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,17 @@ namespace GTFys.Views
         {
             InitializeComponent();
         }
+        PhysioRepo physioRepo = new PhysioRepo();
 
-      
+        private async void btnLogIn_Click(object sender, RoutedEventArgs e)
+        {
+            bool isAuthenticated = await physioRepo.physioAuthenticateLogin(tbPhysioUsername.Text, tbPhysioPassword.Text);
+
+            if (isAuthenticated) {
+                PhysioFrontPageWindow physioFrontPageWindow = new PhysioFrontPageWindow();
+                physioFrontPageWindow.Show();
+            }
+        }
+
     }
 }

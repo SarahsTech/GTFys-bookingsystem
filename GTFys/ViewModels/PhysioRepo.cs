@@ -10,10 +10,10 @@ namespace GTFys.ViewModels
 {
     public class PhysioRepo
     {
-        private DatabaseAccess dbAccess;
-        public PhysioRepo(DatabaseAccess dbAccess)
+        DatabaseAccess dbAccess = new DatabaseAccess();
+        public PhysioRepo()
         {
-            this.dbAccess = dbAccess;
+           
         }
 
         // Method for authenticating a physiotherapist login
