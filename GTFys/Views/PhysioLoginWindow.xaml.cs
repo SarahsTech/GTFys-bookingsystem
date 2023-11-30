@@ -34,6 +34,15 @@ namespace GTFys.Views
                 PhysioFrontPageWindow physioFrontPageWindow = new PhysioFrontPageWindow();
                 physioFrontPageWindow.Show();
             }
+            else {
+
+                /* Det er en god praksis at håndtere brugergrænsefladeinteraktioner og visning af beskeder i code-behind eller ViewModel, 
+                 * når du har fået svar på, om login er godkendt eller ej. Dette adskiller præsentationslogikken fra din dataadgangslogik, 
+                 * hvilket gør din kode mere modulær og lettere at vedligeholde.
+                 */ 
+                // Vis en fejlmeddelelse til brugeren
+                MessageBox.Show("Login fejlede. Kontroller dit brugernavn og adgangskode og prøv igen.", "Login Fejl", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
     }
