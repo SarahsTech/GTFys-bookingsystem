@@ -17,7 +17,7 @@ namespace GTFys.Models
         public string Username { get; set; }               // Username chosen by the patient
         public string Password { get; set; }               // Password for patient authentication
         public string ProfilePicture { get; set; }         // Profile picture uploaded by patient or generated 
-        public string PhoneNumber { get; set; }               // Phone number of the patient
+        public string Phone { get; set; }                  // Phone number of the patient
         public string Email { get; set; }                  // Email address of the patient
         public string Address { get; set; }                // Residential address of the patient
         public string City { get; set; }                   // City of residence for the patient
@@ -25,7 +25,7 @@ namespace GTFys.Models
 
         // Constructor to initialize a Patient object with an additional profile picture attribute
         public Patient(string cpr, string firstName, string lastName, string username, string password,
-            string phoneNumber, string email, string address, string city, int zipCode, string imagePath)
+            string phone, string email, string address, string city, int zipCode, string imagePath)
         {
             // Set the properties of the Patient object based on the provided parameters
             CPR = cpr;
@@ -33,7 +33,7 @@ namespace GTFys.Models
             LastName = lastName;
             Username = username;
             Password = password;
-            PhoneNumber = phoneNumber;
+            Phone = phone;
             Email = email;
             Address = address;
             City = city;

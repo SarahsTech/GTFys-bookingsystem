@@ -19,10 +19,10 @@ namespace GTFys.ViewModels
 
         // Method for authenticating a patient login
         // Returns a boolean indicating whether the authentication was successful or not
-         public async Task<bool> patientAuthenticateLogin(string patientUsername, string patientPassword)
+         public async Task<bool> patientAuthenticateLogin(string username, string password)
         {
             // Create a new Patient object with the provided username and password
-            Patient patient = new Patient(patientUsername, patientPassword);
+            Patient patient = new Patient(username, password);
 
             // Call the generic AuthenticateLoginAsync method in DatabaseAccess
             // to perform the authentication for the patient
@@ -43,18 +43,19 @@ namespace GTFys.ViewModels
 
                 // Parameters for the stored procedure, using the properties of the Patient object
                 var parameters = new {
-                    FirstName = patient.PatientFirstName,
-                    LastName = patient.PatientLastName,
-                    Username = patient.PatientUsername,
-                    Password = patient.PatientPassword,
-                    PatientCpr = patient.PatientCPR,
-                    Phone = patient.PatientPhoneNumber,
-                    Email = patient.PatientEmail,
-                    Address = patient.PatientAddress,
-                    ZipCode = patient.PatientZipCode,
-                    City = patient.PatientCity,
-                    ProfilePicture = patient.PatientProfilePicture,    
+                    patient.FirstName,
+                    patient.LastName,
+                    patient.Username,
+                    patient.Password,
+                    patient.CPR,
+                    patient.Phone,
+                    patient.Email,
+                    patient.Address,
+                    patient.ZipCode,
+                    patient.City,
+                    patient.ProfilePicture,
                 };
+
 
                 // Execute the stored procedure and retrieve the output parameter
                 var rowsAffected = await dbAccess.ExecuteNonQueryAsync(storedProcedure, parameters, CommandType.StoredProcedure);
@@ -87,32 +88,33 @@ namespace GTFys.ViewModels
             try {
                 // SQL query to update patient profile in the "gtPATIENT" table
                 var query = "UPDATE gtPATIENT SET " +
-                    "PatientCPR = @PatientCPR, " +
-                    "PatientFirstName = @PatientFirstName, " +
-                    "PatientLastName = @PatientLastName, " +
-                    "PatientUsername = @PatientUsername, " +
-                    "PatientPassword = @PatientPassword, " +
-                    "PatientPhoneNumber = @PatientPhoneNumber, " +
-                    "PatientEmail = @PatientEmail, " +
-                    "PatientAdress = @PatientAdress, " +
-                    "PatientZipCode = @PatientZipCode, " +
-                    "PatientCity = @PatientCity, " +
-                    "PatientProfilePicture = @PatientProfilePicture";
+                    "CPR = @CPR, " +
+                    "FirstName = @FirstName, " +
+                    "LastName = @LastName, " +
+                    "Username = @Username, " +
+                    "Password = @Password, " +
+                    "Phone = @Phone, " +
+                    "Email = @Email, " +
+                    "Adress = @Address, " +
+                    "ZipCode = @ZipCode, " +
+                    "City = @City, " +
+                    "ProfilePicture = @ProfilePicture";
+
 
                 // Parameters for the SQL query, using the properties of the Patient object
                 var parameters = new {
-                    patient.PatientCPR,
-                    patient.PatientFirstName,
-                    patient.PatientLastName,
-                    patient.PatientUsername,
-                    patient.PatientPassword,
-                    patient.PatientPhoneNumber,
-                    patient.PatientEmail,
-                    patient.PatientAddress,
-                    patient.PatientCity,
-                    patient.PatientZipCode,
-                    // Assuming PatientProfilePicture property exists in the Patient class
-                    patient.PatientProfilePicture,
+                    patient.CPR,
+                    patient.FirstName,
+                    patient.LastName,
+                    patient.Username,
+                    patient.Password,
+                    patient.Phone,
+                    patient.Email,
+                    patient.Address,
+                    patient.City,
+                    patient.ZipCode,
+                    // Assuming ProfilePicture property exists in the Patient class
+                    patient.ProfilePicture,
                 };
 
                 // Execute the SQL query and get the number of affected rows

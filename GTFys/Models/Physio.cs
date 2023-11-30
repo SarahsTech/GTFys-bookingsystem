@@ -16,7 +16,7 @@ namespace GTFys.Models
         public string LastName { get; set; }           // Last name of the physiotherapist
         public string Username { get; set; }           // Username chosen by the physiotherapist
         public string Password { get; set; }           // Password for physiotherapist authentication
-        public string PhoneNumber { get; set; }           // Phone number of the physiotherapist
+        public string Phone { get; set; }           // Phone number of the physiotherapist
         public string Email { get; set; }              // Email address of the physiotherapist
         public string Address { get; set; }            // Residential address of the physiotherapist
         public string City { get; set; }               // City of residence for the physiotherapist
@@ -25,7 +25,7 @@ namespace GTFys.Models
 
         // Constructor to initialize a Physio object with essential attributes
         public Physio(string cpr, string firstName, string lastName, string username, string password,
-            string phoneNumber, string email, string address, string city, int zipCode, string imagePath)
+            string phone, string email, string address, string city, int zipCode, string imagePath)
         {
             // Set the properties of the Physio object based on the provided parameters
             CPR = cpr;
@@ -33,7 +33,7 @@ namespace GTFys.Models
             LastName = lastName;
             Username = username;
             Password = password;
-            PhoneNumber = phoneNumber;
+            Phone = phone;
             Email = email;
             Address = address;
             City = city;

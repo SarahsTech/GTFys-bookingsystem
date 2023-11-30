@@ -18,10 +18,10 @@ namespace GTFys.ViewModels
 
         // Method for authenticating a physiotherapist login
         // Returns a boolean indicating whether the authentication was successful or not
-        public async Task<bool> physioAuthenticateLogin(string physioUsername, string physioPassword)
+        public async Task<bool> physioAuthenticateLogin(string username, string password)
         {
             // Create a new Physio object with the provided username and password
-            Physio physio = new Physio(physioUsername, physioPassword);
+            Physio physio = new Physio(username, password);
 
             // Call the generic AuthenticateLoginAsync method in DatabaseAccess
             // to perform the authentication for the physiotherapist
@@ -37,31 +37,31 @@ namespace GTFys.ViewModels
             try
             {
                 var query = "UPDATE gtPHYSIO SET " +
-                    "PhysioCPR = @PhysioCPR, " +
-                    "PhysioFirstName = @PhysioFirstName, " +
-                    "PhysioLastName = @PhysioLastName, " +
-                    "PhysioUsername = @PhysioUsername, " +
-                    "PhysioPassword = @PhysioPassword, " +
-                    "PhysioPhoneNumber = @PhysioPhoneNumber, " +
-                    "PhysioEmail = @PhysioEmail, " +
-                    "PhysioAdress = @PhysioAdress, " +
-                    "PhysioZipCode = @PhysioZipCode, " +
-                    "PhysioCity = @PhysioCity, " +
-                    "PhysioProfilePicture = @PhysioProfilePicture";
+                 "CPR = @CPR, " +
+                 "FirstName = @FirstName, " +
+                 "LastName = @LastName, " +
+                 "Username = @Username, " +
+                 "Password = @Password, " +
+                 "Phone = @Phone, " +
+                 "Email = @Email, " +
+                 "Adress = @Address, " +
+                 "ZipCode = @ZipCode, " +
+                 "City = @City, " +
+                 "ProfilePicture = @ProfilePicture";
 
-                var parameters = new
-                {
-                    physio.PhysioCPR,
-                    physio.PhysioFirstName,
-                    physio.PhysioLastName,
-                    physio.PhysioUsername,
-                    physio.PhysioPassword,
-                    physio.PhysioPhoneNumber,
-                    physio.PhysioEmail,
-                    physio.PhysioAddress,
-                    physio.PhysioCity,
-                    physio.PhysioZipCode,
+                var parameters = new {
+                    physio.CPR,
+                    physio.FirstName,
+                    physio.LastName,
+                    physio.Username,
+                    physio.Password,
+                    physio.Phone,
+                    physio.Email,
+                    physio.Address,
+                    physio.City,
+                    physio.ZipCode,
                 };
+
                 var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters);
 
                 return rowsAffected > 0;
