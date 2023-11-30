@@ -23,5 +23,16 @@ namespace GTFys.Views
         {
             InitializeComponent();
         }
+
+        private void btnProfilePage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+
+        }
     }
 }
