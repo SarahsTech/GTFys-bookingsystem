@@ -34,7 +34,7 @@ namespace GTFys.ViewModels
 
                 int count = await ExecuteScalarAsync<int>(query, parameters);
 
-                // Check if any rows were affected (indicating successful authentication)
+                // Only if theres 1 match i the table the login is approved
                 return count == 1;
             }
             catch (Exception ex) {
