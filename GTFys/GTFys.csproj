@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="Images\GTFysLogo.jpeg" />
     <None Remove="Images\GTFysLogo.png" />
+    <None Remove="Images\GTFysLogoMini.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,12 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Images\GTFysLogo.jpeg" />
     <Resource Include="Images\GTFysLogo.png" />
+    <Resource Include="Images\GTFysLogoMini.png" />
   </ItemGroup>
 
 </Project>
