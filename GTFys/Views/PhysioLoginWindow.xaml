@@ -8,6 +8,7 @@
         Title="PhysioLoginWindow" Height="600" Width="500">
     <Grid Margin="0,2,-1,-2">
         <Image Source="/GTFys;component/Images/GTFysLogoMini.png" Height="100" Width="100" Margin="32,33,367,451" />
+        
         <Label Content="Log Ind" 
                FontFamily="Verdana"
                FontSize="40"
@@ -60,7 +61,7 @@
             Width="334" 
             Margin="84,177,83,354"/>
 
-        <Button x:Name="btnLogin" Content="Log Ind" 
+        <Button Content="Log Ind" 
 
                 BorderBrush="Black" 
                 BorderThickness="1" 
