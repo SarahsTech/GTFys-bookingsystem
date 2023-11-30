@@ -6,8 +6,73 @@
         xmlns:local="clr-namespace:GTFys.Views"
         mc:Ignorable="d"
         Title="PhysioLoginWindow" Height="600" Width="500">
-    <Grid Margin="0,0,1,0">
+    <Grid Margin="0,2,-1,-2">
+        <Image Source="/GTFys;component/Images/GTFysLogoMini.png" Height="100" Width="100" Margin="32,33,367,451" />
+        <Label Content="Log Ind" 
+               FontFamily="Verdana"
+               FontSize="40"
+               HorizontalAlignment="Center" 
+               Margin="160,42,149,450"/>
+
+        <TextBox x:Name="tbPhysioPassword" 
+                 TextWrapping="Wrap" 
+                 Text="..." 
+                 HorizontalAlignment="Center"
+                 BorderBrush="#99CCFF"
+                 BorderThickness="2"
+                 FontFamily="Verdana"
+                 FontSize="20"
+                 VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"
+                 Width="334" 
+                 Margin="0,369,0,163" />
+
+        <Label Content="Kodeord" 
+               BorderBrush="#99CCFF"
+               BorderThickness="2"
+               FontFamily="Verdana"
+               FontSize="20"
+               VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Center"
+               Width="334" 
+               Margin="84,317,83,215"/>
         
+        <TextBox x:Name="tbPhysioUsername" 
+            TextWrapping="Wrap" 
+            Text="..." 
+            HorizontalAlignment="Center"
+            BorderBrush="#99CCFF"
+            BorderThickness="2"
+            FontFamily="Verdana"
+            FontSize="20"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Center"
+            Width="334" 
+            Margin="0,229,0,302" />
         
+        <Label Content="Brugernavn" 
+            BorderBrush="#99CCFF"
+            BorderThickness="2"
+            FontFamily="Verdana"
+            FontSize="20"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Center"
+            Width="334" 
+            Margin="84,177,83,354"/>
+
+        <Button x:Name="btnLogin" Content="Log Ind" 
+
+                BorderBrush="Black" 
+                BorderThickness="1" 
+                Padding="10" 
+                Width="334" 
+                Margin="84,435,83,110" />
+        
+        <TextBlock x:Name="tbPasswordForgotten" TextWrapping="Wrap" 
+                   Text="Gemt Kodeord" 
+                   Margin="86,483,265,70"/>
+
+
+
     </Grid>
 </Window>

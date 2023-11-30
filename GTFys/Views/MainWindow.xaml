@@ -25,8 +25,8 @@
                                 <GradientStop Offset="1" Color="#CCFFFFFF"/>
                             </LinearGradientBrush>
                         </Border.Background>
-                        <!-- Button Text -->
-                        <TextBlock Text="Fysioterapeut">
+                        <!-- Button Text With Verdana Font-->
+                        <TextBlock Text="Fysioterapeut" FontFamily="Verdana" >
                         <!-- Text Shadow Effect -->
                             <TextBlock.Effect>
                                 <DropShadowEffect Color="Black" Direction="0" ShadowDepth="0" Opacity="1"/>
@@ -63,8 +63,8 @@
                                 <GradientStop Offset="1" Color="#CCFFFFFF"/>
                             </LinearGradientBrush>
                         </Border.Background>
-                        <!-- Button Text -->
-                        <TextBlock Text="Patient">
+                        <!-- Button Text With Verdana Font-->
+                        <TextBlock Text="Patient" FontFamily="Verdana">
                         <!-- Text Shadow Effect -->
                             <TextBlock.Effect>
                                 <DropShadowEffect Color="Black" Direction="0" ShadowDepth="0" Opacity="1"/>
