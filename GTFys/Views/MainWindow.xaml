@@ -7,12 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <!-- Logo Image -->
         <Image Source="/GTFys;component/Images/GTFysLogo.jpeg" Margin="4,8,3,288" />
 
+        <!-- Physiotherapist Button -->
         <Button Margin="20,182,420,65" Click="PhysioButtonClicked">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
+                    <!-- Button Border -->
                     <Border BorderBrush="Black" BorderThickness="1" Padding="10" CornerRadius="10">
+                        <!-- Button Background -->
                         <Border.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                 <GradientStop Offset="0" Color="#CCFFFFFF"/>
@@ -21,15 +25,21 @@
                                 <GradientStop Offset="1" Color="#CCFFFFFF"/>
                             </LinearGradientBrush>
                         </Border.Background>
+                        <!-- Button Text -->
                         <TextBlock Text="PhysioTherapist">
+                        <!-- Text Shadow Effect -->
                             <TextBlock.Effect>
                                 <DropShadowEffect Color="Black" Direction="0" ShadowDepth="0" Opacity="1"/>
                             </TextBlock.Effect>
+                        <!-- Text Foreground (Color) -->
                             <TextBlock.Foreground>
                                 <SolidColorBrush Color="White"/>
                             </TextBlock.Foreground>
+                        <!-- Text Font Size -->
                             <TextBlock.FontSize>30</TextBlock.FontSize>
+                        <!-- Text Font Weight -->
                             <TextBlock.FontWeight>Bold</TextBlock.FontWeight>
+                        <!-- Text Alignment -->
                             <TextBlock.HorizontalAlignment>Center</TextBlock.HorizontalAlignment>
                             <TextBlock.VerticalAlignment>Center</TextBlock.VerticalAlignment>
                         </TextBlock>
@@ -38,34 +48,43 @@
             </Button.Template>
         </Button>
 
-<Button Margin="420,182,20,65" Click="PatientButtonClicked">
-    <Button.Template>
-        <ControlTemplate TargetType="Button">
-            <Border BorderBrush="Black" BorderThickness="1" Padding="10" CornerRadius="10">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Offset="0" Color="#CCFFFFFF"/>
-                        <GradientStop Offset="0.4" Color="#99CCFF"/>
-                        <GradientStop Offset="0.6" Color="#99CCFF"/>
-                        <GradientStop Offset="1" Color="#CCFFFFFF"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-                <TextBlock Text="Patient">
-                    <TextBlock.Effect>
-                        <DropShadowEffect Color="Black" Direction="0" ShadowDepth="0" Opacity="1"/>
-                    </TextBlock.Effect>
-                    <TextBlock.Foreground>
-                        <SolidColorBrush Color="White"/>
-                    </TextBlock.Foreground>
-                    <TextBlock.FontSize>30</TextBlock.FontSize>
-                    <TextBlock.FontWeight>Bold</TextBlock.FontWeight>
-                    <TextBlock.HorizontalAlignment>Center</TextBlock.HorizontalAlignment>
-                    <TextBlock.VerticalAlignment>Center</TextBlock.VerticalAlignment>
-                </TextBlock>
-            </Border>
-        </ControlTemplate>
-    </Button.Template>
-</Button>
-
+        <!-- Patient Button -->
+        <Button Margin="420,182,20,65" Click="PatientButtonClicked">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <!-- Button Border -->
+                    <Border BorderBrush="Black" BorderThickness="1" Padding="10" CornerRadius="10">
+                        <!-- Button Background -->
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Offset="0" Color="#CCFFFFFF"/>
+                                <GradientStop Offset="0.4" Color="#99CCFF"/>
+                                <GradientStop Offset="0.6" Color="#99CCFF"/>
+                                <GradientStop Offset="1" Color="#CCFFFFFF"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <!-- Button Text -->
+                        <TextBlock Text="Patient">
+                        <!-- Text Shadow Effect -->
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="Black" Direction="0" ShadowDepth="0" Opacity="1"/>
+                            </TextBlock.Effect>
+                        <!-- Text Foreground (Color) -->
+                            <TextBlock.Foreground>
+                                <SolidColorBrush Color="White"/>
+                            </TextBlock.Foreground>
+                        <!-- Text Font Size -->
+                            <TextBlock.FontSize>30</TextBlock.FontSize>
+                        <!-- Text Font Weight -->
+                            <TextBlock.FontWeight>Bold</TextBlock.FontWeight>
+                        <!-- Text Alignment -->
+                            <TextBlock.HorizontalAlignment>Center</TextBlock.HorizontalAlignment>
+                            <TextBlock.VerticalAlignment>Center</TextBlock.VerticalAlignment>
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
+
 </Window>
