@@ -19,19 +19,27 @@ namespace GTFys.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Constructor for MainWindow
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent(); // Initializes the components defined in XAML
         }
 
+        // Event handler for the physio button click
         private void PhysioButtonClicked(object sender, RoutedEventArgs e)
         {
-
+            // TODO: Implement physio button click functionality
         }
 
-        private void PatientButtonClicked(object sender, RoutedEventArgs e)
+        // Event handler for the patient button click
+        private void btnPatient_Click(object sender, RoutedEventArgs e)
         {
+            // Create an instance of the PatientLoginWindow
+            PatientLoginWindow patientLoginWindow = new PatientLoginWindow();
 
+            // Show the PatientLoginWindow
+            patientLoginWindow.Show();
         }
     }
 }
+
