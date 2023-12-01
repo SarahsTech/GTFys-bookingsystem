@@ -26,9 +26,13 @@ namespace GTFys.Views
         }
 
         // Event handler for the physio button click
-        private void PhysioButtonClicked(object sender, RoutedEventArgs e)
+        private void btnPhysio_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Implement physio button click functionality
+            // Create an instance of the PhysioLoginWindow
+            PhysioLoginWindow physioLoginWindow = new PhysioLoginWindow();
+
+            // Show the PhysioLoginWindow
+            physioLoginWindow.Show();
         }
 
         // Event handler for the patient button click

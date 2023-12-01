@@ -12,28 +12,31 @@
         <Image Source="/GTFys;component/Images/GTFysLogoMini.png" Height="100" Width="100" Margin="33,33,271,451" />
 
         <!-- Login Label -->
-        <Label Content="Log Ind" FontFamily="Verdana" FontSize="40" HorizontalAlignment="Left" Margin="175,42,0,450"/>
+        <Label Content="Log Ind" FontFamily="Verdana" FontSize="40" HorizontalAlignment="Left" Margin="175,42,0,517"/>
 
         <!-- Username Label and TextBox -->
-        <Label Content="Brugernavn" BorderBrush="black" BorderThickness="1" FontFamily="Verdana" FontSize="20"
-           VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="334" Margin="84,173,83,419"/>
-        <TextBox x:Name="tbPatientUsername" TextWrapping="Wrap" Text="..." HorizontalAlignment="Center"
-             BorderBrush="#99CCFF" BorderThickness="2" FontFamily="Verdana" FontSize="20"
-             VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="334" Margin="0,219,0,373" />
+        <Label Content="Brugernavn" 
+               Margin="84,173,83,419"
+               BorderBrush="black" BorderThickness="1" 
+               FontFamily="Verdana" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+               />
+        <TextBox x:Name="tbPatientUsername" TextWrapping="Wrap" 
+             BorderBrush="#99CCFF" BorderThickness="2" FontFamily="Verdana" FontSize="15"
+              Margin="84,219,83,373" />
 
         <!-- Password Label and TextBox -->
-        <Label Content="Kodeord" BorderBrush="black" BorderThickness="1" FontFamily="Verdana" FontSize="20"
-           VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="334" Margin="84,282,83,310"/>
-        <TextBox x:Name="tbPatientPassword" TextWrapping="Wrap" Text="..." FontFamily="Verdana" FontSize="20"
-             HorizontalAlignment="Center" BorderBrush="#99CCFF" BorderThickness="2"
-             VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="334" Margin="0,329,0,263" />
+        <Label Content="Kodeord" BorderBrush="black" BorderThickness="1" FontFamily="Verdana" FontSize="15"
+           VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="84,282,83,310"/>
+        <TextBox x:Name="tbPatientPassword" TextWrapping="Wrap"  FontFamily="Verdana" FontSize="15"
+             BorderBrush="#99CCFF" BorderThickness="2"
+            Margin="84,328,83,264" />
 
         <!-- Login Button -->
         <Button x:Name="btnLogin" Content="Log Ind" Background="#99CCFF" Foreground="White"
-            BorderBrush="Black" BorderThickness="1" Padding="10" Width="334" Margin="84,384,83,208" />
+            BorderBrush="Black" BorderThickness="1" Margin="84,384,83,208" />
 
         <!-- Password Forgotten TextBlock -->
-        <TextBlock x:Name="tbPasswordForgotten" TextWrapping="Wrap" Text="Gemt Kodeord" FontFamily="Verdana"
+        <TextBlock x:Name="tbPasswordForgotten" TextWrapping="Wrap" Text="Glemt Kodeord" FontFamily="Verdana" FontStyle="Oblique"
                FontSize="13" FontWeight="Bold" Foreground="#99CCFF" Margin="86,432,276,168"/>
 
         <!-- Grey create user section -->
@@ -44,7 +47,8 @@
 
         <!-- Create User Button -->
         <Button x:Name="btnCreateUser" Content="Opret Bruger" Background="#99CCFF" Foreground="White"
-            BorderBrush="Black" BorderThickness="1" Padding="10" Width="334" Margin="84,567,83,25" />
+            BorderBrush="Black" BorderThickness="1" Margin="84,567,83,25" />
     </Grid>
 
 </Window>
+
