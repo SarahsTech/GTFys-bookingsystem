@@ -115,7 +115,8 @@ namespace GTFys.ViewModels
                         // Execute the command and retrieve the result as a SqlDataReader
                         using (SqlDataReader reader = await command.ExecuteReaderAsync()) {
                             // Check if there are any rows in the result set
-                            if (await reader.ReadAsync()) {
+                            if (await reader.ReadAsync()) { 
+
                                 // Create a DataTable to hold the result
                                 DataTable table = new DataTable();
                                 table.Load(reader);
@@ -134,7 +135,7 @@ namespace GTFys.ViewModels
             }
             catch (Exception ex) {
                 // Handle exceptions, log errors, or throw them for further handling
-                Console.WriteLine($"Error executing query: {ex.Message}");
+                Debug.WriteLine($"Error executing query: {ex.Message}");
                 throw;
             }
 
