@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,18 +56,26 @@ namespace GTFys.ViewModels
                  "City = @City, " +
                  "ProfilePicture = @ProfilePicture";
 
+                byte[] imageBytes = null;
+
+                // Check if imagePath has a value
+                if (!string.IsNullOrEmpty(imagePath)) {
+                    // Read the image file and convert it to bytes
+                    imageBytes = File.ReadAllBytes(imagePath);
+                }
+
                 var parameters = new {
-                    cpr,
-                    firstName,
-                    lastName,
-                    username,
-                    password,
-                    phone,
-                    email,
-                    address,
-                    city,
-                    zipCode,
-                    imagePath
+                    CPR = cpr,
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Username = username,
+                    Password = password,
+                    Phone = phone,
+                    Email = email,
+                    Address = address,
+                    ZipCode = zipCode,
+                    City = city,
+                    ProfilePicture = imageBytes // Make sure ProfilePicture is of type byte[]
                 };
 
                 var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters);

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -48,24 +49,34 @@ namespace GTFys.ViewModels
         // Used for operations that doesn't return data such as INSERT, UPDATE and DELETE. 
         public async Task<int> ExecuteNonQueryAsync(string query, object parameters = null, CommandType commandType = CommandType.Text)
         {
-            // Establish a new database connection
-            using (IDbConnection connection = new DatabaseConnection().Connect()) {
-                // Create a new SQL command using the provided query and connection
-                using (SqlCommand command = new SqlCommand(query, (SqlConnection)connection)) {
-                    // Set the command type (e.g., Text or StoredProcedure)
-                    command.CommandType = commandType;
+            try {
+                // Establish a new database connection
+                using (IDbConnection connection = new DatabaseConnection().Connect()) {
+                    // Create a new SQL command using the provided query and connection
+                    using (SqlCommand command = new SqlCommand(query, (SqlConnection)connection)) {
+                        // Set the command type (e.g., Text or StoredProcedure)
+                        command.CommandType = commandType;
 
-                    // If parameters are provided, add them to the command
-                    if (parameters != null) {
-                        foreach (var property in parameters.GetType().GetProperties()) {
-                            // Add parameters to the command based on the properties of the parameters object
-                            command.Parameters.AddWithValue("@" + property.Name, property.GetValue(parameters));
+                        // If parameters are provided, add them to the command
+                        if (parameters != null) {
+                            foreach (var property in parameters.GetType().GetProperties()) {                               
+                                // Add parameters to the command based on the properties of the parameters object
+                                // Create a SqlParameter with the appropriate type
+                                // If the value is null, set it to DBNull.Value
+                                var parameter = new SqlParameter("@" + property.Name, property.GetValue(parameters) ?? DBNull.Value);
+                                command.Parameters.Add(parameter);
+                                // Log the parameter name and value for debugging
+                                Debug.WriteLine($"Parameter: {property.Name}, Value: {property.GetValue(parameters)}");
+                            }
                         }
-                    }
 
-                    // Execute the command asynchronously and return the number of affected rows
-                    return await command.ExecuteNonQueryAsync();
-                }
+                        // Execute the command asynchronously and return the number of affected rows
+                        return await command.ExecuteNonQueryAsync();
+                    }
+                } 
+            } catch(Exception ex) {
+                Debug.WriteLine(ex.Message);
+                return -1;
             }
         }
 
@@ -96,6 +107,7 @@ namespace GTFys.ViewModels
                 }
             }
         }
+
         // Method to execute a SQL query and return the result as a DataRow
         public async Task<object> ExecuteQueryAsync(string query, object parameters)
         {
@@ -114,21 +126,18 @@ namespace GTFys.ViewModels
 
                         // Execute the command and retrieve the result as a SqlDataReader
                         using (SqlDataReader reader = await command.ExecuteReaderAsync()) {
-                            // Check if there are any rows in the result set
-                            if (await reader.ReadAsync()) { 
 
-                                // Create a DataTable to hold the result
-                                DataTable table = new DataTable();
-                                table.Load(reader);
+                            // Create a DataTable to hold the result
+                            DataTable table = new DataTable();
+                            table.Load(reader);
 
-                                // Assuming the query returns only one row, return the first DataRow
-                                var result = table.Rows.Count > 0 ? table.Rows[0] : null;
+                            // Assuming the query returns only one row, return the first DataRow
+                            var result = table.Rows.Count > 0 ? table.Rows[0] : null;
 
-                                // Log the result for debugging
-                                Debug.WriteLine($"Query result: {result}");
+                            // Log the result for debugging
+                            Debug.WriteLine($"Query result: {result}");
 
-                                return result; 
-                            }
+                            return result;
                         }
                     }
                 }
@@ -138,9 +147,6 @@ namespace GTFys.ViewModels
                 Debug.WriteLine($"Error executing query: {ex.Message}");
                 throw;
             }
-
-            // Return null if no data is retrieved
-            return null;
         }
 
 

@@ -24,12 +24,17 @@ namespace GTFys.Views
         public PhysioProfilePage()
         {
             InitializeComponent();
+
+            LoadPhysioInfo();
         }
         PhysioRepo physioRepo = new PhysioRepo();
         private async void btnUpdatePhysio_Click(object sender, RoutedEventArgs e)
         {
+            // Check whether tbProfilePicture.Text is empty, and if it is, set the value to null 
+            string profilePicture = string.IsNullOrEmpty(tbProfilePicture.Text) ? null : tbProfilePicture.Text;
+
             bool updateSuccessful = await physioRepo.PhysioUpdateUser(tbFirstName.Text, tbLastName.Text, tbUsername.Text,
-                tbPassword.Text, tbEmail.Text, tbPhone.Text, tbCPR.Text, tbAddress.Text, Convert.ToInt32(tbZipCode.Text), tbCity.Text, tbProfilePicture.Text);
+                tbPassword.Text, tbEmail.Text, tbPhone.Text, tbCPR.Text, tbAddress.Text, Convert.ToInt32(tbZipCode.Text), tbCity.Text, profilePicture);
 
             if (updateSuccessful) {
                 // Show a success message to the user
@@ -43,6 +48,21 @@ namespace GTFys.Views
             }
         }
 
+        private void LoadPhysioInfo()
+        {
+            // Set all values in the textbox to the values of the logged in physio (CurrentPhysio)
+            tbCPR.Text = PhysioService.CurrentPhysio?.CPR;
+            tbFirstName.Text = PhysioService.CurrentPhysio?.FirstName;
+            tbLastName.Text = PhysioService.CurrentPhysio?.LastName;
+            tbUsername.Text = PhysioService.CurrentPhysio?.Username;
+            tbPassword.Text = PhysioService.CurrentPhysio?.Password;
+            tbPhone.Text = PhysioService.CurrentPhysio?.Phone;
+            tbEmail.Text = PhysioService.CurrentPhysio?.Email;
+            tbAddress.Text = PhysioService.CurrentPhysio?.Address;
+            tbCity.Text = PhysioService.CurrentPhysio?.City;
+            tbZipCode.Text = PhysioService.CurrentPhysio?.ZipCode.ToString();
+            tbProfilePicture.Text = PhysioService.CurrentPhysio?.ProfilePicture;
+        }
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
