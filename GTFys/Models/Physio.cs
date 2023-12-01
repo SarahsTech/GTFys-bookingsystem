@@ -23,6 +23,11 @@ namespace GTFys.Models
         public int ZipCode { get; set; }               // Postal code of the physiotherapist's location
         public string ProfilePicture { get; set; }     // Profile picture uploaded by physiotherapist or generated 
 
+        // Default constructor
+        public Physio()
+        {
+            // Initialize any default values or perform additional setup logic if needed
+        }
         // Constructor to initialize a Physio object with essential attributes
         public Physio(string cpr, string firstName, string lastName, string username, string password,
             string phone, string email, string address, string city, int zipCode, string imagePath)

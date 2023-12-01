@@ -21,14 +21,19 @@ namespace GTFys.ViewModels
         public async Task<bool> PhysioAuthenticateLogin(string username, string password)
         {
             // Create a new Physio object with the provided username and password
-            Physio physio = new Physio(username, password);
+            // Physio physio = new Physio(username, password);
 
             // Call the generic AuthenticateLoginAsync method in DatabaseAccess
             // to perform the authentication for the physiotherapist
-            bool physioAuthResult = await dbAccess.AuthenticateLoginAsync(physio);
+            var result = await dbAccess.AuthenticateLoginAsync(username, password, typeof(Physio));
+
+            // The result set of AuthenticateLoginAsync
+            bool isAuthenticated = result.isAuthenticated;
+            // Set the CurrentPhysio to the authenticated physio
+            PhysioService.CurrentPhysio = (Physio)result.userData;
 
             // Return the result of the authentication (true if successful, false otherwise)
-            return physioAuthResult;
+            return (isAuthenticated);
         }
 
         // Method to update physio profile information

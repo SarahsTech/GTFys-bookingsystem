@@ -1,4 +1,5 @@
-﻿using GTFys.ViewModels;
+﻿using GTFys.Models;
+using GTFys.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,10 @@ namespace GTFys.Views
 
         private async void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
-            bool isAuthenticated = await physioRepo.PhysioAuthenticateLogin(tbPhysioUsername.Text, tbPhysioPassword.Text);
+            string username = tbPhysioUsername.Text;
+            string password = tbPhysioPassword.Text;
+
+            bool isAuthenticated = await physioRepo.PhysioAuthenticateLogin(username, password);
 
             if (isAuthenticated) {
                 PhysioFrontPageWindow physioFrontPageWindow = new PhysioFrontPageWindow();

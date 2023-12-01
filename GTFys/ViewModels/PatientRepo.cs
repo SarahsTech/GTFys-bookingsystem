@@ -19,18 +19,18 @@ namespace GTFys.ViewModels
 
         // Method for authenticating a patient login
         // Returns a boolean indicating whether the authentication was successful or not
-         public async Task<bool> patientAuthenticateLogin(string username, string password)
-        {
-            // Create a new Patient object with the provided username and password
-            Patient patient = new Patient(username, password);
+        // public async Task<bool> patientAuthenticateLogin(string username, string password)
+        //{
+        //    // Create a new Patient object with the provided username and password
+        //    Patient patient = new Patient(username, password);
 
-            // Call the generic AuthenticateLoginAsync method in DatabaseAccess
-            // to perform the authentication for the patient
-            bool patientAuthResult = await dbAccess.AuthenticateLoginAsync(patient);
+        //    // Call the generic AuthenticateLoginAsync method in DatabaseAccess
+        //    // to perform the authentication for the patient
+        //    bool patientAuthResult = await dbAccess.AuthenticateLoginAsync(patient);
 
-            // Return the result of the authentication (true if successful, false otherwise)
-            return patientAuthResult;
-        }
+        //    // Return the result of the authentication (true if successful, false otherwise)
+        //    return patientAuthResult;
+        //}
 
         // Method to insert a new patient using the stored procedure gtspInsertPatient
         // Returns a boolean indicating whether the insertion was successful or not
