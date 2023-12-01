@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GTFys.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,5 +24,31 @@ namespace GTFys.Views
         {
             InitializeComponent();
         }
+
+        PatientRepo patientRepo = new PatientRepo();
+
+        private async void btnLogIn_Click(object sender, RoutedEventArgs e)
+        {
+            bool isAuthenticated = await patientRepo.patientAuthenticateLogin(tbPatientUsername.Text, tbPatientPassword.Text);
+
+            if (isAuthenticated)
+            {
+                PatientFrontPageWindow patientFrontPageWindow = new PatientFrontPageWindow();
+                patientFrontPageWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                /* It's a good practice to handle user interface interactions and display messages in code-behind or ViewModel
+                 * once you have the response about whether the login is successful or not. This separates the presentation logic
+                 * from your data access logic, making your code more modular and easier to maintain.
+                 */
+                // Show an error message to the user
+                MessageBox.Show("Login failed. Check your username and password and try again.", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
+
     }
 }

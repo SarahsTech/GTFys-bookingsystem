@@ -25,7 +25,7 @@
               Margin="84,219,83,373" />
 
         <!-- Password Label and TextBox -->
-        <Label Content="Kodeord" BorderBrush="black" BorderThickness="1" FontFamily="Verdana" FontSize="15"
+        <Label x:Name="tbPatientPassword1" Content="Kodeord" BorderBrush="black" BorderThickness="1" FontFamily="Verdana" FontSize="15"
            VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="84,282,83,310"/>
         <TextBox x:Name="tbPatientPassword" TextWrapping="Wrap"  FontFamily="Verdana" FontSize="15"
              BorderBrush="#99CCFF" BorderThickness="2"
@@ -33,7 +33,7 @@
 
         <!-- Login Button -->
         <Button x:Name="btnLogin" Content="Log Ind" Background="#99CCFF" Foreground="White"
-            BorderBrush="Black" BorderThickness="1" Margin="84,384,83,208" />
+            BorderBrush="Black" BorderThickness="1" Margin="84,384,83,208" Click="btnLogIn_Click" />
 
         <!-- Password Forgotten TextBlock -->
         <TextBlock x:Name="tbPasswordForgotten" TextWrapping="Wrap" Text="Glemt Kodeord" FontFamily="Verdana" FontStyle="Oblique"

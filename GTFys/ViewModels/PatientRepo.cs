@@ -12,7 +12,7 @@ namespace GTFys.ViewModels
     public class PatientRepo
     {
         private DatabaseAccess dbAccess;
-        public PatientRepo(DatabaseAccess dbAccess)
+        public PatientRepo()
         {
             this.dbAccess = dbAccess;
         }
