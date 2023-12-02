@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GTFys.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,7 @@ namespace GTFys.Views
             InitializeComponent();
         }
 
+        // Event handler for the button to navigate to the patient profile page
         private void btnProfilePage_Click(object sender, RoutedEventArgs e)
         {
             // Create an instance of PatientProfilePage
@@ -31,9 +33,28 @@ namespace GTFys.Views
             this.Content = patientProfilePage;
         }
 
+        // Event handler for the button to log out
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
         {
+            // Show a message with the option to accept or cancel
+            MessageBoxResult result = MessageBox.Show("Er du sikker på, at du vil logge ud?", "Log ud", MessageBoxButton.OKCancel, MessageBoxImage.Error);
 
+            if (result == MessageBoxResult.OK)
+            {
+                // User has confirmed
+
+                // Set the current patient to null
+                PatientService.CurrentPatient = null;
+
+                // Close the current window and open the login window
+                this.Close();
+                PatientLoginWindow patientLoginWindow = new PatientLoginWindow();
+                patientLoginWindow.Show();
+            }
+            else
+            {
+                // User has canceled the log-out operation
+            }
         }
     }
 }
