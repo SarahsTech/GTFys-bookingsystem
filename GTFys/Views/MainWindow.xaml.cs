@@ -28,6 +28,7 @@ namespace GTFys.Views
         {
             PhysioLoginWindow physioLoginWindow = new PhysioLoginWindow();
             physioLoginWindow.Show();
+            this.Close();
         }
 
         private void btnPatient_Click(object sender, RoutedEventArgs e)

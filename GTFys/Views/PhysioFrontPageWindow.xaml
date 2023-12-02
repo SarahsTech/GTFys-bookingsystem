@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="PhysioFrontPageWindow" Height="500" Width="900">
     <Grid>
-        
+        <Frame x:Name="frontPage" NavigationUIVisibility="Hidden"/>
         <Button x:Name="btnProfilePage" Content="Profil" HorizontalAlignment="Left" Margin="731,24,0,0" VerticalAlignment="Top" Click="btnProfilePage_Click" Width="41"/>
         <Button x:Name="btnLogOut" Content="Log ud" HorizontalAlignment="Left" Margin="731,70,0,0" VerticalAlignment="Top" Click="btnLogOut_Click" />
 

@@ -59,12 +59,23 @@ namespace GTFys.ViewModels
 
                         // If parameters are provided, add them to the command
                         if (parameters != null) {
-                            foreach (var property in parameters.GetType().GetProperties()) {                               
+                            foreach (var property in parameters.GetType().GetProperties()) {
+
                                 // Add parameters to the command based on the properties of the parameters object
-                                // Create a SqlParameter with the appropriate type
-                                // If the value is null, set it to DBNull.Value
-                                var parameter = new SqlParameter("@" + property.Name, property.GetValue(parameters) ?? DBNull.Value);
-                                command.Parameters.Add(parameter);
+                                var paramName = "@" + property.Name;
+
+                                if (property.PropertyType == typeof(byte[])) {
+                                    // Handle byte[] (image) type
+                                    var parameter = new SqlParameter(paramName, SqlDbType.Image);
+                                    parameter.Value = property.GetValue(parameters) ?? DBNull.Value;
+                                    command.Parameters.Add(parameter);
+                                }
+                                else {
+                                    // Handle other types
+                                    var parameter = new SqlParameter(paramName, property.GetValue(parameters) ?? DBNull.Value);
+                                    command.Parameters.Add(parameter);
+                                }
+
                                 // Log the parameter name and value for debugging
                                 Debug.WriteLine($"Parameter: {property.Name}, Value: {property.GetValue(parameters)}");
                             }
@@ -151,7 +162,7 @@ namespace GTFys.ViewModels
 
 
         // Method to execute a SQL query and retrieve the first result as an instance of a specified type
-        private async Task<object> ExecuteQueryFirstOrDefaultAsync(string query, object parameters, Type resultType)
+        public async Task<object> ExecuteQueryFirstOrDefaultAsync(string query, object parameters, Type resultType)
         {
             // Use ExecuteQuery method to fetch data from the database
             var resultData = await ExecuteQueryAsync(query, parameters);

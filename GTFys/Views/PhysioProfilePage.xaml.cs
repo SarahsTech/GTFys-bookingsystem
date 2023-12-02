@@ -27,20 +27,19 @@ namespace GTFys.Views
 
             LoadPhysioInfo();
         }
+
         PhysioRepo physioRepo = new PhysioRepo();
         private async void btnUpdatePhysio_Click(object sender, RoutedEventArgs e)
         {
-            // Check whether tbProfilePicture.Text is empty, and if it is, set the value to null 
-            string profilePicture = string.IsNullOrEmpty(tbProfilePicture.Text) ? null : tbProfilePicture.Text;
-
             bool updateSuccessful = await physioRepo.PhysioUpdateUser(tbFirstName.Text, tbLastName.Text, tbUsername.Text,
-                tbPassword.Text, tbEmail.Text, tbPhone.Text, tbCPR.Text, tbAddress.Text, Convert.ToInt32(tbZipCode.Text), tbCity.Text, profilePicture);
+                tbPassword.Text, tbEmail.Text, tbPhone.Text, tbCPR.Text, tbAddress.Text, Convert.ToInt32(tbZipCode.Text), tbCity.Text, tbProfilePicture.Text);
 
             if (updateSuccessful) {
                 // Show a success message to the user
                 MessageBox.Show("Din opdatering succesfuld!", "Succesfuld opdatering", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                // You can also navigate to another page or perform additional actions on success
+                // Reload the physio information to update the displayed values
+                LoadPhysioInfo();
             }
             else {
                 // Show an error message to the user
@@ -66,9 +65,9 @@ namespace GTFys.Views
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
-            // Go back to the previous page
-            PhysioFrontPageWindow frontPage = new PhysioFrontPageWindow();
-            Content = frontPage;
+            // Open a new instance of PhysioFrontPageWindow
+            PhysioFrontPageWindow physioFrontPageWindow = new PhysioFrontPageWindow();
+            physioFrontPageWindow.Show();
         }
 
     }

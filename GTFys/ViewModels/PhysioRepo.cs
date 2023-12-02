@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -21,8 +22,6 @@ namespace GTFys.ViewModels
         // Returns a boolean indicating whether the authentication was successful or not
         public async Task<bool> PhysioAuthenticateLogin(string username, string password)
         {
-            // Create a new Physio object with the provided username and password
-            // Physio physio = new Physio(username, password);
 
             // Call the generic AuthenticateLoginAsync method in DatabaseAccess
             // to perform the authentication for the physiotherapist
@@ -43,26 +42,9 @@ namespace GTFys.ViewModels
         {
             try
             {
-                var query = "UPDATE gtPHYSIO SET " +
-                 "CPR = @CPR, " +
-                 "FirstName = @FirstName, " +
-                 "LastName = @LastName, " +
-                 "Username = @Username, " +
-                 "Password = @Password, " +
-                 "Phone = @Phone, " +
-                 "Email = @Email, " +
-                 "Address = @Address, " +
-                 "ZipCode = @ZipCode, " +
-                 "City = @City, " +
-                 "ProfilePicture = @ProfilePicture";
+                var query = "gtspUpdatePhysio";
 
-                byte[] imageBytes = null;
-
-                // Check if imagePath has a value
-                if (!string.IsNullOrEmpty(imagePath)) {
-                    // Read the image file and convert it to bytes
-                    imageBytes = File.ReadAllBytes(imagePath);
-                }
+                byte[] imageBytes = (!string.IsNullOrEmpty(imagePath)) ? File.ReadAllBytes(imagePath) : null;
 
                 var parameters = new {
                     CPR = cpr,
@@ -70,15 +52,23 @@ namespace GTFys.ViewModels
                     LastName = lastName,
                     Username = username,
                     Password = password,
-                    Phone = phone,
                     Email = email,
+                    Phone = phone,
                     Address = address,
                     ZipCode = zipCode,
                     City = city,
-                    ProfilePicture = imageBytes // Make sure ProfilePicture is of type byte[]
+                    ProfilePicture = imageBytes
                 };
 
-                var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters);
+                var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters, CommandType.StoredProcedure);
+
+                // Set the updated values to the current physios information               
+                var updatedInfoQuery = $"SELECT * FROM gtPHYSIO WHERE CPR = @CPR";
+                var updatedParameters = new { CPR = cpr };
+
+                // Fetch the updated physio and update the current physio
+                var physio = await dbAccess.ExecuteQueryFirstOrDefaultAsync(updatedInfoQuery, updatedParameters, typeof(Physio));
+                PhysioService.CurrentPhysio = (Physio)physio; 
 
                 return rowsAffected > 0;
             }
