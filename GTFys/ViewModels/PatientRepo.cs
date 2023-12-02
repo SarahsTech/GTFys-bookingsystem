@@ -28,6 +28,7 @@ namespace GTFys.ViewModels
 
             // The result set of AuthenticateLoginAsync
             bool isAuthenticated = result.isAuthenticated;
+
             // Set the CurrentPatient to the authenticated patient
             PatientService.CurrentPatient = (Patient)result.userData;
 
