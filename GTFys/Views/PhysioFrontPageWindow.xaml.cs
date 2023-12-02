@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GTFys.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace GTFys.Views
@@ -19,9 +21,38 @@ namespace GTFys.Views
     /// </summary>
     public partial class PhysioFrontPageWindow : Window
     {
+
         public PhysioFrontPageWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnProfilePage_Click(object sender, RoutedEventArgs e)
+        {
+            // Create an instance of PhysioProfilePage
+            PhysioProfilePage physioProfilePage = new PhysioProfilePage();
+            this.Content = physioProfilePage;
+        }
+
+        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        {
+            // Show a message with option to accept or cancel
+            MessageBoxResult result = MessageBox.Show("Er du sikker på, at du vil logge ud?", "Log ud", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+
+            if (result == MessageBoxResult.OK) {
+                // User has confirmed
+
+                // Set the current physio to null
+                PhysioService.CurrentPhysio = null;
+
+                // Close the current window and open the login window
+                this.Close();
+                PhysioLoginWindow physioLoginWindow = new PhysioLoginWindow();
+                physioLoginWindow.Show();
+            }
+            else {
+                // User has cancelled
+            }
         }
     }
 }

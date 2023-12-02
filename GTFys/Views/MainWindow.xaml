@@ -11,7 +11,7 @@
         <Image Source="/GTFys;component/Images/GTFysLogo.jpeg" Margin="4,8,3,288" />
 
         <!-- Physiotherapist Button -->
-        <Button Margin="20,182,420,65" Click="PhysioButtonClicked">
+        <Button x:Name="btnPhysio" Margin="20,182,420,65" Click="btnPhysio_Click" >
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <!-- Button Border -->
@@ -49,7 +49,7 @@
         </Button>
 
         <!-- Patient Button -->
-        <Button Margin="420,182,20,65" Click="PatientButtonClicked">
+        <Button x:Name="btnPatient" Margin="420,182,20,65" Click="btnPatient_Click" >
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <!-- Button Border -->

@@ -61,16 +61,16 @@
             Width="334" 
             Margin="84,177,83,354"/>
 
-        <Button Content="Log Ind" 
-
+        <Button x:Name="btnLogIn" Content="Log ind" 
+                FontSize="13"
                 BorderBrush="Black" 
                 BorderThickness="1" 
                 Padding="10" 
                 Width="334" 
-                Margin="84,435,83,110" />
+                Margin="84,435,83,110" Click="btnLogIn_Click" />
         
         <TextBlock x:Name="tbPasswordForgotten" TextWrapping="Wrap" 
-                   Text="Gemt Kodeord" 
+                   Text="Glemt kodeord..." 
                    Margin="86,483,265,70"/>
 
 

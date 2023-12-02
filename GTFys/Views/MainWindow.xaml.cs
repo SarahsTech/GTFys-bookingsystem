@@ -24,12 +24,14 @@ namespace GTFys.Views
             InitializeComponent();
         }
 
-        private void PhysioButtonClicked(object sender, RoutedEventArgs e)
+        private void btnPhysio_Click(object sender, RoutedEventArgs e)
         {
-
+            PhysioLoginWindow physioLoginWindow = new PhysioLoginWindow();
+            physioLoginWindow.Show();
+            this.Close();
         }
 
-        private void PatientButtonClicked(object sender, RoutedEventArgs e)
+        private void btnPatient_Click(object sender, RoutedEventArgs e)
         {
 
         }
