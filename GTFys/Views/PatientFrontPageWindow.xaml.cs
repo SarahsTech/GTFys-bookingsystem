@@ -26,7 +26,9 @@ namespace GTFys.Views
 
         private void btnProfilePage_Click(object sender, RoutedEventArgs e)
         {
-
+            // Create an instance of PatientProfilePage
+            PatientProfilePage patientProfilePage = new PatientProfilePage();
+            this.Content = patientProfilePage;
         }
 
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
