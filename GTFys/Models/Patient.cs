@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace GTFys.Models
 {
     // The Patient class represents information about a patient
-    // The Patient class represents information about a patient
     public class Patient
     {
         // Properties representing various attributes of a patient
