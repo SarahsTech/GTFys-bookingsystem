@@ -44,12 +44,12 @@
         <TextBlock Grid.Row="7" x:Name="tbPasswordForgotten" TextWrapping="Wrap" Text="Glemt Kodeord" FontFamily="Verdana" FontStyle="Oblique" FontSize="14" FontWeight="Bold" Foreground="#99CCFF" Margin="84,129,264,-102"/>
 
         <!-- Grey create user section -->
-        <Border Grid.Row="7" Background="#E6E6E6" Margin="-3,241,3,-303">
+        <Border Grid.Row="7" Background="#E6E6E6" Margin="-3,228,3,-303">
             <TextBlock Text="Er du ikke oprettet endnu?" Foreground="Black" FontFamily="Verdana" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10"/>
         </Border>
 
         <!-- Create User Button -->
-        <Button Grid.Row="7" x:Name="btnCreateUser" Content="Opret Bruger" FontFamily="Verdana" FontSize="15" Background="#99CCFF" Foreground="White" BorderBrush="Black" BorderThickness="1" Margin="106,291,105,-278" />
+        <Button Grid.Row="7" x:Name="btnCreateUser" Content="Opret Bruger" FontFamily="Verdana" FontSize="15" Background="#99CCFF" Foreground="White" BorderBrush="Black" BorderThickness="1" Margin="85,283,81,-270" />
     </Grid>
 </Window>
 

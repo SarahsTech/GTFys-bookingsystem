@@ -20,35 +20,40 @@ namespace GTFys.Views
     /// </summary>
     public partial class PatientLoginWindow : Window
     {
+        // Constructor for PatientLoginWindow
         public PatientLoginWindow()
         {
             InitializeComponent();
         }
 
+        // Create an instance of PatientRepo for handling patient-related operations
         PatientRepo patientRepo = new PatientRepo();
 
+        // Event handler for the login button click
         private async void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
-            bool isAuthenticated = await patientRepo.patientAuthenticateLogin(tbPatientUsername.Text, tbPatientPassword.Text);
+            // Retrieve the entered username and password from the textboxes
+            string username = tbPatientUsername.Text;
+            string password = tbPatientPassword.Text;
 
+            // Perform authentication for the patient using PatientRepo
+            bool isAuthenticated = await patientRepo.PatientAuthenticateLogin(username, password);
+
+            // Check if authentication was successful
             if (isAuthenticated)
             {
+                // If authenticated, open the PatientFrontPageWindow and close the current window
                 PatientFrontPageWindow patientFrontPageWindow = new PatientFrontPageWindow();
                 patientFrontPageWindow.Show();
                 this.Close();
             }
             else
             {
-                /* It's a good practice to handle user interface interactions and display messages in code-behind or ViewModel
-                 * once you have the response about whether the login is successful or not. This separates the presentation logic
-                 * from your data access logic, making your code more modular and easier to maintain.
-                 */
-                // Show an error message to the user
-                MessageBox.Show("Login failed. Check your username and password and try again.", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                // If authentication failed, show an error message to the user
+                MessageBox.Show("Login fejlede. Kontroller dit brugernavn og adgangskode og prøv igen.", "Login Fejl", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-
-
     }
+
+
 }
