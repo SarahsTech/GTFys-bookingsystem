@@ -18,7 +18,7 @@ namespace GTFys.ViewModels
            
         }
 
-        // Method for authenticating a physiotherapist login
+        //Method for authenticating a physiotherapist login
         // Returns a boolean indicating whether the authentication was successful or not
         public async Task<bool> PhysioAuthenticateLogin(string username, string password)
         {

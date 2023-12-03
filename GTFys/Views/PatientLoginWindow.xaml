@@ -1,0 +1,56 @@
+﻿<Window x:Class="GTFys.Views.PatientLoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GTFys.Views"
+        mc:Ignorable="d"
+        Title="PatientLoginWindow" Height="650" Width="500">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Logo Image -->
+        <Image Source="/GTFys;component/Images/GTFysLogoMini.png" Margin="15,10,385,4" />
+
+        <!-- Login Label -->
+        <Label Content="Log Ind" FontFamily="Verdana" FontSize="40" HorizontalAlignment="Center" Margin="0,27,0,27"/>
+
+        <!-- Username Label and TextBox -->
+        <StackPanel Grid.Row="2" Margin="4,29,-4,14" Grid.RowSpan="2">
+            <Label Content="Brugernavn" BorderBrush="black" BorderThickness="1" FontFamily="Verdana" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="350" Height="40"/>
+            <TextBox x:Name="tbPatientUsername" TextWrapping="Wrap" BorderBrush="#99CCFF" BorderThickness="2" FontFamily="Verdana" FontSize="15" Margin="0,5" Width="350" Height="40"/>
+        </StackPanel>
+
+        <!-- Password Label and TextBox -->
+        <StackPanel Grid.Row="4" Margin="2,13,-2,-27" Grid.RowSpan="4">
+            <Label x:Name="tbPatientPassword1" Content="Kodeord" BorderBrush="black" BorderThickness="1" FontFamily="Verdana" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="350" Height="40"/>
+            <TextBox x:Name="tbPatientPassword" TextWrapping="Wrap" FontFamily="Verdana" FontSize="15" BorderBrush="#99CCFF" BorderThickness="2" Margin="0,5" Width="350" Height="40"/>
+        </StackPanel>
+
+        <!-- Login Button -->
+        <Button Grid.Row="7" x:Name="btnLogin" Content="Log Ind" Background="#99CCFF" Foreground="White" FontFamily="Verdana" FontSize="15" BorderBrush="Black" BorderThickness="1" Margin="85,81,81,-68" Click="btnLogIn_Click" />
+
+        <!-- Password Forgotten TextBlock -->
+        <TextBlock Grid.Row="7" x:Name="tbPasswordForgotten" TextWrapping="Wrap" Text="Glemt Kodeord" FontFamily="Verdana" FontStyle="Oblique" FontSize="14" FontWeight="Bold" Foreground="#99CCFF" Margin="84,129,264,-102"/>
+
+        <!-- Grey create user section -->
+        <Border Grid.Row="7" Background="#E6E6E6" Margin="-3,228,3,-303">
+            <TextBlock Text="Er du ikke oprettet endnu?" Foreground="Black" FontFamily="Verdana" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10"/>
+        </Border>
+
+        <!-- Create User Button -->
+        <Button Grid.Row="7" x:Name="btnCreateUser" Content="Opret Bruger" FontFamily="Verdana" FontSize="15" Background="#99CCFF" Foreground="White" BorderBrush="Black" BorderThickness="1" Margin="85,283,81,-270" />
+    </Grid>
+</Window>
+
+

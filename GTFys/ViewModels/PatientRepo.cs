@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,14 +12,25 @@ namespace GTFys.ViewModels
 {
     public class PatientRepo
     {
-        private DatabaseAccess dbAccess;
-        public PatientRepo(DatabaseAccess dbAccess)
+        DatabaseAccess dbAccess = new DatabaseAccess();
+        public PatientRepo()
         {
-            this.dbAccess = dbAccess;
+
         }
 
         // Method for authenticating a patient login
         // Returns a boolean indicating whether the authentication was successful or not
+
+        public async Task<bool> PatientAuthenticateLogin(string username, string password)
+        {
+
+            // Call the generic AuthenticateLoginAsync method in DatabaseAccess
+            // to perform the authentication for the patient
+            var result = await dbAccess.AuthenticateLoginAsync(username, password, typeof(Patient));
+
+            // The result set of AuthenticateLoginAsync
+            bool isAuthenticated = result.isAuthenticated;
+
         // public async Task<bool> patientAuthenticateLogin(string username, string password)
         //{
         //    // Create a new Patient object with the provided username and password
@@ -57,33 +69,40 @@ namespace GTFys.ViewModels
                 };
 
 
-                // Execute the stored procedure and retrieve the output parameter
-                var rowsAffected = await dbAccess.ExecuteNonQueryAsync(storedProcedure, parameters, CommandType.StoredProcedure);
+            // Execute the stored procedure and retrieve the output parameter
+            var rowsAffected = await dbAccess.ExecuteNonQueryAsync(storedProcedure, parameters, CommandType.StoredProcedure);
 
-                // Return true if at least one row was affected, indicating a successful insertion
-                if (rowsAffected > 0) {
-                    MessageBox.Show($"Indsættelse succesfuld.");
-                    insertionSuccessful = true;
-                }
-                else {
-                    MessageBox.Show($"Fejl ved oprettelse af patient.");
-                    insertionSuccessful = false;
-                }
-                return insertionSuccessful;
-            }
-            catch (Exception ex) {
-                // Show a message box with the error details
-                MessageBox.Show($"Fejl ved indsættelse af patient: {ex.Message}");
+            // Set the CurrentPatient to the authenticated patient
+            PatientService.CurrentPatient = (Patient)result.userData;
 
-                // Log the error, and rethrow the exception for further handling
-                throw;
-            }
+            // Return the result of the authentication (true if successful, false otherwise)
+            return (isAuthenticated);
         }
 
         // Method to update patient profile information
-        // Returns a boolean indicating whether the profile update was successful or not
-        public async Task<bool> PatientUpdateUser(Patient patient)
+        public async Task<bool> PatientUpdateUser(string firstName, string lastName, string username, string password,
+            string email, string phone, string cpr, string address, int zipCode, string city, string imagePath)
         {
+            try
+            {
+                var query = "gtspUpdatePatient";
+
+                byte[] imageBytes = (!string.IsNullOrEmpty(imagePath)) ? File.ReadAllBytes(imagePath) : null;
+
+                var parameters = new
+                {
+                    CPR = cpr,
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Username = username,
+                    Password = password,
+                    Email = email,
+                    Phone = phone,
+                    Address = address,
+                    ZipCode = zipCode,
+                    City = city,
+                    ProfilePicture = imageBytes
+
             bool updateSuccessful = false;
             try {
                 // SQL query to update patient profile in the "gtPATIENT" table
@@ -117,64 +136,25 @@ namespace GTFys.ViewModels
                     patient.ProfilePicture,
                 };
 
-                // Execute the SQL query and get the number of affected rows
-                var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters);
+                var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters, CommandType.StoredProcedure);
 
-                // Return true if at least one row was affected, indicating a successful update
-                if(rowsAffected > 0) {
-                    MessageBox.Show($"Opdatering succesfuld.");
-                    updateSuccessful = true;
-                }
-                else {
-                    MessageBox.Show($"Fejl ved opdatering af patient.");
-                    updateSuccessful = false;
-                }
-                return updateSuccessful;
+                // Set the updated values to the current patient's information               
+                var updatedInfoQuery = $"SELECT * FROM gtPATIENT WHERE CPR = @CPR";
+                var updatedParameters = new { CPR = cpr };
+
+                // Fetch the updated patient and update the current patient
+                var patient = await dbAccess.ExecuteQueryFirstOrDefaultAsync(updatedInfoQuery, updatedParameters, typeof(Patient));
+                PatientService.CurrentPatient = (Patient)patient;
+
+                return rowsAffected > 0;
             }
-            catch (Exception ex) {
-                // Show a message box with the error details
+            catch (Exception ex)
+            {
                 MessageBox.Show($"Fejl ved opdatering af patient: {ex.Message}");
-
-                // Log the error, and rethrow the exception for further handling
+                // Log the error, and rethrow the exception
                 throw;
             }
         }
-
-        // Method to delete a patient based on the CPR
-        // Returns a boolean indicating whether the deletion was successful or not
-        public async Task<bool> PatientDeleteUser(string patientCPR)
-        {
-            bool deletionSuccessful = false;
-            try {
-                // SQL query to delete a patient from the "gtPATIENT" table based on CPR
-                var query = "DELETE FROM gtPATIENT WHERE PatientCPR = @PatientCPR";
-
-                // Parameters for the SQL query
-                var parameters = new { PatientCPR = patientCPR };
-
-                // Execute the SQL query and get the number of affected rows
-                var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters);
-
-                // Return true if at least one row was affected, indicating a successful deletion
-                if (rowsAffected > 0) {
-                    MessageBox.Show($"Sletning succesfuld.");
-                    deletionSuccessful = true;
-                }
-                else {
-                    MessageBox.Show($"Fejl ved sletning af patient.");
-                    deletionSuccessful = false;
-                }
-                return deletionSuccessful;
-            }
-            catch (Exception ex) {
-                // Show a message box with the error details
-                MessageBox.Show($"Fejl ved sletning af patient: {ex.Message}");
-
-                // Log the error, and rethrow the exception for further handling
-                throw;
-            }
-        }
-
-
     }
+
 }
