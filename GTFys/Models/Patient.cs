@@ -49,4 +49,5 @@ namespace GTFys.Models
             Password = password;
         }
     }
+
 }

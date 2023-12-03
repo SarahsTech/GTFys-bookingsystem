@@ -36,6 +36,13 @@ namespace GTFys.Views
         }
 
         // Event handler for the patient button click
+        private void btnPhysio_Click(object sender, RoutedEventArgs e)
+        {
+            PhysioLoginWindow physioLoginWindow = new PhysioLoginWindow();
+            physioLoginWindow.Show();
+            this.Close();
+        }
+
         private void btnPatient_Click(object sender, RoutedEventArgs e)
         {
             // Create an instance of the PatientLoginWindow

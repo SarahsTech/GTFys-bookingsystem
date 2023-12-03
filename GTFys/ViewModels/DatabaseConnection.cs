@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using Microsoft.Data.SqlClient;
+using System.Diagnostics;
 
 namespace GTFys.ViewModels
 {
@@ -14,7 +15,7 @@ namespace GTFys.ViewModels
     public class DatabaseConnection
     {
         // Private field to store the connection string
-        private string ConnectionString;
+        private string _connectionString;
 
         // Constructor to initialize the DatabaseConnection object
         public DatabaseConnection()
@@ -23,7 +24,7 @@ namespace GTFys.ViewModels
             IConfigurationRoot config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
             // Retrieve the connection string from the configuration
-            ConnectionString = config.GetConnectionString("MyDBConnection");
+            _connectionString = config.GetConnectionString("MyDBConnection");
         }
 
         // Method to establish a database connection
@@ -31,19 +32,19 @@ namespace GTFys.ViewModels
         public IDbConnection Connect()
         {
             // Create a new SqlConnection with the stored connection string
-            IDbConnection connection = new SqlConnection(ConnectionString);
+            IDbConnection connection = new SqlConnection(_connectionString);
 
             try
             {
                 // Open the database connection
                 connection.Open();
 
-                Console.WriteLine("Connected to the database");
+                Debug.WriteLine("Connected to the database");
             }
             catch (Exception ex)
             {
                 // Handle and display any exceptions that occur during connection
-                Console.WriteLine($"Error connecting to the database: {ex.Message}");
+                Debug.WriteLine($"Error connecting to the database: {ex.Message}");
             }
 
             // Return the open database connection
@@ -60,12 +61,12 @@ namespace GTFys.ViewModels
                 // Close the database connection
                 connection.Close();
 
-                Console.WriteLine("Disconnected from the database");
+                Debug.WriteLine("Disconnected from the database");
             }
             catch (Exception ex)
             {
                 // Handle and display any exceptions that occur during disconnection
-                Console.WriteLine($"Error disconnecting from the database: {ex.Message}");
+                Debug.WriteLine($"Error disconnecting from the database: {ex.Message}");
             }
         }
     }
