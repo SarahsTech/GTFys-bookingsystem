@@ -25,20 +25,12 @@ namespace GTFys.Views
             InitializeComponent(); // Initializes the components defined in XAML
         }
 
-        // Event handler for the physio button click
+        // Event handler for the patient button click
         private void btnPhysio_Click(object sender, RoutedEventArgs e)
         {
             // Create an instance of the PhysioLoginWindow
             PhysioLoginWindow physioLoginWindow = new PhysioLoginWindow();
-
             // Show the PhysioLoginWindow
-            physioLoginWindow.Show();
-        }
-
-        // Event handler for the patient button click
-        private void btnPhysio_Click(object sender, RoutedEventArgs e)
-        {
-            PhysioLoginWindow physioLoginWindow = new PhysioLoginWindow();
             physioLoginWindow.Show();
             this.Close();
         }

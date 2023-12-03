@@ -23,6 +23,11 @@ namespace GTFys.Models
         public string City { get; set; }                   // City of residence for the patient
         public int ZipCode { get; set; }                   // Zip code of the patient's location
 
+        // Default constructor
+        public Patient()
+        {
+            // Initialize any default values or perform additional setup logic if needed
+        }
         // Constructor to initialize a Patient object with an additional profile picture attribute
         public Patient(string cpr, string firstName, string lastName, string username, string password,
             string phone, string email, string address, string city, int zipCode, string imagePath)
