@@ -1,4 +1,5 @@
 ﻿using GTFys.Models;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -37,20 +38,19 @@ namespace GTFys.ViewModels
 
             // Return the result of the authentication (true if successful, false otherwise)
             return isAuthenticated;
-
         }
 
         // Method to insert a new patient using the stored procedure gtspInsertPatient
         // Returns a boolean indicating whether the insertion was successful or not
         public async Task<bool> PatientCreateUser(string firstName, string lastName, string username, string password,
             string email, string phone, string cpr, string address, int zipCode, string city, string imagePath)
-        {
+        { 
             try {
                 // Stored procedure name
                 var storedProcedure = "gtspInsertPatient";
 
                 byte[] imageBytes = (!string.IsNullOrEmpty(imagePath)) ? File.ReadAllBytes(imagePath) : null;
-
+                
                 // Parameters for the stored procedure, using the properties of the Patient object
                 var parameters = new {
                     CPR = cpr,
@@ -59,7 +59,7 @@ namespace GTFys.ViewModels
                     Username = username,
                     Password = password,
                     Email = email,
-                    Phone = phone,
+                    Phone = phone, 
                     Address = address,
                     ZipCode = zipCode,
                     City = city,
@@ -67,8 +67,8 @@ namespace GTFys.ViewModels
                 };
 
                 // Execute the stored procedure and retrieve the output parameter
-                var rowsAffected = await dbAccess.ExecuteNonQueryAsync(storedProcedure, parameters, CommandType.StoredProcedure);
-
+                var rowsAffected = await dbAccess.ExecuteNonQueryAsync(storedProcedure, parameters, CommandType.StoredProcedure); 
+                 
                 return rowsAffected > 0;
 
             } catch(Exception ex) {
@@ -116,6 +116,30 @@ namespace GTFys.ViewModels
             catch (Exception ex)
             {
                 MessageBox.Show($"Fejl ved opdatering af patient: {ex.Message}");
+                // Log the error, and rethrow the exception
+                throw;
+            }
+        }
+        public async Task<bool> DeletePatientProfile(string cpr)
+        {
+            try
+            {
+                var query = "gtspDeletePatient";
+
+                // Create parameters
+                var parameters = new
+                {
+                    CPR = cpr
+                };
+
+                // Execute the stored procedure to delete the patient
+                var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters, CommandType.StoredProcedure);
+
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Fejl ved sletning af patientprofil: {ex.Message}");
                 // Log the error, and rethrow the exception
                 throw;
             }

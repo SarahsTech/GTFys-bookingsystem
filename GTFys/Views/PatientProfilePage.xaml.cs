@@ -78,6 +78,45 @@ namespace GTFys.Views
             PatientFrontPageWindow patientFrontPageWindow = new PatientFrontPageWindow();
             patientFrontPageWindow.Show();
         }
+
+        private async void btnDeleteProfile_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Retrieve the logged-in user's CPR
+                string loggedInUserCPR = PatientService.CurrentPatient?.CPR;
+
+                // Check if CPR is available
+                if (!string.IsNullOrEmpty(loggedInUserCPR))
+                {
+                    // Create an instance of your repository
+                    PatientRepo patientRepo = new PatientRepo();
+
+                    // Call the repository method to delete the profile
+                    bool isDeleted = await patientRepo.DeletePatientProfile(loggedInUserCPR);
+
+                    if (isDeleted)
+                    {
+                        MessageBox.Show("Profil er slettet!");
+                        // Optionally, navigate to another window or perform additional actions here.
+                    }
+                    else
+                    {
+                        MessageBox.Show("Det lykkedes ikke at slette profilen.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Fejl: Kunne ikke hente CPR for den loggede ind bruger.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+
     }
 
 }

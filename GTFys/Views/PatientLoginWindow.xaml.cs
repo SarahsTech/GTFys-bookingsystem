@@ -53,6 +53,19 @@ namespace GTFys.Views
                 MessageBox.Show("Login fejlede. Kontroller dit brugernavn og adgangskode og prøv igen.", "Login Fejl", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void btnCreateUser_Click(object sender, RoutedEventArgs e)
+        {
+            // Create an instance of the CreateUserWindow
+            CreateUserWindow createUserWindow = new CreateUserWindow();
+
+            // Show the CreateUserWindow
+            createUserWindow.Show();
+
+            // Close the current window
+            this.Close();
+        }
+
     }
 
 
