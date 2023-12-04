@@ -9,10 +9,10 @@
       Title="PatientProfilePage">
 
     <Grid Background="AliceBlue">
-        
+
         <!-- Frame for navigation -->
         <Frame x:Name="profileFrame" NavigationUIVisibility="Hidden"></Frame>
-        
+
         <!-- "Tilbage" Button for navigation -->
         <Button Content="Tilbage" Click="GoBackButton_Click" TextElement.Foreground="MidnightBlue" Background="#99CCFF" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
 
@@ -67,7 +67,13 @@
         <TextBox x:Name="tbProfilePicture" Text="" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="622,347,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="212" Height="29"/>
 
         <!-- Button to update the patient profile -->
-        <Button x:Name="btnUpdatePtient" Content="Opdatér profil" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="20" HorizontalAlignment="Center" Margin="0,413,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnUpdatePatient_Click"/>
+        <Button x:Name="btnUpdatePtient" Content="Opdatér profil" 
+                FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" 
+                Background="#99CCFF" FontSize="20" 
+                HorizontalAlignment="Center" Margin="0,413,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" 
+                Click="btnUpdatePatient_Click"/>
+        <Button x:Name="btnDeleteProfile" Content="Slet profil"
+                HorizontalAlignment="Left" Margin="728,414,0,0" VerticalAlignment="Top" Height="40" Width="106" BorderBrush="#FF707070" Click="btnDeleteProfile_Click"/>
 
     </Grid>
 </Page>
