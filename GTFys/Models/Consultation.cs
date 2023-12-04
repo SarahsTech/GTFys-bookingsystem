@@ -23,7 +23,7 @@ namespace GTFys.Models
         public TreatmentType TreatmentType { get; set; }// The type of treatment provided during the consultation
         public DateTime StartTime { get; set; }          // The date and starttime of the consultation
         public DateTime EndTime { get; set; }            // The date and endtime of the consultation
-        public TimeSpan Duration { get; set; }           // Timespan is calculated and set in the constructor, represents the length of a consultation
+        public TimeSpan Duration { get; set; }           // Duration is calculated and set in the constructor, represents the length of a consultation
         public double Price { get; set; }                // Price is set in the constructur determined by the chosen treatment type
 
         // Default constructor
@@ -40,23 +40,23 @@ namespace GTFys.Models
             TreatmentType = treatmenType;
             StartTime = startTime;
 
-            // Calculate and set TimeSpan based on TreatmentType
-            SetTimeSpan();
+            // Calculate and set Duration based on TreatmentType
+            SetDuration();
 
             // Set Price based on TreatmentType
             SetPrice();
 
-            // Calculate and set EndTime based on StartTime and TimeSpan
+            // Calculate and set EndTime based on StartTime and Duration
             EndTime = StartTime + Duration;
         }
 
-        // Method to set the TimeSpan based on TreatmentType
-        private void SetTimeSpan()
+        // Method to set the Duration based on TreatmentType
+        private void SetDuration()
         {
-            // Default timespan
+            // Default Duration
             Duration = TimeSpan.Zero;
 
-            // Update timespan based on TreatmentType
+            // Update Duration based on TreatmentType
             switch (TreatmentType) {
                 case TreatmentType.FirstConsultation:
                     // First consultation is 1 hour (60 minutes)
