@@ -1,4 +1,5 @@
 ﻿using GTFys.Models;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -115,6 +116,30 @@ namespace GTFys.ViewModels
             catch (Exception ex)
             {
                 MessageBox.Show($"Fejl ved opdatering af patient: {ex.Message}");
+                // Log the error, and rethrow the exception
+                throw;
+            }
+        }
+        public async Task<bool> DeletePatientProfile(string cpr)
+        {
+            try
+            {
+                var query = "gtspDeletePatient";
+
+                // Create parameters
+                var parameters = new
+                {
+                    CPR = cpr
+                };
+
+                // Execute the stored procedure to delete the patient
+                var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters, CommandType.StoredProcedure);
+
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Fejl ved sletning af patientprofil: {ex.Message}");
                 // Log the error, and rethrow the exception
                 throw;
             }
