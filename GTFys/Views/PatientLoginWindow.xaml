@@ -49,7 +49,7 @@
         </Border>
 
         <!-- Create User Button -->
-        <Button Grid.Row="7" x:Name="btnCreateUser" Content="Opret Bruger" FontFamily="Verdana" FontSize="15" Background="#99CCFF" Foreground="White" BorderBrush="Black" BorderThickness="1" Margin="85,283,81,-270" />
+        <Button Grid.Row="7" x:Name="btnCreateUser" Content="Opret Bruger" FontFamily="Verdana" FontSize="15" Background="#99CCFF" Foreground="White" BorderBrush="Black" BorderThickness="1" Margin="85,283,81,-270" Click="btnCreateUser_Click" />
     </Grid>
 </Window>
 
