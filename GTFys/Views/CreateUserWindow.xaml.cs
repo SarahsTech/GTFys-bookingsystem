@@ -31,5 +31,10 @@ namespace GTFys.Views
             PatientFrontPageWindow patientFrontPageWindow = new PatientFrontPageWindow();
             patientFrontPageWindow.Show();
         }
+
+        private void btnCreateUser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
