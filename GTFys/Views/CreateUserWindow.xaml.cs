@@ -23,5 +23,13 @@ namespace GTFys.Views
         {
             InitializeComponent();
         }
+
+        // Event handler for the back button
+        private void GoBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Open a new instance of PatientFrontPageWindow
+            PatientFrontPageWindow patientFrontPageWindow = new PatientFrontPageWindow();
+            patientFrontPageWindow.Show();
+        }
     }
 }
