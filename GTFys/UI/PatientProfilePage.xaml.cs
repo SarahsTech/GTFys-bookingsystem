@@ -42,7 +42,7 @@ namespace GTFys.UI
             if (updateSuccessful)
             {
                 // Show a success message to the user
-                MessageBox.Show("Din opdatering succesfuld!", "Succesfuld opdatering", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Din opdatering var succesfuld!", "Succesfuld opdatering", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 // Reload the patient information to update the displayed values
                 LoadPatientInfo();
@@ -50,7 +50,7 @@ namespace GTFys.UI
             else
             {
                 // Show an error message to the user
-                MessageBox.Show("Fejl ved opdatering. Læs venligst informationen igennem og prøv igen.", "Fejl ved opdatering", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Fejl ved opdatering. \nLæs venligst informationen igennem og prøv igen.", "Fejl ved opdatering", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -95,19 +95,14 @@ namespace GTFys.UI
                     // Call the repository method to delete the profile
                     bool isDeleted = await patientRepo.DeletePatientProfile(loggedInUserCPR);
 
-                    if (isDeleted)
-                    {
-                        MessageBox.Show("Profil er slettet!");
-                        // Optionally, navigate to another window or perform additional actions here.
+                    if (isDeleted) {
+                        // Show a success message to the user
+                        MessageBox.Show("Din profil blev slettet!", "Slet profil", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
-                    else
-                    {
-                        MessageBox.Show("Det lykkedes ikke at slette profilen.");
+                    else {
+                        // Show an error message to the user
+                        MessageBox.Show("Sletning mislykkedes. \nPrøv venligst igen.", "Sletning mislykkedes", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Fejl: Kunne ikke hente CPR for den loggede ind bruger.");
                 }
             }
             catch (Exception ex)

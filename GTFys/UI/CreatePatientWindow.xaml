@@ -1,13 +1,11 @@
-﻿<Page x:Class="GTFys.UI.PatientProfilePage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:GTFys.UI"
-      mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="900"
-      Title="PatientProfilePage">
-
+﻿<Window x:Class="GTFys.UI.CreatePatientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GTFys.UI"
+        mc:Ignorable="d"
+        Title="CreatePatientWindow" Height="500" Width="900">
     <Grid Background="AliceBlue">
 
         <!-- Frame for navigation -->
@@ -19,8 +17,8 @@
         <!-- GTFys Logo Image -->
         <Image Source="/GTFys;component/Images/GTFysLogo.jpeg" Margin="662,-1,16,398" />
 
-        <!-- TextBlock displaying "Min profil" -->
-        <TextBlock Text="Min profil" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="DemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="204" Margin="0,20,0,0"/>
+        <!-- TextBlock displaying "Opret patient" -->
+        <TextBlock Text="Opret patient" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="DemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="304" Margin="0,20,0,0"/>
 
         <!-- Label and TextBox for first name -->
         <Label Content="Fornavn:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="60,89,0,0" VerticalAlignment="Top" Height="34" Width="95"/>
@@ -66,16 +64,12 @@
         <Label Content="Profilbillede: ?" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="622,312,0,0" VerticalAlignment="Top" Height="35" Width="81"/>
         <TextBox x:Name="tbProfilePicture" Text="" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="622,347,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="212" Height="29"/>
 
-        <!-- Button to update the patient profile -->
-        <Button x:Name="btnUpdatePtient" Content="Opdatér profil" 
-                FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" 
-                Background="#99CCFF" FontSize="20" 
-                HorizontalAlignment="Center" Margin="0,413,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" 
-                Click="btnUpdatePatient_Click"/>
-        <Button x:Name="btnDeleteProfile" Content="Slet profil" 
-                FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" 
-                Background="#99CCFF" FontSize="20" 
-                HorizontalAlignment="Left" Margin="728,414,0,0" VerticalAlignment="Top" Height="40" Width="106" BorderBrush="#FF707070" Click="btnDeleteProfile_Click"/>
-
+        <!-- Button to create the patient profile -->
+        <Button x:Name="btnCreatePatient" Content="Opret patient" 
+             FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" 
+             Background="#99CCFF" FontSize="20" 
+             HorizontalAlignment="Center" Margin="0,413,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" 
+             Click="btnCreatePatient_Click"/>
+        
     </Grid>
-</Page>
+</Window>

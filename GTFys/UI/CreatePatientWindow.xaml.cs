@@ -16,32 +16,22 @@ using System.Windows.Shapes;
 namespace GTFys.UI
 {
     /// <summary>
-    /// Interaction logic for CreateUserWindow.xaml
+    /// Interaction logic for CreatePatientWindow.xaml
     /// </summary>
-    public partial class CreateUserWindow : Window
+    public partial class CreatePatientWindow : Window
     {
-        public CreateUserWindow()
+        public CreatePatientWindow()
         {
             InitializeComponent();
         }
 
-        // Create an instance of the PatientRepo for handling patient-related operations
+        // Instantiate the PatientRepo for handling patient data
         PatientRepo patientRepo = new PatientRepo();
 
-        // Event handler for the back button
-        private void GoBackButton_Click(object sender, RoutedEventArgs e)
+        private async void btnCreatePatient_Click(object sender, RoutedEventArgs e)
         {
-            // Open a new instance of PatientFrontPageWindow
-            PatientFrontPageWindow patientFrontPageWindow = new PatientFrontPageWindow();
-            patientFrontPageWindow.Show();
-        }
-
-        // Event handler for the button click to create a new user
-        private async void btnCreateUser_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                // Retrieve user input from the textboxes
+            try {
+                // Retrieve input from the textboxes
                 string firstName = tbFirstName.Text;
                 string lastName = tbLastName.Text;
                 string username = tbUsername.Text;
@@ -54,37 +44,33 @@ namespace GTFys.UI
                 string city = tbCity.Text;
                 string imagePath = tbProfilePicture.Text;
 
-                
-
                 // Call the PatientCreateUser method to attempt user creation
                 bool isUserCreated = await patientRepo.PatientCreateUser(
-                    firstName, lastName, username, password, email, phone, cpr, address, zipCode, city, imagePath
-                );
+                    firstName, lastName, username, password, email, phone, cpr, address, zipCode, city, imagePath);
 
                 // Check if the user was created successfully
                 if (isUserCreated) {
                     // Show a success message to the user
-                    MessageBox.Show("Profil oprettet!", "Opret profil", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Patient profil oprettet!", "Opret patient", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    // Close the current window (CreateUserWindow)
+                    // Close the current window
                     this.Close();
-
-                    // Open a new instance of the PatientLoginWindow
-                    PatientLoginWindow patientLoginWindow = new PatientLoginWindow();
-                    patientLoginWindow.Show();
                 }
                 else {
                     // Show an error message to the user
-                    MessageBox.Show("Fejl ved oprettelse af profil. \nLæs venligst informationen igennem og prøv igen.", "Fejl ved oprettelse", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Fejl ved oprettelse af patient. \nLæs venligst informationen igennem og prøv igen.", "Fejl ved oprettelse", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 // Handle exceptions and show an error message
                 MessageBox.Show($"Error: {ex.Message}");
             }
         }
 
-
+        private void GoBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Close this window
+            this.Close();
+        }
     }
 }

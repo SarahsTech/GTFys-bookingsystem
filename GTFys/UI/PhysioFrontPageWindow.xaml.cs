@@ -54,5 +54,12 @@ namespace GTFys.UI
                 // User has cancelled
             }
         }
+
+        private void btnPatients_Click(object sender, RoutedEventArgs e)
+        {
+            // Create an instance of PhysioProfilePage
+            PatientsOverview patientsOverview = new PatientsOverview();
+            this.Content = patientsOverview;
+        }
     }
 }
