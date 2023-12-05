@@ -27,13 +27,13 @@
         <!-- Username Label and TextBox -->
         <StackPanel Grid.Row="2" Margin="4,29,-4,14" Grid.RowSpan="2">
             <Label Content="Brugernavn" BorderBrush="black" BorderThickness="1" FontFamily="Verdana" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="350" Height="40"/>
-            <TextBox x:Name="tbPatientUsername" TextWrapping="Wrap" BorderBrush="#99CCFF" BorderThickness="2" FontFamily="Verdana" FontSize="15" Margin="0,5" Width="350" Height="40"/>
+            <TextBox x:Name="tbPhysioUsername" TextWrapping="Wrap" BorderBrush="#99CCFF" BorderThickness="2" FontFamily="Verdana" FontSize="15" Margin="0,5" Width="350" Height="40"/>
         </StackPanel>
 
         <!-- Password Label and TextBox -->
         <StackPanel Grid.Row="4" Margin="2,13,-2,-27" Grid.RowSpan="4">
-            <Label x:Name="tbPatientPassword1" Content="Kodeord" BorderBrush="black" BorderThickness="1" FontFamily="Verdana" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="350" Height="40"/>
-            <TextBox x:Name="tbPatientPassword" TextWrapping="Wrap" FontFamily="Verdana" FontSize="15" BorderBrush="#99CCFF" BorderThickness="2" Margin="0,5" Width="350" Height="40"/>
+            <Label x:Name="tbPysioPassword" Content="Kodeord" BorderBrush="black" BorderThickness="1" FontFamily="Verdana" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="350" Height="40"/>
+            <TextBox x:Name="tbPhysioPassword" TextWrapping="Wrap" FontFamily="Verdana" FontSize="15" BorderBrush="#99CCFF" BorderThickness="2" Margin="0,5" Width="350" Height="40"/>
         </StackPanel>
 
         <!-- Login Button -->
