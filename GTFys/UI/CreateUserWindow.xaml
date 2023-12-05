@@ -8,66 +8,89 @@
         d:DesignHeight="500" d:DesignWidth="900"
         Title="CreateUserWindow">
     <Grid>
+        <Frame x:Name="FrontPage" Margin="0,50,0,0 "/>
+        <StackPanel>
+
+        </StackPanel>
+
         <Grid Background="AliceBlue">
 
             <!-- Frame for navigation -->
             <Frame x:Name="createUserFrame" NavigationUIVisibility="Hidden"></Frame>
 
             <!-- "Tilbage" Button for navigation -->
-            <Button Content="Tilbage" Click="GoBackButton_Click" TextElement.Foreground="MidnightBlue" Background="#99CCFF" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
+            <Button Content="Tilbage" Click="GoBackButton_Click" TextElement.Foreground="MidnightBlue" Background="#99CCFF" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,5,0,0"/>
 
             <!-- GTFys Logo Image -->
-            <Image Source="/GTFys;component/Images/GTFysLogo.jpeg" Margin="662,-1,16,398" />
+            <Image Source="/GTFys;component/Images/GTFysLogoMini.png" Margin="803,0,9,399" />
 
             <!-- TextBlock displaying "Opret Profil" -->
             <TextBlock Text="Opret Profil" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="DemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="277" Margin="0,20,0,0"/>
 
-            <!-- Label and TextBox for first name -->
-            <Label Content="Fornavn:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="60,89,0,0" VerticalAlignment="Top" Height="34" Width="95"/>
-            <TextBox x:Name="tbFirstName"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="60,134,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="75,92,706,287">
+                <Image x:Name="imageControl" Stretch="Uniform" Margin="0,2,0,-2" />
+            </Border>
+            <Button Content="Change Image" Click="ChangeImage_Click" Margin="78,203,737,255"/>
 
-            <!-- Label and TextBoxe for last name -->
-            <Label Content="Efternavn:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="60,166,0,0" VerticalAlignment="Top" FontSize="12" Height="34" Width="73"/>
-            <TextBox x:Name="tbLastName"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="60,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
 
-            <!-- Label and TextBoxe for username -->
-            <Label Content="Brugernavn:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="60,241,0,0" VerticalAlignment="Top" Height="35" Width="105"/>
-            <TextBox x:Name="tbUsername"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="60,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
 
-            <!-- Label and TextBoxe for password -->
-            <Label Content="Adgangskode:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="60,312,0,0" VerticalAlignment="Top" Height="35" Width="81"/>
-            <TextBox x:Name="tbPassword" Text="" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="60,347,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="212" Height="29"/>
+            <StackPanel Orientation="Horizontal" Margin="0,147,0,96" HorizontalAlignment="Center" Width="700">
+                <!-- Vertical stack panels for each group -->
+                <StackPanel Margin="0,0,50,0" VerticalAlignment="Bottom">
+                    <StackPanel>
+                        <Label Content="Username:" Width="200" FontSize="20"/>
+                        <TextBox x:Name="tbUsername" Width="200" FontSize="18"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Password:" Width="200" FontSize="18"/>
+                        <TextBox x:Name="tbPassword" Width="200" FontSize="18"/>
+                    </StackPanel>
+                </StackPanel>
 
-            <!-- Label and TextBoxe for email -->
-            <Label Content="Email:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="345,121,0,0" VerticalAlignment="Top" Height="34" Width="95"/>
-            <TextBox x:Name="tbEmail"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="345,166,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
+                <StackPanel Margin="0,0,50,0">
+                    <StackPanel>
+                        <Label Content="First Name:" Width="200" FontSize="18"/>
+                        <TextBox x:Name="tbFirstName" Width="200" FontSize="18"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Last Name:" Width="200" FontSize="18"/>
+                        <TextBox x:Name="tbLastName" Width="200" FontSize="18"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="CPR:" Width="200" FontSize="18"/>
+                        <TextBox x:Name="tbCPR" Width="200" FontSize="18"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Phone Number:" Width="100" FontSize="18"/>
+                        <TextBox x:Name="tbPhone" Width="200" FontSize="18"/>
+                    </StackPanel>
+                </StackPanel>
 
-            <!-- Label and TextBoxe for phone number -->
-            <Label Content="Telefonnummer:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="345,198,0,0" VerticalAlignment="Top" FontSize="12" Height="34" Width="95"/>
-            <TextBox x:Name="tbPhone"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="345,237,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
+                <StackPanel Margin="0,0,50,0">
+                    <StackPanel>
+                        <Label Content="Address:" Width="200" FontSize="18"/>
+                        <TextBox x:Name="tbAddress" Width="200" FontSize="18"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Post Number:" Width="200" FontSize="18"/>
+                        <TextBox x:Name="tbZipCode" Width="200" FontSize="18"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="City:" Width="200" FontSize="18"/>
+                        <TextBox x:Name="tbCity" Width="200" FontSize="18"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Email:" Width="200" FontSize="18"/>
+                        <TextBox x:Name="tbEmail" Width="200" FontSize="18"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
 
-            <!-- Label and TextBoxe for CPR number -->
-            <Label Content="CPR-nummer:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="345,273,0,0" VerticalAlignment="Top" Height="35" Width="105"/>
-            <TextBox x:Name="tbCPR"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="345,308,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
 
-            <!-- Label and TextBoxe for adress -->
-            <Label Content="Addresse:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="622,89,0,0" VerticalAlignment="Top" Height="34" Width="95"/>
-            <TextBox x:Name="tbAddress"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="622,134,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
 
-            <!-- Label and TextBoxe for zip code -->
-            <Label Content="Postnummer:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="622,166,0,0" VerticalAlignment="Top" FontSize="12" Height="34" Width="73"/>
-            <TextBox x:Name="tbZipCode"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="622,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
-
-            <!-- Label and TextBoxe for city -->
-            <Label Content="By:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="622,241,0,0" VerticalAlignment="Top" Height="35" Width="105"/>
-            <TextBox x:Name="tbCity"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="622,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
-
-            <!-- Label and TextBoxe for profile picture -->
-            <Label Content="Profilbillede: ?" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="622,312,0,0" VerticalAlignment="Top" Height="35" Width="81"/>
-            <TextBox x:Name="tbProfilePicture" Text="" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="622,347,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="212" Height="29"/>
 
             <!-- Button to update the patient profile -->
-            <Button x:Name="btnCreateUser" Content="Opret profil" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="White" FontSize="20" HorizontalAlignment="Center" Margin="0,413,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnCreateUser_Click"/>
+            <Button x:Name="btnCreateUser" Content="Opret profil" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="White" FontSize="20" HorizontalAlignment="Center" Margin="0,410,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnCreateUser_Click"/>
         </Grid>
 
     </Grid>

@@ -7,8 +7,20 @@
         mc:Ignorable="d"
         Title="PatientFrontPageWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btnProfilePage" Content="Profil" HorizontalAlignment="Left" Margin="731,24,0,0" VerticalAlignment="Top" Click="btnProfilePage_Click" Width="41"/>
-        <Button x:Name="btnLogOut" Content="Log ud" HorizontalAlignment="Left" Margin="731,70,0,0" VerticalAlignment="Top" Click="btnLogOut_Click" />
+        <Frame x:Name="FrontPage" Margin="0,50,0,0 "/>
+
+        <StackPanel > 
+            
+            <!-- FUTURE CONSULTATION HERE -->
+            
+            
+            <Button Content="PatientProfilePage" />
+            
+
+        </StackPanel>
+
+        <Button x:Name="btnProfilePage" Content="Profil" HorizontalAlignment="Left" Margin="729,69,0,0" VerticalAlignment="Top" Click="btnProfilePage_Click" Width="41"/>
+        <Button x:Name="btnLogOut" Content="Log ud" HorizontalAlignment="Left" Margin="729,107,0,0" VerticalAlignment="Top" Click="btnLogOut_Click" />
 
     </Grid>
 </Window>
