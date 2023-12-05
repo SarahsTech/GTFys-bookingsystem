@@ -9,7 +9,7 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Diagnostics;
 
-namespace GTFys.ViewModels
+namespace GTFys.Application
 {
     // The DatabaseConnection class manages database connections using ADO.NET
     public class DatabaseConnection

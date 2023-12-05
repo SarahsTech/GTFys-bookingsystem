@@ -1,4 +1,4 @@
-﻿using GTFys.Models;
+﻿using GTFys.Domain;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace GTFys.ViewModels
+namespace GTFys.Application
 {
     public class DatabaseAccess
     {

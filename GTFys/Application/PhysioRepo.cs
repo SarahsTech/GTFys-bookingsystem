@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using GTFys.Models;
+using GTFys.Domain;
 
-namespace GTFys.ViewModels
+namespace GTFys.Application
 {
     public class PhysioRepo
     {

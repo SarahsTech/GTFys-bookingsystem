@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GTFys.Models
+namespace GTFys.Domain
 {
     // The Patient class represents information about a patient
     public class Patient

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GTFys.Models
+namespace GTFys.Domain
 {
     // Enum to represent the treatment type 
     // The values represents the costs of the treatment type

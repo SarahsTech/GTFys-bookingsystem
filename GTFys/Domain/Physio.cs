@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GTFys.Models
+namespace GTFys.Domain
 {
     // The Physio class represents information about a physiotherapist
     public class Physio

@@ -1,11 +1,11 @@
-﻿using GTFys.Models;
+﻿using GTFys.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GTFys.ViewModels
+namespace GTFys.Application
 {
     // Singleton service to hold the physio object
     public class PhysioService
