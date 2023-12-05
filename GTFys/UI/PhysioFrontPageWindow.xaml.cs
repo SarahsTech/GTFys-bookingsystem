@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GTFys.Views
+namespace GTFys.UI
 {
     /// <summary>
     /// Interaction logic for PhysioFrontPageWindow.xaml
