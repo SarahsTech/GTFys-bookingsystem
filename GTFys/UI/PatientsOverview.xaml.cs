@@ -78,8 +78,9 @@ namespace GTFys.UI
                             foreach (DataColumn column in dt.Columns) {
                                 
                                 string columnName = column.ColumnName;
-                                
-                                cbSearchPatient.Items.Add($"{columnName}");
+                                if(columnName != "ID") {
+                                    cbSearchPatient.Items.Add($"{columnName}");
+                                }
                             }
                             return; 
                         }
@@ -122,8 +123,96 @@ namespace GTFys.UI
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-
+            string searchCriteria = cbSearchPatient.Text; 
+            if (string.IsNullOrEmpty(searchCriteria)) {
+                MessageBox.Show("Vælg et søgekriterie inden du søger.", "Fejl ved søgning", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            // Search for the chosen column with search value
+            string searchValue = tbSearch.Text.Trim();
+            if (!string.IsNullOrEmpty(searchValue)) {
+                LoadGridSearchPatient(searchValue, searchCriteria);
+            }
+            else {
+                MessageBox.Show("Indtast venligst noget i søgefeltet.", "Fejl ved søgning", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
+        // Search patients by selected search criteria
+        private void LoadGridSearchPatient(string searchValue, string searchColumn)
+        {
+            // Variables to build query
+            string column = null;
+            string value = null;
+            SqlDbType parameterType = SqlDbType.NVarChar; // Default parameter type for LIKE clause
+
+            // Set variables to search the right column names and values
+            if (searchColumn == "ID") {
+                column = "PatientID";
+                value = searchValue;
+                parameterType = SqlDbType.Int; // Specify parameter type for PatientID
+            }
+            else if (searchColumn == "Navn") {
+                // For "Navn" combine FirstName and LastName in the WHERE clause
+                column = "Name";
+                value = searchValue; 
+            }
+            else if (searchColumn == "Telefon") {
+                column = "Phone";
+                value = searchValue;
+            }
+            else if (searchColumn == "Email") {
+                column = "Email";
+                value = searchValue;
+            }
+            else if (searchColumn == "CPR-nummer") {
+                column = "CPR";
+                value = searchValue;
+            }
+
+            // Construct the SQL query based on the chosen criteria
+            string query = null; 
+            if (searchColumn == "Name") {
+               query = $"SELECT * FROM gtPATIENT WHERE FirstName LIKE First@{column} OR LastName LIKE Last@{column}";
+            }
+            else {
+               query = $"SELECT * FROM gtPATIENT WHERE {column} LIKE @{column}";
+            }
+            
+
+            // Call LoadPatient to search and load an updated grid for patients with the given criteria
+            LoadPatient(query, column, value, parameterType);
+        }
+
+        // Load patients based on the provided SQL query and parameters
+        private void LoadPatient(string query, string column, string value, SqlDbType parameterType)
+        {
+            try {
+                // Establish a new database connection
+                using (IDbConnection connection = new DatabaseConnection().Connect()) {
+                    // Create a new SQL command using the provided query and connection
+                    using (SqlCommand command = new SqlCommand(query, (SqlConnection)connection)) {
+                        // Add parameter to the SQL command
+                        command.Parameters.AddWithValue($"@{column}", parameterType).Value = $"%{value}%"; // Adjust for LIKE clause
+
+                        // Create a new DataTable to hold the result
+                        DataTable dt = new DataTable();
+
+                        // Execute the command and load the result into the DataTable
+                        SqlDataReader reader = command.ExecuteReader();
+                        dt.Load(reader);
+
+                        // Set the DataTable as the ItemsSource for the DataGrid
+                        dgPatients.ItemsSource = dt.DefaultView;
+                    }
+                }
+            }
+            catch (Exception ex) {
+                // Show a user-friendly error message
+                MessageBox.Show($"Fejl ved indlæsning af patienter!\n{ex.Message}", "Fejl", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
