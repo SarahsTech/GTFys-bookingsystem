@@ -42,12 +42,17 @@ namespace GTFys.UI
 
         private void btnDeletePatient_Click(object sender, RoutedEventArgs e)
         {
+            if (PatientService.CurrentPatient != null) {
 
+            }
         }
 
         private void btnBookConsultation_Click(object sender, RoutedEventArgs e)
         {
 
+            if(PatientService.CurrentPatient != null) {
+
+            }
         }
 
         private void LoadPatientGrid()
@@ -91,10 +96,18 @@ namespace GTFys.UI
             DataRowView rowSelected = (DataRowView)dg.SelectedItem;
             // Gets the values from the datagrid and adds it to their respective textboxes
             if(rowSelected != null ) {
+                // Read the values of the selected row
+                int patientID = Convert.ToInt32(rowSelected.Row["ID"].ToString());
                 string name = rowSelected["Navn"].ToString();
                 string phone = rowSelected["Telefon"].ToString();
                 string email = rowSelected["Email"].ToString();
                 string cpr = rowSelected["CPR-nummer"].ToString();
+
+                // Initialize the PatientService with the selected patientID
+                // Sets CurrentPatient to selected patient
+                PatientService.InitializePatient(patientID);
+
+                // Display values in textboxes
                 tbName.Text = name;
                 tbPhone.Text = phone;
                 tbEmail.Text = email;
