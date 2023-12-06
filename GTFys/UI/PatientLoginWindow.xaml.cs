@@ -34,7 +34,7 @@ namespace GTFys.UI
         {
             // Retrieve the entered username and password from the textboxes
             string username = tbPatientUsername.Text;
-            string password = tbPatientPassword.Text;
+            string password = tbPatientPassword.Password.ToString();
 
             // Perform authentication for the patient using PatientRepo
             bool isAuthenticated = await patientRepo.PatientAuthenticateLogin(username, password);

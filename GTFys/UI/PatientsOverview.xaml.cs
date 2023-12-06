@@ -36,5 +36,10 @@ namespace GTFys.UI
         {
 
         }
+
+        private void btnBookConsultation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

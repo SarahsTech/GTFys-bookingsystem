@@ -3,6 +3,7 @@ using GTFys.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,7 +31,7 @@ namespace GTFys.UI
         private async void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
             string username = tbPhysioUsername.Text;
-            string password = tbPhysioPassword.Text;
+            string password = tbPhysioPassword.Password.ToString();
 
             bool isAuthenticated = await physioRepo.PhysioAuthenticateLogin(username, password);
 

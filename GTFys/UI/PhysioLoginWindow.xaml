@@ -15,9 +15,7 @@
                HorizontalAlignment="Center" 
                Margin="160,42,149,450"/>
 
-        <TextBox x:Name="tbPhysioPassword" 
-                 TextWrapping="Wrap" 
-                 Text="..." 
+        <PasswordBox x:Name="tbPhysioPassword" 
                  HorizontalAlignment="Center"
                  BorderBrush="#99CCFF"
                  BorderThickness="2"
