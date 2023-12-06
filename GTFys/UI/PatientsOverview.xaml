@@ -12,6 +12,7 @@
         <Button x:Name="btnCreatePatient" Content="Opret patient" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="20" HorizontalAlignment="Left" Margin="79,413,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnCreatePatient_Click"/>
         <Button x:Name="btnDeletePatient" Content="Slet patient" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="20" HorizontalAlignment="Left" Margin="263,413,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnDeletePatient_Click" />
         <Button x:Name="btnBookConsultation" Content="Book konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="20" HorizontalAlignment="Left" Margin="610,413,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnBookConsultation_Click"  />
+        <DataGrid x:Name="dgPatients" SelectionChanged="dgPatients_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=200}"  CanUserAddRows="False" Margin="79,66,479,114"/>
 
 
     </Grid>

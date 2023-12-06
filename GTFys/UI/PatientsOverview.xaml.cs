@@ -41,5 +41,10 @@ namespace GTFys.UI
         {
 
         }
+
+        private void dgPatients_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
