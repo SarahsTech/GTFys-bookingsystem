@@ -32,7 +32,7 @@ namespace GTFys.Application
             // For simplicity, assuming there is a method GetPatientById in your data access layer
             // that retrieves a Patient object by its ID
 
-            var query = "gtspGetPatientById";
+            var query = "SELECT * FROM gtPATIENT WHERE PatientID = @PatientID";
             var parameters = new { PatientID = patientID };
 
             DatabaseAccess dbAccess = new DatabaseAccess();

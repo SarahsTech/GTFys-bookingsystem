@@ -75,9 +75,14 @@ namespace GTFys.UI
 
                         // Add the column names to the ComboBox
                         foreach (DataRow dr in dt.Rows) {
-                            cbSearchPatient.Items.Add(dr.ToString());
+                            foreach (DataColumn column in dt.Columns) {
+                                
+                                string columnName = column.ColumnName;
+                                
+                                cbSearchPatient.Items.Add($"{columnName}");
+                            }
+                            return; 
                         }
-
                     }
                 }
             }
@@ -111,7 +116,7 @@ namespace GTFys.UI
                 tbName.Text = name;
                 tbPhone.Text = phone;
                 tbEmail.Text = email;
-                tbEmail.Text = cpr;
+                tbCPR.Text = cpr;
             }
         }
 

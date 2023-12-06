@@ -208,9 +208,9 @@ namespace GTFys.Application
                     // Extract the value for the current property from resultData
                     var valueFromDatabase = row[columnName];
 
-                    // Convert the value from the database to the property type
-                    var convertedValue = Convert.ChangeType(valueFromDatabase, property.PropertyType);
-
+                    // Convert the value from the database to the property type, handling DBNull
+                    var convertedValue = (valueFromDatabase == DBNull.Value) ? null : Convert.ChangeType(valueFromDatabase, property.PropertyType);
+                   
                     // Set the property value
                     property.SetValue(result, convertedValue);
                 }
