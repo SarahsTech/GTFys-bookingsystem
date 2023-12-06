@@ -10,6 +10,7 @@
     <Grid  Background="AliceBlue">
 
         <Button x:Name="btnCreatePatient" Content="Opret patient" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="20" HorizontalAlignment="Center" Margin="0,413,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnCreatePatient_Click"/>
+        <Button x:Name="btnDeletePatient" Content="Slet patient" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="20" HorizontalAlignment="Left" Margin="574,413,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnDeletePatient_Click" />
 
 
     </Grid>

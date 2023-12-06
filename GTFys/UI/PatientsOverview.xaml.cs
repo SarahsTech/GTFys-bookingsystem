@@ -31,5 +31,10 @@ namespace GTFys.UI
             CreatePatientWindow createPatientWindow = new CreatePatientWindow();
             createPatientWindow.ShowDialog();
         }
+
+        private void btnDeletePatient_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
