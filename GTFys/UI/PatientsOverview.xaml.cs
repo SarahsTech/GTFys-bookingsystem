@@ -46,5 +46,15 @@ namespace GTFys.UI
         {
 
         }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GoBackButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
