@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="PatientLoginWindow" Height="650" Width="500">
 
-    <Grid>
+    <Grid  Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GTFys.UI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid  Background="AliceBlue">
         <!-- Logo Image -->
         <Image Source="/GTFys;component/Images/GTFysLogo.jpeg" Margin="4,8,3,288" />
 
