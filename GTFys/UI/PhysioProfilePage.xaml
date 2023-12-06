@@ -8,36 +8,97 @@
       d:DesignHeight="500" d:DesignWidth="900"
       Title="PhysioProfilePage">
 
-    <Grid Background="AliceBlue">
-        <Frame x:Name="profileFrame" NavigationUIVisibility="Hidden"></Frame>
-        <TextBlock Text="Min profil" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="DemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="204" Margin="0,20,0,0"/>
-        <Label Content="Fornavn:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="60,89,0,0" VerticalAlignment="Top" Height="34" Width="95"/>
-        <Label Content="Efternavn:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="60,166,0,0" VerticalAlignment="Top" FontSize="12" Height="34" Width="73"/>
-        <Label Content="Brugernavn:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="60,241,0,0" VerticalAlignment="Top" Height="35" Width="105"/>
-        <Label Content="Adgangskode:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="60,312,0,0" VerticalAlignment="Top" Height="35" Width="81"/>
-        <TextBox x:Name="tbFirstName"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="60,134,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
-        <TextBox x:Name="tbLastName"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="60,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
-        <TextBox x:Name="tbUsername"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="60,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
-        <TextBox x:Name="tbPassword" Text="" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="60,347,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="212" Height="29"/>
-        <Button x:Name="btnUpdatePhysio" Content="Opdatér profil" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="20" HorizontalAlignment="Center" Margin="0,413,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnUpdatePhysio_Click"/>
+    <Grid>
+        <!-- Frame for navigation (FrontPage) with top margin -->
+        <Frame x:Name="FrontPage" Margin="0,50,0,0"/>
 
-        <Button Content="Tilbage" Click="GoBackButton_Click" TextElement.Foreground="MidnightBlue" Background="#99CCFF" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
-        
-        <Label Content="Email:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="345,121,0,0" VerticalAlignment="Top" Height="34" Width="95"/>
-        <Label Content="Telefonnummer:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="345,198,0,0" VerticalAlignment="Top" FontSize="12" Height="34" Width="95"/>
-        <Label Content="CPR-nummer:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="345,273,0,0" VerticalAlignment="Top" Height="35" Width="105"/>
-        <TextBox x:Name="tbEmail"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="345,166,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
-        <TextBox x:Name="tbPhone"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="345,237,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
-        <TextBox x:Name="tbCPR"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="345,308,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
-        <Label Content="Addresse:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="622,89,0,0" VerticalAlignment="Top" Height="34" Width="95"/>
-        <Label Content="Postnummer:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="622,166,0,0" VerticalAlignment="Top" FontSize="12" Height="34" Width="73"/>
-        <Label Content="By:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="622,241,0,0" VerticalAlignment="Top" Height="35" Width="105"/>
-        <Label Content="Profilbillede: ?" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="622,312,0,0" VerticalAlignment="Top" Height="35" Width="81"/>
-        <TextBox x:Name="tbAddress"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="622,134,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
-        <TextBox x:Name="tbZipCode"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="622,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
-        <TextBox x:Name="tbCity"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="622,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
-        <TextBox x:Name="tbProfilePicture" Text="" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="622,347,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="212" Height="29"/>
+        <!-- Main Content Grid with Background -->
+        <Grid Background="AliceBlue">
 
-        <Image Source="/GTFys;component/Images/GTFysLogo.jpeg" Margin="662,-1,16,398" />
+            <!-- Frame for navigation (createUserFrame) with hidden navigation UI -->
+            <Frame x:Name="createUserFrame" NavigationUIVisibility="Hidden"></Frame>
+
+            <!-- "Tilbage" Button for navigation -->
+            <Button Content="Tilbage" Click="GoBackButton_Click" TextElement.Foreground="MidnightBlue" Background="#99CCFF" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,5,0,0"/>
+
+            <!-- GTFys Logo-->
+            <Image Source="/GTFys;component/Images/GTFysLogoMini.png" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,1,0" Height="120" Width="113" />
+
+            <!-- TextBlock displaying "Opret Profil" -->
+            <TextBlock Text="Profil" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="DemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="277" Margin="0,20,0,0"/>
+
+            <!-- Grid for the Border, Image, and Upload Button -->
+
+            <!-- StackPanel for input fields -->
+            <StackPanel Orientation="Horizontal" Margin="0,101,0,93" HorizontalAlignment="Center" Width="730">
+
+                <!-- StackPanel 1 for username and password fields -->
+                <StackPanel Margin="0,0,50,0" VerticalAlignment="Top" Height="291">
+                    <StackPanel>
+                        <!-- Border for the Image -->
+                        <Border x:Name="borderControl" BorderBrush="Black" BorderThickness="1" Width="112" Height="105">
+                            <!-- Image control with Stretch="Uniform" -->
+                            <Image x:Name="ProfilePicture" Stretch="Uniform" />
+                        </Border>
+                        <!-- Button for uploading image with flexible margin values -->
+                        <Button Content="Upload billede" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" Click="UploadImage_Click" Height="17" Width="114" />
+                    </StackPanel>
+
+                    <!-- Additional content (Username and Password) -->
+                    <StackPanel Margin="0,10,0,0">
+                        <Label Content="Brugernavn:" Width="200" FontSize="20"/>
+                        <TextBox x:Name="tbUsername" Width="200" FontSize="20"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,10,0,0">
+                        <Label Content="Kodeord:" Width="200" FontSize="20"/>
+                        <TextBox x:Name="tbPassword" Width="200" FontSize="20"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- StackPanel 2 for first name, last name, CPR, and phone number fields -->
+                <StackPanel Margin="0,0,50,0">
+                    <StackPanel>
+                        <Label Content="Fornavn:" Width="200" FontSize="20"/>
+                        <TextBox x:Name="tbFirstName" Width="200" FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Efternavn:" Width="200" FontSize="20"/>
+                        <TextBox x:Name="tbLastName" Width="200" FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="CPR:" Width="200" FontSize="20"/>
+                        <TextBox x:Name="tbCPR" Width="200" FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Telefon nummer:" Width="198" FontSize="20"/>
+                        <TextBox x:Name="tbPhone" Width="200" FontSize="20"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- StackPanel 3 for address, post number, city, and email fields -->
+                <StackPanel Margin="0,0,50,0">
+                    <StackPanel>
+                        <Label Content="Adresse:" Width="200" FontSize="20"/>
+                        <TextBox x:Name="tbAddress" Width="200" FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Postnummer:" Width="200" FontSize="20"/>
+                        <TextBox x:Name="tbZipCode" Width="200" FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="By:" Width="200" FontSize="20"/>
+                        <TextBox x:Name="tbCity" Width="200" FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="Email:" Width="200" FontSize="20"/>
+                        <TextBox x:Name="tbEmail" Width="200" FontSize="20"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Button to create user profile -->
+            <Button x:Name="btnCreateUser" Content="Opdater profil" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" HorizontalAlignment="Center" Margin="0,410,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnCreateUser_Click"/>
+        </Grid>
     </Grid>
 </Page>

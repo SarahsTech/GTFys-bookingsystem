@@ -20,9 +20,8 @@
             <!-- "Tilbage" Button for navigation -->
             <Button Content="Tilbage" Click="GoBackButton_Click" TextElement.Foreground="MidnightBlue" Background="#99CCFF" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,5,0,0"/>
 
-            <Image Source="/GTFys;component/Images/GTFysLogoMini.png" 
-       HorizontalAlignment="Right" VerticalAlignment="Top"
-       Margin="0,0,1,0" Height="120" Width="113" />
+            <!-- GTFys Logo -->
+            <Image Source="/GTFys;component/Images/GTFysLogoMini.png" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,1,0" Height="120" Width="113" />
             <!-- TextBlock displaying "Opret Profil" -->
             <TextBlock Text="Opret Profil" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="DemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="277" Margin="0,20,0,0"/>
 
