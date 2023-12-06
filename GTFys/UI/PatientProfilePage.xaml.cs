@@ -35,9 +35,10 @@ namespace GTFys.UI
         // Event handler for the button to update patient information
         private async void btnUpdatePatient_Click(object sender, RoutedEventArgs e)
         {
+
             // Call the PatientRepo to update patient information
             bool updateSuccessful = await patientRepo.PatientUpdateUser(tbFirstName.Text, tbLastName.Text, tbUsername.Text,
-                tbPassword.Text, tbEmail.Text, tbPhone.Text, tbCPR.Text, tbAddress.Text, Convert.ToInt32(tbZipCode.Text), tbCity.Text, tbProfilePicture.Text);
+                tbPassword.Text, tbEmail.Text, tbPhone.Text, tbCPR.Text, tbAddress.Text, Convert.ToInt32(tbZipCode.Text), tbCity.Text, ProfilePicture.Source);
 
             if (updateSuccessful)
             {
@@ -68,7 +69,7 @@ namespace GTFys.UI
             tbAddress.Text = PatientService.CurrentPatient?.Address;
             tbCity.Text = PatientService.CurrentPatient?.City;
             tbZipCode.Text = PatientService.CurrentPatient?.ZipCode.ToString();
-            tbProfilePicture.Text = PatientService.CurrentPatient?.ProfilePicture;
+            ProfilePicture.Source = PatientService.CurrentPatient?.ProfilePicture;
         }
 
         // Event handler for the button to go back
@@ -79,7 +80,7 @@ namespace GTFys.UI
             patientFrontPageWindow.Show();
         }
 
-        private async void btnDeleteProfile_Click(object sender, RoutedEventArgs e)
+        private async void btnDeleteUser_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -111,7 +112,7 @@ namespace GTFys.UI
             }
         }
 
-
+        
     }
 
 }

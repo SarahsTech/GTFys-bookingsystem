@@ -96,8 +96,6 @@
                 </StackPanel>
             </StackPanel>
 
-
-
             <!-- Button to create user profile -->
             <Button x:Name="btnCreateUser" Content="Opret profil" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="White" FontSize="20" HorizontalAlignment="Center" Margin="0,410,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnCreateUser_Click"/>
         </Grid>
