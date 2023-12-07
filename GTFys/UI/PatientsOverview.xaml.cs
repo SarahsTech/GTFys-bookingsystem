@@ -83,9 +83,15 @@ namespace GTFys.UI
 
         private void btnBookConsultation_Click(object sender, RoutedEventArgs e)
         {
-
+            // Check if user has selected a patient
             if(PatientService.CurrentPatient != null) {
-
+                // Open book consultation window
+                PhysioBookConsultation bookConsultation = new PhysioBookConsultation();
+                bookConsultation.Show();
+            }
+            else {
+                // Show an error message to the user
+                MessageBox.Show("Vælg en patient inden du booker en konsultation! \nPrøv igen.", "Fejl ved booking", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
