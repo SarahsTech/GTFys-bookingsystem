@@ -40,18 +40,58 @@ namespace GTFys.UI
             createPatientWindow.ShowDialog();
         }
 
-        private void btnDeletePatient_Click(object sender, RoutedEventArgs e)
+        private async void btnDeletePatient_Click(object sender, RoutedEventArgs e)
         {
-            if (PatientService.CurrentPatient != null) {
+            // Show a dialog to get confirmation from the user 
+            MessageBoxResult result = MessageBox.Show("Er du sikker på, at du vil slette denne profil?", "Bekræftelse", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
+            // Check answer from user 
+            if (result == MessageBoxResult.Yes) {
+                try {
+                    // Deletion going through 
+                    if (PatientService.CurrentPatient != null) {
+                        string cpr = PatientService.CurrentPatient.CPR;
+
+                        // Create an instance of your repository
+                        PatientRepo patientRepo = new PatientRepo();
+
+                        // Call the repository method to delete the profile
+                        bool isDeleted = await patientRepo.DeletePatientProfile(cpr);
+
+                        if (isDeleted) {
+                            // Show a success message to the user
+                            MessageBox.Show("Patientens profil blev slettet!", "Slet profil", MessageBoxButton.OK, MessageBoxImage.Information);
+                            // Reload patient grid
+                            LoadPatientGrid(); 
+                        }
+                        else {
+                            // Show an error message to the user
+                            MessageBox.Show("Sletning mislykkedes! \nPrøv igen.", "Sletning mislykkedes", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+
+                }
+                catch (Exception ex) {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }  
             }
+            else {
+                return;
+            }
+        
         }
 
         private void btnBookConsultation_Click(object sender, RoutedEventArgs e)
         {
-
+            // Check if user has selected a patient
             if(PatientService.CurrentPatient != null) {
-
+                // Open book consultation window
+                PhysioBookConsultation bookConsultation = new PhysioBookConsultation();
+                bookConsultation.Show();
+            }
+            else {
+                // Show an error message to the user
+                MessageBox.Show("Vælg en patient inden du booker en konsultation! \nPrøv igen.", "Fejl ved booking", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

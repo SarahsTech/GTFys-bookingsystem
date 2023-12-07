@@ -24,6 +24,7 @@ namespace GTFys.Application
             set
             {   _currentPhysio = value; }
         }
+
     }
 
 }
