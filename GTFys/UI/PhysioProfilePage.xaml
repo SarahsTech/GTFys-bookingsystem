@@ -38,7 +38,7 @@
                         <!-- Border for the Image -->
                         <Border x:Name="borderControl" BorderBrush="Black" BorderThickness="1" Width="112" Height="105">
                             <!-- Image control with Stretch="Uniform" -->
-                            <Image x:Name="ProfilePicture" Stretch="Uniform" />
+                            <Image x:Name="iProfilePicture" Stretch="Uniform" />
                         </Border>
                         <!-- Button for uploading image with flexible margin values -->
                         <Button Content="Upload billede" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" Click="UploadImage_Click" Height="17" Width="114" />

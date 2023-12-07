@@ -38,7 +38,7 @@ namespace GTFys.UI
 
             // Call the PatientRepo to update patient information
             bool updateSuccessful = await patientRepo.PatientUpdateUser(tbFirstName.Text, tbLastName.Text, tbUsername.Text,
-                tbPassword.Text, tbEmail.Text, tbPhone.Text, tbCPR.Text, tbAddress.Text, Convert.ToInt32(tbZipCode.Text), tbCity.Text, ProfilePicture.Source);
+                tbPassword.Text, tbEmail.Text, tbPhone.Text, tbCPR.Text, tbAddress.Text, Convert.ToInt32(tbZipCode.Text), tbCity.Text);
 
             if (updateSuccessful)
             {
@@ -69,7 +69,6 @@ namespace GTFys.UI
             tbAddress.Text = PatientService.CurrentPatient?.Address;
             tbCity.Text = PatientService.CurrentPatient?.City;
             tbZipCode.Text = PatientService.CurrentPatient?.ZipCode.ToString();
-            ProfilePicture.Source = PatientService.CurrentPatient?.ProfilePicture;
         }
 
         // Event handler for the button to go back
