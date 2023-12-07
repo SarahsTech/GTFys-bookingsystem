@@ -107,7 +107,7 @@ namespace GTFys.UI
                 string name = rowSelected["Navn"].ToString();
                 string phone = rowSelected["Telefon"].ToString();
                 string email = rowSelected["Email"].ToString();
-                string cpr = rowSelected["CPR-nummer"].ToString();
+                string cpr = rowSelected["CPR"].ToString();
 
                 // Initialize the PatientService with the selected patientID
                 // Sets CurrentPatient to selected patient
@@ -142,43 +142,17 @@ namespace GTFys.UI
         private void LoadGridSearchPatient(string searchValue, string searchColumn)
         {
             // Variables to build query
-            string column = null;
-            string value = null;
+            string column = searchColumn;
+            string value = searchValue;
             SqlDbType parameterType = SqlDbType.NVarChar; // Default parameter type for LIKE clause
 
             // Set variables to search the right column names and values
-            if (searchColumn == "ID") {
-                column = "PatientID";
-                value = searchValue;
+            if (column == "ID") {
                 parameterType = SqlDbType.Int; // Specify parameter type for PatientID
-            }
-            else if (searchColumn == "Navn") {
-                // For "Navn" combine FirstName and LastName in the WHERE clause
-                column = "Name";
-                value = searchValue; 
-            }
-            else if (searchColumn == "Telefon") {
-                column = "Phone";
-                value = searchValue;
-            }
-            else if (searchColumn == "Email") {
-                column = "Email";
-                value = searchValue;
-            }
-            else if (searchColumn == "CPR-nummer") {
-                column = "CPR";
-                value = searchValue;
             }
 
             // Construct the SQL query based on the chosen criteria
-            string query = null; 
-            if (searchColumn == "Name") {
-               query = $"SELECT * FROM gtPATIENT WHERE FirstName LIKE First@{column} OR LastName LIKE Last@{column}";
-            }
-            else {
-               query = $"SELECT * FROM gtPATIENT WHERE {column} LIKE @{column}";
-            }
-            
+            string query = $"SELECT * FROM gtvwPatientInfo WHERE {column} LIKE @{column}";
 
             // Call LoadPatient to search and load an updated grid for patients with the given criteria
             LoadPatient(query, column, value, parameterType);
