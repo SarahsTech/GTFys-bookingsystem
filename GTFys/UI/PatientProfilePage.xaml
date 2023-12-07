@@ -38,7 +38,7 @@
                         <!-- Border for the Image -->
                         <Border x:Name="borderControl" BorderBrush="Black" BorderThickness="1" Width="112" Height="105">
                             <!-- Image control with Stretch="Uniform" -->
-                            <Image x:Name="ProfilePicture" Stretch="Uniform" />
+                            <Image x:Name="iProfilePicture" Stretch="Uniform" />
                         </Border>
                         <!-- Button for uploading image with flexible margin values -->
                         <Button Content="Upload billede" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" Click="UploadImage_Click" Height="17" Width="114" />
@@ -98,7 +98,7 @@
             </StackPanel>
 
             <!-- Button to create user profile -->
-            <Button x:Name="btnCreateUser" Content="Opdater profil" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" HorizontalAlignment="Center" Margin="0,410,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnCreateUser_Click"/>
+            <Button x:Name="btnUpdatePatient" Content="Opdater profil" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" HorizontalAlignment="Center" Margin="0,410,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnUpdatePatient_Click"/>
             <Button x:Name="btnDeleteUser" Content="Slet profil" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#FF6666" Foreground="Black" FontSize="20" HorizontalAlignment="Left" Margin="696,410,0,0" VerticalAlignment="Top" Height="40" Width="85" BorderBrush="#FF707070" Click="btnDeleteUser_Click"/>
 
         </Grid>

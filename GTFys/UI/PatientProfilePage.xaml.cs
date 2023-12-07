@@ -1,4 +1,5 @@
 ﻿using GTFys.Application;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace GTFys.UI
     /// </summary>
     public partial class PatientProfilePage : Page
     {
+        private string selectedImagePath;
+
         public PatientProfilePage()
         {
             InitializeComponent();
@@ -35,23 +38,45 @@ namespace GTFys.UI
         // Event handler for the button to update patient information
         private async void btnUpdatePatient_Click(object sender, RoutedEventArgs e)
         {
-
-            // Call the PatientRepo to update patient information
             bool updateSuccessful = await patientRepo.PatientUpdateUser(tbFirstName.Text, tbLastName.Text, tbUsername.Text,
-                tbPassword.Text, tbEmail.Text, tbPhone.Text, tbCPR.Text, tbAddress.Text, Convert.ToInt32(tbZipCode.Text), tbCity.Text);
+                tbPassword.Text, tbEmail.Text, tbPhone.Text, tbCPR.Text, tbAddress.Text,
+                Convert.ToInt32(tbZipCode.Text), tbCity.Text, selectedImagePath);
 
             if (updateSuccessful)
             {
                 // Show a success message to the user
-                MessageBox.Show("Din opdatering var succesfuld!", "Succesfuld opdatering", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Din opdatering succesfuld!", "Succesfuld opdatering", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                // Reload the patient information to update the displayed values
+                // Reload the physio information to update the displayed values
                 LoadPatientInfo();
             }
             else
             {
                 // Show an error message to the user
-                MessageBox.Show("Fejl ved opdatering. \nLæs venligst informationen igennem og prøv igen.", "Fejl ved opdatering", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Fejl ved opdatering. Læs venligst informationen igennem og prøv igen.", "Fejl ved opdatering", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void UploadImage_Click(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Title = "Select a picture",
+                Filter = "Image Files|*.png;*.jpg;*.jpeg;*.gif;*.bmp",
+                Multiselect = false
+            };
+
+            // Show OpenFileDialog
+            bool? result = openFileDialog.ShowDialog();
+
+            // Check if the user selected a file
+            if (result == true)
+            {
+                // Get the selected file path
+                selectedImagePath = openFileDialog.FileName;
+
+                // Load the selected image into the Image control
+                iProfilePicture.Source = new BitmapImage(new Uri(selectedImagePath));
             }
         }
 
@@ -69,6 +94,7 @@ namespace GTFys.UI
             tbAddress.Text = PatientService.CurrentPatient?.Address;
             tbCity.Text = PatientService.CurrentPatient?.City;
             tbZipCode.Text = PatientService.CurrentPatient?.ZipCode.ToString();
+            selectedImagePath = PhysioService.CurrentPhysio?.ProfilePicture;
         }
 
         // Event handler for the button to go back

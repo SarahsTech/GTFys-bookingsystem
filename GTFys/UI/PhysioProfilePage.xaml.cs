@@ -24,6 +24,7 @@ namespace GTFys.UI
     public partial class PhysioProfilePage : Page
     {
         private string selectedImagePath;
+
         public PhysioProfilePage()
         {
             InitializeComponent();

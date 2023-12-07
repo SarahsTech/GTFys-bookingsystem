@@ -98,7 +98,7 @@
             </StackPanel>
 
             <!-- Button to create user profile -->
-            <Button x:Name="btnCreateUser" Content="Opdater profil" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" HorizontalAlignment="Center" Margin="0,410,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnCreateUser_Click"/>
+            <Button x:Name="btnUpdatePhysio" Content="Opdater profil" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" HorizontalAlignment="Center" Margin="0,410,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnUpdatePhysio_Click"/>
         </Grid>
     </Grid>
 </Page>
