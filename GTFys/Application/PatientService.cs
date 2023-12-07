@@ -25,6 +25,9 @@ namespace GTFys.Application
             { _currentPatient = value; }
         }
 
+        // Public property for accessing the full name
+        public static string FullName => $"{_currentPatient.FirstName} {_currentPatient.LastName}";
+
         // Method to initialize CurrentPatient with a given patientID
         public async static void InitializePatient(int patientID)
         {
