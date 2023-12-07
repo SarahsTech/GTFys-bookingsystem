@@ -24,6 +24,24 @@ namespace GTFys.Application
             set
             { _currentPatient = value; }
         }
+
+        // Method to initialize CurrentPatient with a given patientID
+        public async static void InitializePatient(int patientID)
+        {
+            // Create a new Patient object or fetch it from the database based on the patientID
+            // For simplicity, assuming there is a method GetPatientById in your data access layer
+            // that retrieves a Patient object by its ID
+
+            var query = "SELECT * FROM gtPATIENT WHERE PatientID = @PatientID";
+            var parameters = new { PatientID = patientID };
+
+            DatabaseAccess dbAccess = new DatabaseAccess();
+
+            var patient = await dbAccess.ExecuteQueryFirstOrDefaultAsync(query, parameters, typeof(Patient));
+
+            // Set the CurrentPatient to the retrieved/fetched patient
+            CurrentPatient = (Patient)patient;
+        }
     }
 
 }

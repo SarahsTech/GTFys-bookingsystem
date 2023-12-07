@@ -22,26 +22,38 @@
         <Button x:Name="btnBookConsultation" Content="Book konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="20" HorizontalAlignment="Left" Margin="610,413,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnBookConsultation_Click"  />
 
         <!-- Datagrid to display all patients -->
-        <DataGrid x:Name="dgPatients" SelectionChanged="dgPatients_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=200}"  CanUserAddRows="False" Margin="50,106,360,106"/>
+        <DataGrid x:Name="dgPatients" SelectionChanged="dgPatients_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=200}"  CanUserAddRows="False" Margin="50,166,360,106"/>
 
         <!-- "Tilbage" Button for navigation -->
         <Button Content="Tilbage" Click="GoBackButton_Click" TextElement.Foreground="MidnightBlue" Background="#99CCFF" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
 
         <!-- Label and TextBox for Name -->
         <Label Content="Navn:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="583,89,0,0" VerticalAlignment="Top" Height="34" Width="95"/>
-        <TextBox x:Name="tbName"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="583,134,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
+        <TextBox x:Name="tbName"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="583,134,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29" IsReadOnly="True"/>
 
         <!-- Label and TextBox for phone -->
         <Label Content="Telefon:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="583,166,0,0" VerticalAlignment="Top" FontSize="12" Height="34" Width="73"/>
-        <TextBox x:Name="tbPhone"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="583,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
+        <TextBox x:Name="tbPhone"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="583,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"  IsReadOnly="True"/>
 
         <!-- Label and TextBox for email -->
         <Label Content="Email:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="583,241,0,0" VerticalAlignment="Top" Height="35" Width="105"/>
-        <TextBox x:Name="tbEmail"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="583,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"/>
+        <TextBox x:Name="tbEmail"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="583,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212" Height="29"  IsReadOnly="True"/>
 
         <!-- Label and TextBox for CPR -->
         <Label Content="CPR-nummer:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="583,312,0,0" VerticalAlignment="Top" Height="35" Width="81"/>
-        <TextBox x:Name="tbCPR" Text="" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="583,347,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="212" Height="29"/>
+        <TextBox x:Name="tbCPR" Text="" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="583,347,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="212" Height="29"  IsReadOnly="True"/>
+
+        <Label Content="Vælg søgekriterie for patient:" FontFamily="Times New Roman" HorizontalAlignment="Left" Margin="50,94,0,0" VerticalAlignment="Top" Width="162"/>
+
+        <!-- Combobox to select search criteria -->
+        <ComboBox x:Name="cbSearchPatient" d:ItemsSource="{d:SampleData ItemCount=15}" HorizontalAlignment="Left" Margin="212,96,0,0" VerticalAlignment="Top" Width="120" FontFamily="Times New Roman" FontSize="12"/>
+
+        <!-- "Søg" Button to search for a patient -->
+        <Button x:Name="btnSearch" Content="Søg" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="12" HorizontalAlignment="Left" Margin="489,96,0,0" VerticalAlignment="Top" Height="20" Width="51" BorderBrush="#FF707070" Click="btnSearch_Click" />
+        <!-- TextBox to search for a patient with specifics -->
+        <TextBox x:Name="tbSearch"  HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="337,96,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="147" Height="20"/>
+
+
 
 
     </Grid>
