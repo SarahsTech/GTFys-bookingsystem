@@ -1,23 +1,30 @@
 ﻿<Page x:Class="GTFys.UI.PatientProfilePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:GTFys.UI"
-      mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="900"
-      Title="PatientProfilePage">
+      mc:Ignorable="d" d:DesignWidth="906"
+      Title="PatientProfilePage" Height="487">
 
-    <Grid>
+    <Grid Margin="1,-1,-1,-10">
+        <!-- Row Definitions -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Row 0: Top Margin -->
+            <RowDefinition Height="Auto"/>
+            <!-- Row 1: Logo and Title -->
+            <RowDefinition Height="Auto"/>
+            <!-- Row 2: Input Fields -->
+            <RowDefinition Height="Auto"/>
+            <!-- Row 3: Buttons -->
+        </Grid.RowDefinitions>
+
         <!-- Frame for navigation (FrontPage) with top margin -->
-        <Frame x:Name="FrontPage" Margin="0,50,0,0"/>
+        <Frame x:Name="FrontPage" Grid.Row="0" Margin="4,-1,-4,1"/>
 
         <!-- Main Content Grid with Background -->
-        <Grid Background="AliceBlue">
-
-            <!-- Frame for navigation (createUserFrame) with hidden navigation UI -->
-            <Frame x:Name="createUserFrame" NavigationUIVisibility="Hidden"></Frame>
-
+        <Grid Grid.Row="1" Background="AliceBlue" Margin="0,0,0,-46" Width="Auto" Grid.RowSpan="3">
             <!-- "Tilbage" Button for navigation -->
             <Button Content="Tilbage" Click="GoBackButton_Click" TextElement.Foreground="MidnightBlue" Background="#99CCFF" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,5,0,0"/>
 
@@ -27,15 +34,19 @@
             <!-- TextBlock displaying "Opret Profil" -->
             <TextBlock Text="Profil" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="DemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="277" Margin="0,20,0,0"/>
 
-            <!-- Grid for the Border, Image, and Upload Button -->
-
-            <!-- StackPanel for input fields -->
-            <StackPanel Orientation="Horizontal" Margin="0,101,0,93" HorizontalAlignment="Center" Width="730">
+            <!-- Grid for input fields -->
+            <Grid HorizontalAlignment="Center" Margin="0,105,0,93" Width="744">
+                <!-- Column Definitions -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
                 <!-- StackPanel 1 for username and password fields -->
-                <StackPanel Margin="0,0,50,0" VerticalAlignment="Top" Height="291">
-                    <StackPanel>
-                        <!-- Border for the Image -->
+                <StackPanel Grid.Column="0" VerticalAlignment="Top" Height="310" Margin="0,0,50,0">
+                    <!-- Border for the Image -->
+                    <StackPanel Height="122">
                         <Border x:Name="borderControl" BorderBrush="Black" BorderThickness="1" Width="112" Height="105">
                             <!-- Image control with Stretch="Uniform" -->
                             <Image x:Name="iProfilePicture" Stretch="Uniform" />
@@ -43,21 +54,19 @@
                         <!-- Button for uploading image with flexible margin values -->
                         <Button Content="Upload billede" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" Click="UploadImage_Click" Height="17" Width="114" />
                     </StackPanel>
-
                     <!-- Additional content (Username and Password) -->
-                    <StackPanel Margin="0,10,0,0">
+                    <StackPanel Margin="0,10,0,0" Width="221">
                         <Label Content="Brugernavn:" Width="200" FontSize="20"/>
                         <TextBox x:Name="tbUsername" Width="200" FontSize="20"/>
                     </StackPanel>
-
-                    <StackPanel Margin="0,10,0,0">
+                    <StackPanel Margin="0,10,0,0" Height="68">
                         <Label Content="Kodeord:" Width="200" FontSize="20"/>
                         <TextBox x:Name="tbPassword" Width="200" FontSize="20"/>
                     </StackPanel>
                 </StackPanel>
 
                 <!-- StackPanel 2 for first name, last name, CPR, and phone number fields -->
-                <StackPanel Margin="0,0,50,0">
+                <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="0,0,50,0">
                     <StackPanel>
                         <Label Content="Fornavn:" Width="200" FontSize="20"/>
                         <TextBox x:Name="tbFirstName" Width="200" FontSize="20"/>
@@ -77,7 +86,7 @@
                 </StackPanel>
 
                 <!-- StackPanel 3 for address, post number, city, and email fields -->
-                <StackPanel Margin="0,0,50,0">
+                <StackPanel Grid.Column="2" VerticalAlignment="Top" Margin="0,0,0,0">
                     <StackPanel>
                         <Label Content="Adresse:" Width="200" FontSize="20"/>
                         <TextBox x:Name="tbAddress" Width="200" FontSize="20"/>
@@ -95,12 +104,23 @@
                         <TextBox x:Name="tbEmail" Width="200" FontSize="20"/>
                     </StackPanel>
                 </StackPanel>
+            </Grid>
+
+            <!-- StackPanel for Update and Delete buttons -->
+            <StackPanel Margin="0,0,1,262" Orientation="Horizontal" HorizontalAlignment="Right" Width="585">
+                <!-- StackPanel for Update button -->
+                <StackPanel Margin="0,395,0,53" Width="280" Height="384">
+                    <Button x:Name="btnUpdatePatient" Content="Opdater profil" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="158" BorderBrush="#FF707070" Margin="0,0,10,0" Click="btnUpdatePatient_Click"/>
+                </StackPanel>
+
+                <!-- StackPanel for Delete button -->
+                <StackPanel Width="201" Height="44">
+                    <Button x:Name="btnDeleteUser" Content="Slet profil" HorizontalAlignment="Right" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#FF6666" Foreground="Black" FontSize="20" Height="40" Width="120" BorderBrush="#FF707070" Click="btnDeleteUser_Click"/>
+                </StackPanel>
             </StackPanel>
-
-            <!-- Button to create user profile -->
-            <Button x:Name="btnUpdatePatient" Content="Opdater profil" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" HorizontalAlignment="Center" Margin="0,410,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnUpdatePatient_Click"/>
-            <Button x:Name="btnDeleteUser" Content="Slet profil" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#FF6666" Foreground="Black" FontSize="20" HorizontalAlignment="Left" Margin="696,410,0,0" VerticalAlignment="Top" Height="40" Width="85" BorderBrush="#FF707070" Click="btnDeleteUser_Click"/>
-
         </Grid>
     </Grid>
 </Page>
+
+
+
