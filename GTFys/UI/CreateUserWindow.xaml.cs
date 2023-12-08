@@ -1,4 +1,5 @@
 ﻿using GTFys.Application;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,9 +53,9 @@ namespace GTFys.UI
                 string address = tbAddress.Text;
                 int zipCode = int.Parse(tbZipCode.Text);
                 string city = tbCity.Text;
-                string imagePath = tbProfilePicture.Text;
+                string imagePath = (ProfilePicture.Source as BitmapImage)?.UriSource?.LocalPath;
 
-                
+
 
                 // Call the PatientCreateUser method to attempt user creation
                 bool isUserCreated = await patientRepo.PatientCreateUser(
@@ -85,6 +86,34 @@ namespace GTFys.UI
             }
         }
 
+
+
+        private void UploadImage_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Create an instance of OpenFileDialog
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+
+                // Set the filter to allow only image files
+                openFileDialog.Filter = "Image Files (*.png;*.jpeg;*.jpg;*.gif;*.bmp)|*.png;*.jpeg;*.jpg;*.gif;*.bmp|All Files (*.*)|*.*";
+
+                // Show the dialog and check if the user selected a file
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    // Get the selected file path
+                    string imagePath = openFileDialog.FileName;
+
+                    // Set the source of the Image control
+                    ProfilePicture.Source = new BitmapImage(new Uri(imagePath));
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions and show an error message
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
 
     }
 }

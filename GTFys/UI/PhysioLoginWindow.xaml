@@ -6,72 +6,43 @@
         xmlns:local="clr-namespace:GTFys.UI"
         mc:Ignorable="d"
         Title="PhysioLoginWindow" Height="600" Width="500">
-    <Grid Margin="0,2,-1,-2"  Background="AliceBlue">
-        <Image Source="/GTFys;component/Images/GTFysLogoMini.png" Height="100" Width="100" Margin="32,33,367,451" />
+    <Grid Margin="0,2,-1,-2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
         
-        <Label Content="Log Ind" 
-               FontFamily="Verdana"
-               FontSize="40"
-               HorizontalAlignment="Center" 
-               Margin="160,42,149,450"/>
-
-        <PasswordBox x:Name="tbPhysioPassword" 
-                 HorizontalAlignment="Center"
-                 BorderBrush="#99CCFF"
-                 BorderThickness="2"
-                 FontFamily="Verdana"
-                 FontSize="20"
-                 VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Center"
-                 Width="334" 
-                 Margin="0,369,0,163" />
-
-        <Label Content="Kodeord" 
-               BorderBrush="#99CCFF"
-               BorderThickness="2"
-               FontFamily="Verdana"
-               FontSize="20"
-               VerticalContentAlignment="Center"
-               HorizontalContentAlignment="Center"
-               Width="334" 
-               Margin="84,317,83,215"/>
-        
-        <TextBox x:Name="tbPhysioUsername" 
-            TextWrapping="Wrap" 
-            Text="..." 
-            HorizontalAlignment="Center"
-            BorderBrush="#99CCFF"
-            BorderThickness="2"
-            FontFamily="Verdana"
-            FontSize="20"
-            VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
-            Width="334" 
-            Margin="0,229,0,302" />
-        
-        <Label Content="Brugernavn" 
-            BorderBrush="#99CCFF"
-            BorderThickness="2"
-            FontFamily="Verdana"
-            FontSize="20"
-            VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
-            Width="334" 
-            Margin="84,177,83,354"/>
-
-        <Button x:Name="btnLogIn" Content="Log ind" 
-                FontSize="13"
-                BorderBrush="Black" 
-                BorderThickness="1" 
-                Padding="10" 
-                Width="334" 
-                Margin="84,435,83,110" Click="btnLogIn_Click" />
-        
-        <TextBlock x:Name="tbPasswordForgotten" TextWrapping="Wrap" 
-                   Text="Glemt kodeord..." 
-                   Margin="86,483,265,70"/>
+        <!-- Logo Image -->
+        <Image Source="/GTFys;component/Images/GTFysLogoMini.png" Margin="15,10,385,4" />
 
 
+        <!-- Login Label -->
+        <Label Content="Log Ind" FontFamily="Verdana" FontSize="40" HorizontalAlignment="Center" Margin="0,27,0,27"/>
 
+
+        <!-- Username Label and TextBox -->
+        <StackPanel Grid.Row="2" Margin="4,29,-4,14" Grid.RowSpan="2">
+            <Label Content="Brugernavn" BorderBrush="black" BorderThickness="1" FontFamily="Verdana" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="350" Height="40"/>
+            <TextBox x:Name="tbPhysioUsername" TextWrapping="Wrap" BorderBrush="#99CCFF" BorderThickness="2" FontFamily="Verdana" FontSize="15" Margin="0,5" Width="350" Height="40"/>
+        </StackPanel>
+
+        <!-- Password Label and TextBox -->
+        <StackPanel Grid.Row="4" Margin="2,13,-2,-27" Grid.RowSpan="4">
+            <Label x:Name="tbPysioPassword" Content="Kodeord" BorderBrush="black" BorderThickness="1" FontFamily="Verdana" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="350" Height="40"/>
+            <TextBox x:Name="tbPhysioPassword" TextWrapping="Wrap" FontFamily="Verdana" FontSize="15" BorderBrush="#99CCFF" BorderThickness="2" Margin="0,5" Width="350" Height="40"/>
+        </StackPanel>
+
+        <!-- Login Button -->
+        <Button Grid.Row="7" x:Name="btnLogin" Content="Log Ind" Background="#99CCFF" Foreground="White" FontFamily="Verdana" FontSize="15" BorderBrush="Black" BorderThickness="1" Margin="85,81,81,-68" Click="btnLogIn_Click" />
+
+        <!-- Password Forgotten TextBlock -->
+        <TextBlock Grid.Row="7" x:Name="tbPasswordForgotten" TextWrapping="Wrap" Text="Glemt Kodeord" FontFamily="Verdana" FontStyle="Oblique" FontSize="14" FontWeight="Bold" Foreground="#99CCFF" Margin="84,129,264,-102"/>
     </Grid>
 </Window>

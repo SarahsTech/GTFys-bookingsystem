@@ -1,5 +1,7 @@
 ﻿using GTFys.Application;
-using GTFys.Domain;
+
+using Microsoft.Win32;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace GTFys.UI
 {
@@ -22,6 +25,8 @@ namespace GTFys.UI
     /// </summary>
     public partial class PhysioProfilePage : Page
     {
+        private string selectedImagePath;
+
         public PhysioProfilePage()
         {
             InitializeComponent();
@@ -33,18 +38,45 @@ namespace GTFys.UI
         private async void btnUpdatePhysio_Click(object sender, RoutedEventArgs e)
         {
             bool updateSuccessful = await physioRepo.PhysioUpdateUser(tbFirstName.Text, tbLastName.Text, tbUsername.Text,
-                tbPassword.Text, tbEmail.Text, tbPhone.Text, tbCPR.Text, tbAddress.Text, Convert.ToInt32(tbZipCode.Text), tbCity.Text, tbProfilePicture.Text);
+                tbPassword.Text, tbEmail.Text, tbPhone.Text, tbCPR.Text, tbAddress.Text,
+                Convert.ToInt32(tbZipCode.Text), tbCity.Text, selectedImagePath);
 
-            if (updateSuccessful) {
+            if (updateSuccessful)
+            {
                 // Show a success message to the user
                 MessageBox.Show("Din opdatering succesfuld!", "Succesfuld opdatering", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 // Reload the physio information to update the displayed values
                 LoadPhysioInfo();
             }
-            else {
+            else
+            {
                 // Show an error message to the user
                 MessageBox.Show("Fejl ved opdatering. Læs venligst informationen igennem og prøv igen.", "Fejl ved opdatering", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void UploadImage_Click(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Title = "Select a picture",
+                Filter = "Image Files|*.png;*.jpg;*.jpeg;*.gif;*.bmp",
+                Multiselect = false
+            };
+
+            // Show OpenFileDialog
+            bool? result = openFileDialog.ShowDialog();
+
+            // Check if the user selected a file
+            if (result == true)
+            {
+                // Get the selected file path
+                selectedImagePath = openFileDialog.FileName;
+
+                // Load the selected image into the Image control
+                iProfilePicture.Source = new BitmapImage(new Uri(selectedImagePath));
             }
         }
 
@@ -61,7 +93,7 @@ namespace GTFys.UI
             tbAddress.Text = PhysioService.CurrentPhysio?.Address;
             tbCity.Text = PhysioService.CurrentPhysio?.City;
             tbZipCode.Text = PhysioService.CurrentPhysio?.ZipCode.ToString();
-            tbProfilePicture.Text = PhysioService.CurrentPhysio?.ProfilePicture;
+            selectedImagePath = PhysioService.CurrentPhysio?.ProfilePicture;
         }
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
