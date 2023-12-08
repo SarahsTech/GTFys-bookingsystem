@@ -87,7 +87,10 @@ namespace GTFys.Application
 
                 byte[] imageBytes = (!string.IsNullOrEmpty(imagePath)) ? File.ReadAllBytes(imagePath) : null;
 
+                int patientID = PatientService.CurrentPatient.PatientID;
+
                 var parameters = new {
+                    PatientID = patientID,
                     CPR = cpr,
                     FirstName = firstName,
                     LastName = lastName,
@@ -104,8 +107,9 @@ namespace GTFys.Application
                 var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters, CommandType.StoredProcedure);
 
                 // Set the updated values to the current patient's information               
-                var updatedInfoQuery = $"SELECT * FROM gtPATIENT WHERE CPR = @CPR";
-                var updatedParameters = new { CPR = cpr };
+                var updatedInfoQuery = $"SELECT * FROM gtPATIENT WHERE PatientID = @PatientID";
+                var updatedParameters = new { PatientID = patientID };
+
 
                 // Fetch the updated patient and update the current patient
                 var patient = await dbAccess.ExecuteQueryFirstOrDefaultAsync(updatedInfoQuery, updatedParameters, typeof(Patient));
@@ -120,7 +124,7 @@ namespace GTFys.Application
                 throw;
             }
         }
-        public async Task<bool> DeletePatientProfile(string cpr)
+        public async Task<bool> DeletePatientProfile(int patientID)
         {
             try
             {
@@ -129,7 +133,7 @@ namespace GTFys.Application
                 // Create parameters
                 var parameters = new
                 {
-                    CPR = cpr
+                    PatientID = patientID
                 };
 
                 // Execute the stored procedure to delete the patient

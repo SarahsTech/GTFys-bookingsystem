@@ -42,6 +42,7 @@ namespace GTFys.UI
 
             // Show the PatientLoginWindow
             patientLoginWindow.Show();
+            this.Close();
         }
     }
 }

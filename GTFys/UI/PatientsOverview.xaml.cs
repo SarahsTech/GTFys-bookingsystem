@@ -50,17 +50,19 @@ namespace GTFys.UI
                 try {
                     // Deletion going through 
                     if (PatientService.CurrentPatient != null) {
-                        string cpr = PatientService.CurrentPatient.CPR;
+                        int patientID = PatientService.CurrentPatient.PatientID;
 
                         // Create an instance of your repository
                         PatientRepo patientRepo = new PatientRepo();
 
                         // Call the repository method to delete the profile
-                        bool isDeleted = await patientRepo.DeletePatientProfile(cpr);
+                        bool isDeleted = await patientRepo.DeletePatientProfile(patientID);
 
                         if (isDeleted) {
                             // Show a success message to the user
                             MessageBox.Show("Patientens profil blev slettet!", "Slet profil", MessageBoxButton.OK, MessageBoxImage.Information);
+                            // Set the current patient to null
+                            PatientService.CurrentPatient = null;
                             // Reload patient grid
                             LoadPatientGrid(); 
                         }

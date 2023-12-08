@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -83,18 +84,27 @@ namespace GTFys.UI
         // Method to load patient information into the UI
         private void LoadPatientInfo()
         {
-            // Set all values in the textboxes to the values of the logged-in patient (CurrentPatient)
-            tbCPR.Text = PatientService.CurrentPatient?.CPR;
-            tbFirstName.Text = PatientService.CurrentPatient?.FirstName;
-            tbLastName.Text = PatientService.CurrentPatient?.LastName;
-            tbUsername.Text = PatientService.CurrentPatient?.Username;
-            tbPassword.Text = PatientService.CurrentPatient?.Password;
-            tbPhone.Text = PatientService.CurrentPatient?.Phone;
-            tbEmail.Text = PatientService.CurrentPatient?.Email;
-            tbAddress.Text = PatientService.CurrentPatient?.Address;
-            tbCity.Text = PatientService.CurrentPatient?.City;
-            tbZipCode.Text = PatientService.CurrentPatient?.ZipCode.ToString();
-            selectedImagePath = PhysioService.CurrentPhysio?.ProfilePicture;
+            try {
+
+                // Set all values in the textboxes to the values of the logged-in patient (CurrentPatient)
+                tbCPR.Text = PatientService.CurrentPatient?.CPR;
+                tbFirstName.Text = PatientService.CurrentPatient?.FirstName;
+                tbLastName.Text = PatientService.CurrentPatient?.LastName;
+                tbUsername.Text = PatientService.CurrentPatient?.Username;
+                tbPassword.Text = PatientService.CurrentPatient?.Password;
+                tbPhone.Text = PatientService.CurrentPatient?.Phone;
+                tbEmail.Text = PatientService.CurrentPatient?.Email;
+                tbAddress.Text = PatientService.CurrentPatient?.Address;
+                tbCity.Text = PatientService.CurrentPatient?.City;
+                tbZipCode.Text = PatientService.CurrentPatient?.ZipCode.ToString();
+                if (!string.IsNullOrEmpty(PatientService.CurrentPatient?.ProfilePicture)) {
+                    byte[] imageBytes = Convert.FromBase64String(PatientService.CurrentPatient?.ProfilePicture);
+                    iProfilePicture.Source = GetImageFromDatabase(imageBytes);
+                }    
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         // Event handler for the button to go back
@@ -110,26 +120,50 @@ namespace GTFys.UI
             try
             {
                 // Retrieve the logged-in user's CPR
-                string loggedInUserCPR = PatientService.CurrentPatient?.CPR;
+                int patientID = PatientService.CurrentPatient.PatientID;
 
-                // Check if CPR is available
-                if (!string.IsNullOrEmpty(loggedInUserCPR))
-                {
-                    // Create an instance of your repository
-                    PatientRepo patientRepo = new PatientRepo();
+                // Show a message with the option to accept or cancel
+                MessageBoxResult result = MessageBox.Show("Er du sikker på, at du vil slette din profil?", "Slet profil", MessageBoxButton.OKCancel, MessageBoxImage.Error);
 
-                    // Call the repository method to delete the profile
-                    bool isDeleted = await patientRepo.DeletePatientProfile(loggedInUserCPR);
+                if (result == MessageBoxResult.OK) {
+                    // User has confirmed
+                    // Check if PatientiD is available
+                    if (patientID != null) {
 
-                    if (isDeleted) {
-                        // Show a success message to the user
-                        MessageBox.Show("Din profil blev slettet!", "Slet profil", MessageBoxButton.OK, MessageBoxImage.Information);
+                        // Create an instance of your repository
+                        PatientRepo patientRepo = new PatientRepo();
+
+                        // Call the repository method to delete the profile
+                        bool isDeleted = await patientRepo.DeletePatientProfile(patientID);
+
+                        if (isDeleted) {
+                            // Show a success message to the user
+                            MessageBox.Show("Din profil blev slettet!", "Slet profil", MessageBoxButton.OK, MessageBoxImage.Information);
+                            // Set the current patient to null
+                            PatientService.CurrentPatient = null;
+
+                            // Open a new instance of the login window if needed
+                            PatientLoginWindow loginWindow = new PatientLoginWindow();
+
+                            // Close the current window hosting the page
+                            Window parentWindow = Window.GetWindow(this);
+                            if (parentWindow != null) {
+                                loginWindow.Show();
+                                parentWindow.Close();
+                            }
+
+                        }
+                        else {
+                            // Show an error message to the user
+                            MessageBox.Show("Sletning mislykkedes. \nPrøv venligst igen.", "Sletning mislykkedes", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
-                    else {
-                        // Show an error message to the user
-                        MessageBox.Show("Sletning mislykkedes. \nPrøv venligst igen.", "Sletning mislykkedes", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    
                 }
+                else {
+                    // User has canceled the delete profile operation
+                }
+                
             }
             catch (Exception ex)
             {
@@ -137,7 +171,23 @@ namespace GTFys.UI
             }
         }
 
-        
+        // Method to convert bytes to image 
+        private BitmapImage GetImageFromDatabase(byte[] imageData)
+        {
+            BitmapImage image = null;
+
+            using (MemoryStream stream = new MemoryStream(imageData)) {
+                image = new BitmapImage();
+                image.BeginInit();
+                image.StreamSource = stream;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.EndInit();
+                image.Freeze();
+            }
+            return image;
+        }
+
+
     }
 
 }

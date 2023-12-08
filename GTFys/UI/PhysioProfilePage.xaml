@@ -62,7 +62,7 @@
                     </StackPanel>
                     <StackPanel Margin="0,10,0,0" Height="68">
                         <Label Content="Kodeord:" Width="200" FontSize="20"/>
-                        <TextBox x:Name="tbPassword" Width="200" FontSize="20"/>
+                        <PasswordBox x:Name="tbPassword" Width="200" FontSize="20"/>
                     </StackPanel>
                 </StackPanel>
 
@@ -111,14 +111,9 @@
             <StackPanel Margin="0,0,1,262" Orientation="Horizontal" HorizontalAlignment="Right" Width="585">
                 <!-- StackPanel for Update button -->
                 <StackPanel Margin="0,395,0,53" Width="280" Height="384">
-                    <Button x:Name="btnUpdatePatient" Content="Opdater profil" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="158" BorderBrush="#FF707070" Margin="0,0,10,0" Click="btnUpdatePatient_Click"/>
+                    <Button x:Name="btnUpdatePhysio" Content="Opdater profil" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="158" BorderBrush="#FF707070" Margin="0,0,10,0" Click="btnUpdatePhysio_Click"/>
                 </StackPanel>
-
-                <!-- StackPanel for Delete button -->
-                <StackPanel Width="201" Height="44">
-                    <Button x:Name="btnDeleteUser" Content="Slet profil" HorizontalAlignment="Right" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#FF6666" Foreground="Black" FontSize="20" Height="40" Width="120" BorderBrush="#FF707070" Click="btnDeleteUser_Click"/>
-                </StackPanel>
-            </StackPanel>
+         </StackPanel>
         </Grid>
     </Grid>
 </Page>

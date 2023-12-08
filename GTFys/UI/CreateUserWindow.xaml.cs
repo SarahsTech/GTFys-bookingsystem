@@ -55,8 +55,6 @@ namespace GTFys.UI
                 string city = tbCity.Text;
                 string imagePath = (ProfilePicture.Source as BitmapImage)?.UriSource?.LocalPath;
 
-
-
                 // Call the PatientCreateUser method to attempt user creation
                 bool isUserCreated = await patientRepo.PatientCreateUser(
                     firstName, lastName, username, password, email, phone, cpr, address, zipCode, city, imagePath

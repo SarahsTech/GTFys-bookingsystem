@@ -38,7 +38,7 @@ namespace GTFys.UI
         private async void btnUpdatePhysio_Click(object sender, RoutedEventArgs e)
         {
             bool updateSuccessful = await physioRepo.PhysioUpdateUser(tbFirstName.Text, tbLastName.Text, tbUsername.Text,
-                tbPassword.Text, tbEmail.Text, tbPhone.Text, tbCPR.Text, tbAddress.Text,
+                tbPassword.Password.ToString(), tbEmail.Text, tbPhone.Text, tbCPR.Text, tbAddress.Text,
                 Convert.ToInt32(tbZipCode.Text), tbCity.Text, selectedImagePath);
 
             if (updateSuccessful)
@@ -87,7 +87,7 @@ namespace GTFys.UI
             tbFirstName.Text = PhysioService.CurrentPhysio?.FirstName;
             tbLastName.Text = PhysioService.CurrentPhysio?.LastName;
             tbUsername.Text = PhysioService.CurrentPhysio?.Username;
-            tbPassword.Text = PhysioService.CurrentPhysio?.Password;
+            tbPassword.Password = PhysioService.CurrentPhysio?.Password.ToString();
             tbPhone.Text = PhysioService.CurrentPhysio?.Phone;
             tbEmail.Text = PhysioService.CurrentPhysio?.Email;
             tbAddress.Text = PhysioService.CurrentPhysio?.Address;

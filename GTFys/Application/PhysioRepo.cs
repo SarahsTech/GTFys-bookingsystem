@@ -46,7 +46,10 @@ namespace GTFys.Application
 
                 byte[] imageBytes = (!string.IsNullOrEmpty(imagePath)) ? File.ReadAllBytes(imagePath) : null;
 
+                int physioID = PhysioService.CurrentPhysio.PhysioID;
+
                 var parameters = new {
+                    PhysioID = physioID,
                     CPR = cpr,
                     FirstName = firstName,
                     LastName = lastName,
@@ -63,8 +66,8 @@ namespace GTFys.Application
                 var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters, CommandType.StoredProcedure);
 
                 // Set the updated values to the current physios information               
-                var updatedInfoQuery = $"SELECT * FROM gtPHYSIO WHERE CPR = @CPR";
-                var updatedParameters = new { CPR = cpr };
+                var updatedInfoQuery = $"SELECT * FROM gtPHYSIO WHERE PhysioID = @PhysioID";
+                var updatedParameters = new { PhysioID = physioID };
 
                 // Fetch the updated physio and update the current physio
                 var physio = await dbAccess.ExecuteQueryFirstOrDefaultAsync(updatedInfoQuery, updatedParameters, typeof(Physio));
