@@ -1,6 +1,7 @@
 ﻿using GTFys.Domain;
 using Microsoft.Data.SqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -199,21 +200,41 @@ namespace GTFys.Application
                 // Create an instance of the resultType to hold the retrieved data
                 var result = Activator.CreateInstance(resultType);
 
-                foreach (var property in resultType.GetProperties())
-                {
+                foreach (var property in resultType.GetProperties()) {
                     // Add logic to map column names to property names
-                    // This assumes that the database column names excactly match the property names
+                    // This assumes that the database column names exactly match the property names
                     var columnName = property.Name;
 
                     // Extract the value for the current property from resultData
                     var valueFromDatabase = row[columnName];
 
-                    // Convert the value from the database to the property type
-                    var convertedValue = Convert.ChangeType(valueFromDatabase, property.PropertyType);
+                    // Convert the value from the database to the property type, handling DBNull
+                    object convertedValue;
+
+                    if (valueFromDatabase == DBNull.Value) {
+                        convertedValue = null;
+                    }
+                    else {
+                        // Check if the property is of type byte[]
+                        if (typeof(byte[]).IsAssignableFrom(valueFromDatabase.GetType()) ) { 
+
+                            // Convert bytes to Base64-encoded string
+                            byte[] byteArray = (byte[])valueFromDatabase;
+                            convertedValue = Convert.ToBase64String(byteArray);
+
+                        }
+                        else {
+                            // Convert the value based on the property type
+                            convertedValue = Convert.ChangeType(valueFromDatabase, property.PropertyType);
+                        }
+                    }
 
                     // Set the property value
                     property.SetValue(result, convertedValue);
+
+                    Debug.WriteLine($"{property.Name} : {property.PropertyType}");
                 }
+
                 // Return the populated result object
                 return result;
             }

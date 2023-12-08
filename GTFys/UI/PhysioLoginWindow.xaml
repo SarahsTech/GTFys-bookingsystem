@@ -17,12 +17,15 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+
         
         <!-- Logo Image -->
         <Image Source="/GTFys;component/Images/GTFysLogoMini.png" Margin="15,10,385,4" />
 
+
         <!-- Login Label -->
         <Label Content="Log Ind" FontFamily="Verdana" FontSize="40" HorizontalAlignment="Center" Margin="0,27,0,27"/>
+
 
         <!-- Username Label and TextBox -->
         <StackPanel Grid.Row="2" Margin="4,29,-4,14" Grid.RowSpan="2">
