@@ -46,10 +46,14 @@ namespace GTFys.UI
                 // Set the current physio to null
                 PhysioService.CurrentPhysio = null;
 
-                // Close the current window and open the login window
-                this.Close();
+                // Open a new instance of LoginWindow
                 PhysioLoginWindow physioLoginWindow = new PhysioLoginWindow();
-                physioLoginWindow.Show();
+                // Close the current window hosting the page
+                Window parentWindow = Window.GetWindow(this);
+                if (parentWindow != null) {
+                    physioLoginWindow.Show();
+                    parentWindow.Close();
+                }
             }
             else {
                 // User has cancelled

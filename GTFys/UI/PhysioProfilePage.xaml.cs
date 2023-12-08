@@ -1,7 +1,5 @@
 ﻿using GTFys.Application;
-
 using Microsoft.Win32;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.Win32;
 
 namespace GTFys.UI
 {
@@ -99,8 +96,14 @@ namespace GTFys.UI
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
             // Open a new instance of PhysioFrontPageWindow
-            PhysioFrontPageWindow physioFrontPageWindow = new PhysioFrontPageWindow();
-            physioFrontPageWindow.Show();
+            PhysioFrontPageWindow physioFrontPageWindow = new PhysioFrontPageWindow();  
+            // Close the current window hosting the page
+            Window parentWindow = Window.GetWindow(this);
+            if (parentWindow != null) {
+                physioFrontPageWindow.Show();
+                parentWindow.Close();
+            }
+
         }
 
     }
