@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,7 +91,26 @@ namespace GTFys.UI
             tbAddress.Text = PhysioService.CurrentPhysio?.Address;
             tbCity.Text = PhysioService.CurrentPhysio?.City;
             tbZipCode.Text = PhysioService.CurrentPhysio?.ZipCode.ToString();
-            selectedImagePath = PhysioService.CurrentPhysio?.ProfilePicture;
+            if (!string.IsNullOrEmpty(PhysioService.CurrentPhysio?.ProfilePicture)) {
+                byte[] imageBytes = Convert.FromBase64String(PhysioService.CurrentPhysio?.ProfilePicture);
+                iProfilePicture.Source = GetImageFromDatabase(imageBytes);
+            }
+        }
+
+        // Method to convert bytes to image 
+        private BitmapImage GetImageFromDatabase(byte[] imageData)
+        {
+            BitmapImage image = null;
+
+            using (MemoryStream stream = new MemoryStream(imageData)) {
+                image = new BitmapImage();
+                image.BeginInit();
+                image.StreamSource = stream;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.EndInit();
+                image.Freeze();
+            }
+            return image;
         }
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)

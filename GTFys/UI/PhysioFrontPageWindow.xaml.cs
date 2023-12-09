@@ -2,7 +2,9 @@
 using GTFys.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,6 +28,9 @@ namespace GTFys.UI
         public PhysioFrontPageWindow()
         {
             InitializeComponent();
+
+            // Load content of the front page
+            LoadFrontPage();
         }
 
         private void btnProfilePage_Click(object sender, RoutedEventArgs e)
@@ -65,6 +70,36 @@ namespace GTFys.UI
             // Create an instance of PhysioProfilePage
             PatientsOverview patientsOverview = new PatientsOverview();
             this.Content = patientsOverview;
+        }
+
+        private void LoadFrontPage()
+        {
+            // Load the profile picture of the logged in physio (CurrentPhysio)
+            
+            if (!string.IsNullOrEmpty(PhysioService.CurrentPhysio?.ProfilePicture)) {
+                byte[] imageBytes = Convert.FromBase64String(PhysioService.CurrentPhysio?.ProfilePicture);
+                imgProfilePicture.Source = GetImageFromDatabase(imageBytes);
+            }
+            else {
+                // Set the default profile picture if the profile picture is null or empty
+                imgProfilePicture.Source = new BitmapImage(new Uri("/GTFys;component/Images/DefaultProfilePicture.jpeg", UriKind.Relative));
+            }
+        }
+
+        // Method to convert bytes to image 
+        private BitmapImage GetImageFromDatabase(byte[] imageData)
+        {
+            BitmapImage image = null;
+
+            using (MemoryStream stream = new MemoryStream(imageData)) {
+                image = new BitmapImage();
+                image.BeginInit();
+                image.StreamSource = stream;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.EndInit();
+                image.Freeze();
+            }
+            return image;
         }
     }
 }

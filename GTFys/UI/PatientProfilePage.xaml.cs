@@ -110,9 +110,14 @@ namespace GTFys.UI
         // Event handler for the button to go back
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
-            // Open a new instance of PatientFrontPageWindow
-            PatientFrontPageWindow patientFrontPageWindow = new PatientFrontPageWindow();
-            patientFrontPageWindow.Show();
+            // Open a new instance of LoginWindow
+            PatientFrontPageWindow frontPage = new PatientFrontPageWindow();
+            // Close the current window hosting the page
+            Window parentWindow = Window.GetWindow(this);
+            if (parentWindow != null) {
+                frontPage.Show();
+                parentWindow.Close();
+            }
         }
 
         private async void btnDeleteUser_Click(object sender, RoutedEventArgs e)

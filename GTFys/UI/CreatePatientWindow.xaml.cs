@@ -53,8 +53,14 @@ namespace GTFys.UI
                     // Show a success message to the user
                     MessageBox.Show("Patient profil oprettet!", "Opret patient", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    // Close the current window
-                    this.Close();
+                    // Open a new instance of LoginWindow
+                    PatientLoginWindow loginWindow = new PatientLoginWindow();
+                    // Close the current window hosting the page
+                    Window parentWindow = Window.GetWindow(this);
+                    if (parentWindow != null) {
+                        loginWindow.Show();
+                        parentWindow.Close();
+                    }
                 }
                 else {
                     // Show an error message to the user

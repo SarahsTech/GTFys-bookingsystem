@@ -7,8 +7,23 @@
         mc:Ignorable="d"
         Title="PhysioFrontPageWindow" Height="500" Width="900">
     <Grid  Background="AliceBlue">
-        <Frame x:Name="frontPage" NavigationUIVisibility="Hidden"/>
-        <Button x:Name="btnProfilePage" Content="Profil" HorizontalAlignment="Left" Margin="731,24,0,0" VerticalAlignment="Top" Click="btnProfilePage_Click" Width="41"/>
+
+        <!-- TextBlock displaying "Opret Profil" -->
+        <TextBlock Text="Min forside" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="DemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="277" Margin="0,20,0,0"/>
+
+        <StackPanel Margin="810,5,5,380">
+            <Button x:Name="btnProfilePage" Width="60" Height="90" Background="AliceBlue" BorderThickness="0" Click="btnProfilePage_Click" HorizontalContentAlignment="Center">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical" Width="60" Height="90">
+                        <Image x:Name="imgProfilePicture" Source="/GTFys;component/Images/GTFysDefaultProfilePicture.jpeg" Width="60" Height="60" />
+                        <TextBlock Text="Min profil" TextElement.Foreground="MidnightBlue" FontFamily="Times New Roman" TextAlignment="Center" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+
+
+
         <Button x:Name="btnLogOut" Content="Log ud" HorizontalAlignment="Left" Margin="731,70,0,0" VerticalAlignment="Top" Click="btnLogOut_Click" />
         <Button x:Name="btnPatients" Content="Patienter" HorizontalAlignment="Left" Margin="59,55,0,0" VerticalAlignment="Top" Click="btnPatients_Click" />
 

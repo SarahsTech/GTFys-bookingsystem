@@ -26,11 +26,22 @@ namespace GTFys.UI
 
             // Set DataContext to the current patient
             DataContext = PatientService.CurrentPatient;
+
+            // Calls AddBlackOutDates() to black out weekends for booking
+            AddBlackOutDates();
         }
 
         private void btnBookConsultation_Click(object sender, RoutedEventArgs e)
         {
-
+            // Get the selected date from the calendar control
+            DateTime? selectedDate = calendarView.SelectedDate;
+            // Check if a date is selected and if it is a weekend
+            if (selectedDate.HasValue && (selectedDate.Value.DayOfWeek == DayOfWeek.Saturday || selectedDate.Value.DayOfWeek == DayOfWeek.Sunday)) {
+                // Clear the selected date to prevent weekend selection
+                calendarView.SelectedDate = null;
+                // Show an error message to the user
+                MessageBox.Show("Vælg en ugedag! \nPrøv igen.", "Booking mislykkedes", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void dgAvailableTimes_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -53,12 +64,49 @@ namespace GTFys.UI
             }
         }
 
+        // Black out weekends for booking
+        private void AddBlackOutDates()
+        {
+            DateTime d1 = new DateTime(2023, 01, 01);
+            List<DateTime> dateStart = new List<DateTime>();
+
+            while (d1.Year == 2023) {
+                if ((d1.DayOfWeek == DayOfWeek.Saturday) || (d1.DayOfWeek == DayOfWeek.Sunday))
+                    dateStart.Add(d1);
+                d1 = d1.AddDays(1);
+            }
+
+            foreach (DateTime dateTime in dateStart) {
+                calendarView.BlackoutDates.Add(new CalendarDateRange(dateTime));
+            }
+
+            // Attach the SelectionChanged event handler
+            calendarView.SelectedDatesChanged += calendarView_SelectionChanged;
+        }
+
+        private void calendarView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Get the selected date from the calendar control
+            DateTime? selectedDate = calendarView.SelectedDate;
+
+            // Check if a date is selected and if it is a weekend
+            if (selectedDate.HasValue && (selectedDate.Value.DayOfWeek == DayOfWeek.Saturday || selectedDate.Value.DayOfWeek == DayOfWeek.Sunday)) {
+                // Clear the selected date to prevent weekend selection
+                calendarView.SelectedDate = null;
+            }
+        }
+
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
             //Close the window an go back to the patient window
             this.Close();
             PatientsOverview patientsOverview = new PatientsOverview();
             Content = patientsOverview;
+        }
+
+        private void calendarView_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

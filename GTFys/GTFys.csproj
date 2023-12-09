@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\GTFysDefaultProfilePicture.jpeg" />
     <None Remove="Images\GTFysLogo.jpeg" />
     <None Remove="Images\GTFysLogo.png" />
     <None Remove="Images\GTFysLogoMini.png" />
@@ -19,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\GTFysDefaultProfilePicture.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\GTFysLogo.jpeg" />
     <Resource Include="Images\GTFysLogo.png" />
     <Resource Include="Images\GTFysLogoMini.png" />

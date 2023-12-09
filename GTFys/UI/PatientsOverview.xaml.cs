@@ -232,7 +232,15 @@ namespace GTFys.UI
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
+            // Open a new instance of the login window if needed
+            PhysioFrontPageWindow frontPage = new PhysioFrontPageWindow();
 
+            // Close the current window hosting the page
+            Window parentWindow = Window.GetWindow(this);
+            if (parentWindow != null) {
+                frontPage.Show();
+                parentWindow.Close();
+            }
         }
     }
 }

@@ -121,7 +121,7 @@
             <!-- Second StackPanel -->
             <StackPanel Margin="325,304,10,13" Grid.ColumnSpan="2">
                 <Viewbox Stretch="Fill" Margin="30" StretchDirection="UpOnly">
-                    <Calendar Width="Auto" Height="Auto"/>
+                    <Calendar x:Name="calendarView" Width="Auto" Height="Auto" SelectionMode="SingleDate"></Calendar>
                 </Viewbox>
 
             </StackPanel>

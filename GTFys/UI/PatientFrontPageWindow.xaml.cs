@@ -1,6 +1,7 @@
 ﻿using GTFys.Application;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,9 @@ namespace GTFys.UI
         public PatientFrontPageWindow()
         {
             InitializeComponent();
+
+            // Load content of the front page
+            LoadFrontPage();
         }
 
         // Event handler for the button to navigate to the patient profile page
@@ -46,15 +50,44 @@ namespace GTFys.UI
                 // Set the current patient to null
                 PatientService.CurrentPatient = null;
 
-                // Close the current window and open the login window
-                this.Close();
-                PatientLoginWindow patientLoginWindow = new PatientLoginWindow();
-                patientLoginWindow.Show();
+                // Open a new instance of LoginWindow
+                PatientLoginWindow loginWindow = new PatientLoginWindow();
+                // Close the current window hosting the page
+                Window parentWindow = Window.GetWindow(this);
+                if (parentWindow != null) {
+                    loginWindow.Show();
+                    parentWindow.Close();
+                }
             }
             else
             {
                 // User has canceled the log-out operation
             }
+        }
+
+        private void LoadFrontPage()
+        {
+            // Load the profile picture of the logged in patient (CurrentPatient)
+            if (!string.IsNullOrEmpty(PatientService.CurrentPatient?.ProfilePicture)) {
+                byte[] imageBytes = Convert.FromBase64String(PatientService.CurrentPatient?.ProfilePicture);
+                imgProfilePicture.Source = GetImageFromDatabase(imageBytes);
+            }
+        }
+
+        // Method to convert bytes to image 
+        private BitmapImage GetImageFromDatabase(byte[] imageData)
+        {
+            BitmapImage image = null;
+
+            using (MemoryStream stream = new MemoryStream(imageData)) {
+                image = new BitmapImage();
+                image.BeginInit();
+                image.StreamSource = stream;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.EndInit();
+                image.Freeze();
+            }
+            return image;
         }
     }
 }
