@@ -32,9 +32,16 @@ namespace GTFys.UI
         // Event handler for the back button
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
-            // Open a new instance of PatientFrontPageWindow
-            PatientFrontPageWindow patientFrontPageWindow = new PatientFrontPageWindow();
-            patientFrontPageWindow.Show();
+            // Open a new instance of MainWindow
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+
+            // Close the current window (CreateUserWindow)
+            this.Close();
+
+
+            // PatientFrontPageWindow patientFrontPageWindow = new PatientFrontPageWindow();
+            // patientFrontPageWindow.Show();
         }
 
         // Event handler for the button click to create a new user
