@@ -11,7 +11,8 @@
         <!-- TextBlock displaying "Opret Profil" -->
         <TextBlock Text="Min forside" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="DemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="277" Margin="0,20,0,0"/>
 
-        <StackPanel Margin="810,5,5,380">
+        <!-- Button displaying "Min profil" -->
+        <StackPanel Margin="810,5,5,5">
             <Button x:Name="btnProfilePage" Width="60" Height="90" Background="AliceBlue" BorderThickness="0" Click="btnProfilePage_Click" HorizontalContentAlignment="Center">
                 <Button.Content>
                     <StackPanel Orientation="Vertical" Width="60" Height="90">
@@ -20,12 +21,14 @@
                     </StackPanel>
                 </Button.Content>
             </Button>
+            <!-- Log out button added in a separate StackPanel -->
+            <StackPanel HorizontalAlignment="Center" Margin="0,340,0,0">
+                <Button x:Name="btnLogOut" Content="Log ud" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="12" Click="btnLogOut_Click" Width="60" />
+            </StackPanel>
         </StackPanel>
 
-
-
-        <Button x:Name="btnLogOut" Content="Log ud" HorizontalAlignment="Left" Margin="731,70,0,0" VerticalAlignment="Top" Click="btnLogOut_Click" />
-        <Button x:Name="btnPatients" Content="Patienter" HorizontalAlignment="Left" Margin="59,55,0,0" VerticalAlignment="Top" Click="btnPatients_Click" />
+        <!-- "Patient" Button for navigation to patient overview -->
+        <Button  x:Name="btnPatients" Content="Patient overblik" Click="btnPatients_Click" TextElement.Foreground="MidnightBlue" FontSize="15" FontFamily="Times New Roman" Background="#99CCFF" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,0,0" Height="41" Width="112"/>
 
 
     </Grid>

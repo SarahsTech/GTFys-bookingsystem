@@ -12,7 +12,7 @@
         <!-- TextBlock displaying "Opret Profil" -->
         <TextBlock Text="Min forside" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="DemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="277" Margin="0,20,0,0"/>
 
-        <StackPanel Margin="810,5,5,380">
+        <StackPanel Margin="810,5,5,5">
             <Button x:Name="btnProfilePage" Width="60" Height="90" Background="AliceBlue" BorderThickness="0" Click="btnProfilePage_Click" HorizontalContentAlignment="Center">
                 <Button.Content>
                     <StackPanel Orientation="Vertical" Width="60" Height="90">
@@ -21,19 +21,22 @@
                     </StackPanel>
                 </Button.Content>
             </Button>
+
+            <!-- Log out button added in a separate StackPanel -->
+            <StackPanel HorizontalAlignment="Center" Margin="0,340,0,0">
+                <Button x:Name="btnLogOut" Content="Log ud" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="12" Click="btnLogOut_Click" Width="60" />
+            </StackPanel>
         </StackPanel>
 
 
 
-        <StackPanel Margin="773,0,0,0" > 
+
+        <StackPanel Margin="90,117,90,40" > 
             
             <!-- FUTURE CONSULTATION HERE -->
 
-            
-
         </StackPanel>
 
-        <Button x:Name="btnLogOut" Content="Log ud" HorizontalAlignment="Left" Margin="729,107,0,0" VerticalAlignment="Top" Click="btnLogOut_Click" />
 
     </Grid>
 </Window>
