@@ -81,6 +81,16 @@ namespace GTFys.Application
                 // Log the error, and rethrow the exception
                 throw;
             }
+
+        }
+        public async Task<List<AvailableTime>> GetAvailableConsultationTimes(int physioID, DateTime date, int duration)
+        {
+            // Call the stored procedure to get available times
+            return await dbAccess.ExecuteQueryAsync<AvailableTime>(
+                "gtspGetAvailableConsultationTimes",
+                new { PhysioID = physioID, Date = date, Duration = duration },
+                CommandType.StoredProcedure
+            );
         }
 
     }
