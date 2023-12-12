@@ -1,8 +1,13 @@
 ﻿using GTFys.Application;
+using GTFys.Domain;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +23,7 @@ namespace GTFys.UI
     /// <summary>
     /// Interaction logic for PhysioBookConsultation.xaml
     /// </summary>
+    ///  
     public partial class PhysioBookConsultation : Window
     {
         public PhysioBookConsultation()
@@ -30,38 +36,135 @@ namespace GTFys.UI
             // Calls AddBlackOutDates() to black out weekends for booking
             AddBlackOutDates();
         }
+        // Create an instance of the PhysioRepo 
+        PhysioRepo physioRepo = new PhysioRepo();
 
-        private void btnBookConsultation_Click(object sender, RoutedEventArgs e)
-        {
+        private async void btnBookConsultation_Click(object sender, RoutedEventArgs e)
+        {         
             // Get the selected date from the calendar control
             DateTime? selectedDate = calendarView.SelectedDate;
             // Check if a date is selected and if it is a weekend
             if (selectedDate.HasValue && (selectedDate.Value.DayOfWeek == DayOfWeek.Saturday || selectedDate.Value.DayOfWeek == DayOfWeek.Sunday)) {
                 // Clear the selected date to prevent weekend selection
                 calendarView.SelectedDate = null;
+                selectedDate = null;
                 // Show an error message to the user
                 MessageBox.Show("Vælg en ugedag! \nPrøv igen.", "Booking mislykkedes", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            // Check if a treatment type has been selected
+            bool isTreatmentTypeSelected = rbFirstConsultation.IsChecked == true || rbTrainingInstruction.IsChecked == true;
+
+            // Check if at least one physio has been selected
+            bool isPhysioSelected = cbPhysio1.IsChecked == true || cbPhysio2.IsChecked == true;
+
+            bool isDateSelected = selectedDate.HasValue;
+
+            // Check if an item is selected in the DataGrid
+            bool isItemSelected = dgAvailableTimes.SelectedItem != null;
+
+            int physioID1 = 0, physioID2 = 0, duration = 0;
+
+            DateTime? date = calendarView.SelectedDate;
+
+
+            // Check which checkboxes are checked and set PhysioID's
+            if (!(cbPhysio1.IsChecked == true && cbPhysio2.IsChecked == true)) {
+                // Set PhysioID1 to 1 and PhysioID2 to 2
+                physioID1 = 1;
+                physioID2 = 2;
+            }
+            else if (cbPhysio1.IsChecked == true && cbPhysio2.IsChecked == false) {
+                // Set PhysioID1 to 1
+                physioID1 = 1;
+            }
+            else if (cbPhysio2.IsChecked == true && cbPhysio1.IsChecked == false) {
+                // Set PhysioID2 to 2
+                physioID1 = 2;
+            }
+
+            string treatmentType;
+            // Check which treatment type is selected and set duration 
+            if (rbFirstConsultation.IsChecked == true) {
+                treatmentType = "Førstegangskonsultation og behandling";
+            }
+            else if (rbTrainingInstruction.IsChecked == true) {
+                treatmentType = "Individuel behandling og træningsinstruktion";
+            }
+            // Additional conditions for your if statement
+            if (isTreatmentTypeSelected && isPhysioSelected && isDateSelected && isItemSelected) 
+             {
+
+                // If values are selected, display available times
+                if (physioID1 > 0 && date != null && duration > 0) {
+
+                    //// Call the PhysioBookConsultation method to attempt booking
+                    //bool isConsultationBooked = await physioRepo.PhysioBookConsultation(PatientService.CurrentPatient, 
+                    //    PhysioService.CurrentPhysio, treatmentType, );
+                }
+            }
+            else {
+                
+            }
+
         }
 
         private void dgAvailableTimes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // Get the selected date from the calendar control
+            DateTime? selectedDate = calendarView.SelectedDate;
 
+            // Check if a treatment type has been selected
+            bool isTreatmentTypeSelected = rbFirstConsultation.IsChecked == true || rbTrainingInstruction.IsChecked == true;
+
+            // Check if at least one physio has been selected
+            bool isPhysioSelected = cbPhysio1.IsChecked == true || cbPhysio2.IsChecked == true;
+
+            bool isDateSelected = selectedDate.HasValue;
+
+            // Check if an item is selected in the DataGrid
+            bool isItemSelected = dgAvailableTimes.SelectedItem != null;
+
+            if (isTreatmentTypeSelected && isPhysioSelected && isDateSelected && isItemSelected) {
+                btnBookConsultation.IsEnabled = true;
+            }
+            else {
+                btnBookConsultation.IsEnabled = false;
+            }
+        }
+        private void rbFirstConsultation_Checked(object sender, RoutedEventArgs e)
+        {
+            // After updating the treatment type, call GetAvailableTimes
+            GetAvailableTimes();
+        }
+
+        private void rbTrainingInstruction_Checked(object sender, RoutedEventArgs e)
+        {
+            // After updating the treatment type, call GetAvailableTimes
+            GetAvailableTimes();
         }
 
         private void btnSelectAll_Click(object sender, RoutedEventArgs e)
         {
             // Check if both checkboxes are unchecked or only one is checked
-            if (!(cbFysio1.IsChecked == true && cbFysio2.IsChecked == true) || (cbFysio1.IsChecked == false && cbFysio2.IsChecked == false)) {
+            if (!(cbPhysio1.IsChecked == true && cbPhysio2.IsChecked == true) || (cbPhysio1.IsChecked == false && cbPhysio2.IsChecked == false)) {
                 // Set IsChecked property of both checkboxes to true
-                cbFysio1.IsChecked = true;
-                cbFysio2.IsChecked = true;
+                cbPhysio1.IsChecked = true;
+                cbPhysio2.IsChecked = true;
             }
             else {
                 // Uncheck both checkboxes
-                cbFysio1.IsChecked = false;
-                cbFysio2.IsChecked = false;
+                cbPhysio1.IsChecked = false;
+                cbPhysio2.IsChecked = false;
             }
+            // After updating the checkboxes, call GetAvailableTimes
+            GetAvailableTimes();
+        }
+
+        private void CheckboxSelectionChanged(object sender, RoutedEventArgs e)
+        {
+            // After updating the checkboxes, call GetAvailableTimes
+            GetAvailableTimes();
         }
 
         // Black out weekends for booking
@@ -81,10 +184,10 @@ namespace GTFys.UI
             }
 
             // Attach the SelectionChanged event handler
-            calendarView.SelectedDatesChanged += calendarView_SelectionChanged;
+            calendarView.SelectedDatesChanged += calendarView_SelectedDatesChanged;
         }
 
-        private void calendarView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void calendarView_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             // Get the selected date from the calendar control
             DateTime? selectedDate = calendarView.SelectedDate;
@@ -93,7 +196,89 @@ namespace GTFys.UI
             if (selectedDate.HasValue && (selectedDate.Value.DayOfWeek == DayOfWeek.Saturday || selectedDate.Value.DayOfWeek == DayOfWeek.Sunday)) {
                 // Clear the selected date to prevent weekend selection
                 calendarView.SelectedDate = null;
+                selectedDate = null;
             }
+
+            // Check if a treatment type has been selected
+            bool isTreatmentTypeSelected = rbFirstConsultation.IsChecked == true || rbTrainingInstruction.IsChecked == true;
+
+            // Check if at least one physio has been selected
+            bool isPhysioSelected = cbPhysio1.IsChecked == true || cbPhysio2.IsChecked == true;
+
+            // Additional conditions for your if statement
+            if (isTreatmentTypeSelected && isPhysioSelected && selectedDate != null) {
+                GetAvailableTimes();
+            }
+            else {
+                return; 
+            }
+
+        }
+
+        private async void GetAvailableTimes()
+        {
+            int physioID1 = 0, physioID2 = 0, duration = 0;
+            DateTime? date = calendarView.SelectedDate;
+
+            // Check which checkboxes are checked and set PhysioID's
+            if (!(cbPhysio1.IsChecked == true && cbPhysio2.IsChecked == true)) {
+                // Set PhysioID1 to 1 and PhysioID2 to 2
+                physioID1 = 1; 
+                physioID2 = 2;
+            }
+            else if (cbPhysio1.IsChecked == true && cbPhysio2.IsChecked == false) {
+                // Set PhysioID1 to 1
+                physioID1 = 1;
+            }
+            else if (cbPhysio2.IsChecked == true && cbPhysio1.IsChecked == false) {
+                // Set PhysioID2 to 2
+                physioID1 = 2;
+            }
+
+            // Check which treatment type is selected and set duration 
+            if (rbFirstConsultation.IsChecked == true) {
+                // Set duration to 60 
+                duration = 60; 
+            }
+            else if (rbTrainingInstruction.IsChecked == true) {
+                // Set duration to 45 
+                duration = 45;
+            }
+
+            // If values are selected, display available times
+            if(physioID1 > 0 && date != null && duration > 0) {
+
+                try {
+                    // Establish a new database connection
+                    using (IDbConnection connection = new DatabaseConnection().Connect()) {
+
+                        string query = "gtspGetAvailableConsultationTimes";
+
+                        // Create a new SQL command using the provided query and connection
+                        using (SqlCommand command = new SqlCommand(query, (SqlConnection)connection)) {
+
+                            // Add parameters to the query
+                            command.CommandType = CommandType.StoredProcedure;
+                            command.Parameters.AddWithValue("@PhysioID1", physioID1);
+                            command.Parameters.AddWithValue("@PhysioID2", physioID2);
+                            command.Parameters.AddWithValue("@Date", date);
+                            command.Parameters.AddWithValue("@Duration", duration);
+
+                            // Create a datatable and read from the database
+                            DataTable dt = new DataTable();
+                            SqlDataReader reader = command.ExecuteReader();
+                            // Load the content to the datatable
+                            dt.Load(reader);
+                            dgAvailableTimes.ItemsSource = dt.DefaultView;
+
+                        }
+                    }
+                }
+                catch (Exception ex) {
+                    Debug.WriteLine(ex.Message);
+                    MessageBox.Show("Der opstod en fejl ved indlæsning af ledige tider! \n" + ex.Message);
+                }
+            }          
         }
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
@@ -104,9 +289,5 @@ namespace GTFys.UI
             Content = patientsOverview;
         }
 
-        private void calendarView_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }
