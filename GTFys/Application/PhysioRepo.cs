@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using GTFys.Domain;
+using static GTFys.UI.PhysioBookConsultation;
 
 namespace GTFys.Application
 {
@@ -84,39 +85,50 @@ namespace GTFys.Application
 
         }
 
-        //// Method to update physio profile information
-        //public async Task<bool> PhysioBookConsultation(Patient patient, Physio physio, string treatmentType, DateTime startTime)
-        //{
-        //    // Determine TreatmentType
-            
+        // Method to update physio profile information
+        public async Task<bool> PhysioBookConsultation(Patient patient, Physio physio, UITreatmentType treatmentType, DateTime startTime)
+        {
+            // Determine TreatmentType
+            TreatmentType type = MapToModelTreatmentType(treatmentType);
 
-        //    Consultation consultation = new Consultation() { Patient = patient, Physio = physio, TreatmentType = treatmentType, StartTime = startTime };
+            Consultation consultation = new Consultation() { Patient = patient, Physio = physio, TreatmentType = type, StartTime = startTime };
 
-        //    try {
-        //        var query = "gtspBookConsultation";
+            try {
+                var query = "gtspBookConsultation";
 
-        //        var parameters = new {
-        //            TreatmentType = consultation.TreatmentType.ToString(),
-        //            StartTime = consultation.StartTime,
-        //            EndTime = consultation.EndTime,
-        //            Duration = consultation.Duration,
-        //            Price = consultation.Price,
-        //            PhysioID = consultation.Physio.PhysioID,
-        //            PatientID = consultation.Patient.PatientID,
-        //        };
+                var parameters = new {
+                    TreatmentType = consultation.TreatmentType.ToString(),
+                    StartTime = consultation.StartTime,
+                    EndTime = consultation.EndTime,
+                    Duration = consultation.Duration,
+                    Price = consultation.Price,
+                    PhysioID = consultation.Physio.PhysioID,
+                    PatientID = consultation.Patient.PatientID,
+                };
 
-        //        var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters, CommandType.StoredProcedure);
+                var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters, CommandType.StoredProcedure);
 
-        //        return rowsAffected > 0;
-        //    }
-        //    catch (Exception ex) {
-        //        MessageBox.Show($"Fejl ved booking af konsultation: {ex.Message}");
-        //        // Log the error, and rethrow the exception
-        //        throw;
-        //    }
+                return rowsAffected > 0;
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"Fejl ved booking af konsultation: {ex.Message}");
+                // Log the error, and rethrow the exception
+                throw;
+            }
 
-        //}
-
+        }
+        // Maps the UITreatmentType to Consultation TreatmentType
+        public static TreatmentType MapToModelTreatmentType(UITreatmentType uiTreatmentType)
+        {
+            switch (uiTreatmentType) {
+                case UITreatmentType.FirstConsultation:
+                    return TreatmentType.FirstConsultation;
+                case UITreatmentType.TrainingInstruction:
+                    return TreatmentType.TrainingInstruction;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(uiTreatmentType), uiTreatmentType, null);
+            }
+        }
 
         //public async Task<List<AvailableConsultationTime>> GetAvailableConsultationTimes(int physioID, DateTime date, int duration)
         //{

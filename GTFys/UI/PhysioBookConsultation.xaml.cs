@@ -65,8 +65,25 @@ namespace GTFys.UI
 
             int physioID1 = 0, physioID2 = 0, duration = 0;
 
-            DateTime? date = calendarView.SelectedDate;
+            // Variable to hold the date and time combined
+            DateTime selectedDateTime = DateTime.MinValue; // or any other default value
 
+            // Check if an item is selected in the DataGrid
+            if (dgAvailableTimes.SelectedItem != null) {
+                // Assuming "TimeColumn" is the name of the column containing the time
+                string timeString = ((DataRowView)dgAvailableTimes.SelectedItem)["Ledige tider"].ToString();
+
+                // Parse the time string to a TimeSpan
+                if (TimeSpan.TryParse(timeString, out TimeSpan selectedTime)) {
+
+                    // Check if a date is selected
+                    if (selectedDate.HasValue) {
+                        // Combine the selected date and time
+                        selectedDateTime = selectedDate.Value.Date + selectedTime;
+
+                    }
+                }
+            }
 
             // Check which checkboxes are checked and set PhysioID's
             if (!(cbPhysio1.IsChecked == true && cbPhysio2.IsChecked == true)) {
@@ -83,28 +100,47 @@ namespace GTFys.UI
                 physioID1 = 2;
             }
 
-            string treatmentType;
+            // Holds the chosen TreatmentType
+            UITreatmentType treatmentType = UITreatmentType.FirstConsultation; // Default value
+
             // Check which treatment type is selected and set duration 
             if (rbFirstConsultation.IsChecked == true) {
-                treatmentType = "Førstegangskonsultation og behandling";
+                treatmentType = UITreatmentType.FirstConsultation;
             }
             else if (rbTrainingInstruction.IsChecked == true) {
-                treatmentType = "Individuel behandling og træningsinstruktion";
+                treatmentType = UITreatmentType.TrainingInstruction;
             }
+
+            // Result of PhysioBookConsultation 
+            bool isConsultationBooked = false; 
+
             // Additional conditions for your if statement
-            if (isTreatmentTypeSelected && isPhysioSelected && isDateSelected && isItemSelected) 
-             {
-
+            if (isTreatmentTypeSelected && isPhysioSelected && isDateSelected && isItemSelected) {
                 // If values are selected, display available times
-                if (physioID1 > 0 && date != null && duration > 0) {
-
-                    //// Call the PhysioBookConsultation method to attempt booking
-                    //bool isConsultationBooked = await physioRepo.PhysioBookConsultation(PatientService.CurrentPatient, 
-                    //    PhysioService.CurrentPhysio, treatmentType, );
+                if (physioID1 > 0 && selectedDateTime > DateTime.MinValue && duration > 0) {
+                    // Call the PhysioBookConsultation method to attempt booking
+                        isConsultationBooked = await physioRepo.PhysioBookConsultation(
+                        PatientService.CurrentPatient,
+                        PhysioService.CurrentPhysio,
+                        treatmentType, selectedDateTime); 
                 }
             }
+
+            // Check if consultation is booked succesfully 
+            if (isConsultationBooked) {
+                // Show a success message to the user
+                MessageBox.Show("Booking af konsultation bekræftet!", "Booking bekræftelse", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                //// Close the current window (CreateUserWindow)
+                //this.Close();
+
+                //// Open a new instance of the PatientLoginWindow
+                //PatientLoginWindow patientLoginWindow = new PatientLoginWindow();
+                //patientLoginWindow.Show();
+            }
             else {
-                
+                // Show an error message to the user
+                MessageBox.Show("Fejl ved booking af konsultation. \nLæs venligst informationen igennem og prøv igen.", "Fejl ved booking", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
@@ -281,6 +317,12 @@ namespace GTFys.UI
             }          
         }
 
+        // TreatmentType to map the type of treatment
+        public enum UITreatmentType
+        {
+            FirstConsultation,
+            TrainingInstruction
+        }
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
             //Close the window an go back to the patient window
