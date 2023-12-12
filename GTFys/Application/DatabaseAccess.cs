@@ -141,7 +141,7 @@ namespace GTFys.Application
         }
 
         // Method to execute a SQL query and return the result as a DataRow
-        public async Task<object> ExecuteQueryAsync(string query, object parameters)
+        public async Task<object> ExecuteQueryAsync(string query, object parameters, CommandType commandType = CommandType.Text)
         {
             try
             {
@@ -190,57 +190,42 @@ namespace GTFys.Application
 
 
         // Method to execute a SQL query and retrieve the first result as an instance of a specified type
-        public async Task<object> ExecuteQueryFirstOrDefaultAsync(string query, object parameters, Type resultType)
+        public async Task<object> ExecuteQueryFirstOrDefaultAsync(string query, object parameters, Type resultType, CommandType commandType = CommandType.Text)
         {
-            // Use ExecuteQuery method to fetch data from the database
-            var resultData = await ExecuteQueryAsync(query, parameters);
+            var resultData = await ExecuteQueryAsync(query, parameters, commandType);
 
-            // Check if any data was retrieved before populating the properties
             if (resultData != null && resultData is DataRow row)
-            { // If resultData is of type DataRow, then assign it to the variable row
-
-                // Create an instance of the resultType to hold the retrieved data
+            {
                 var result = Activator.CreateInstance(resultType);
 
-                foreach (var property in resultType.GetProperties()) {
-                    // Add logic to map column names to property names
-                    // This assumes that the database column names exactly match the property names
+                foreach (var property in resultType.GetProperties())
+                {
                     var columnName = property.Name;
-
-                    // Extract the value for the current property from resultData
                     var valueFromDatabase = row[columnName];
-
-                    // Convert the value from the database to the property type, handling DBNull
                     object convertedValue;
 
-                    if (valueFromDatabase == DBNull.Value) {
+                    if (valueFromDatabase == DBNull.Value)
+                    {
                         convertedValue = null;
                     }
-                    else {
-                        // Check if the property is of type byte[]
-                        if (typeof(byte[]).IsAssignableFrom(valueFromDatabase.GetType()) ) { 
-
-                            // Convert bytes to Base64-encoded string
+                    else
+                    {
+                        if (typeof(byte[]).IsAssignableFrom(valueFromDatabase.GetType()))
+                        {
                             byte[] byteArray = (byte[])valueFromDatabase;
                             convertedValue = Convert.ToBase64String(byteArray);
-
                         }
-                        else {
-                            // Convert the value based on the property type
+                        else
+                        {
                             convertedValue = Convert.ChangeType(valueFromDatabase, property.PropertyType);
                         }
                     }
 
-                    // Set the property value
                     property.SetValue(result, convertedValue);
-
-                    Debug.WriteLine($"{property.Name} : {property.PropertyType}");
                 }
 
-                // Return the populated result object
                 return result;
             }
-            // If no data was retrieved, return null
             return null;
         }
 

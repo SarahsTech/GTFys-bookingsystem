@@ -70,7 +70,7 @@ namespace GTFys.Application
                 var updatedParameters = new { PhysioID = physioID };
 
                 // Fetch the updated physio and update the current physio
-                var physio = await dbAccess.ExecuteQueryFirstOrDefaultAsync(updatedInfoQuery, updatedParameters, typeof(Physio));
+                var physio = await dbAccess.ExecuteQueryFirstOrDefaultAsync(updatedInfoQuery, updatedParameters, typeof(Physio), CommandType.StoredProcedure);
                 PhysioService.CurrentPhysio = (Physio)physio; 
 
                 return rowsAffected > 0;
@@ -83,15 +83,16 @@ namespace GTFys.Application
             }
 
         }
-        public async Task<List<AvailableTime>> GetAvailableConsultationTimes(int physioID, DateTime date, int duration)
+
+
+        public async Task<List<AvailableConsultationTime>> GetAvailableConsultationTimes(int physioID, DateTime date, int duration)
         {
-            // Call the stored procedure to get available times
-            return await dbAccess.ExecuteQueryAsync<AvailableTime>(
-                "gtspGetAvailableConsultationTimes",
-                new { PhysioID = physioID, Date = date, Duration = duration },
-                CommandType.StoredProcedure
-            );
+            var result = await dbAccess.ExecuteQueryAsync("gtspGetAvailableConsultationTimes", new { PhysioID = physioID, Date = date, Duration = duration }, CommandType.StoredProcedure);
+
+            // Convert the result to a List<AvailableConsultationTime>
+            return result?.DataTableToList<AvailableConsultationTime>();
         }
+
 
     }
 }
