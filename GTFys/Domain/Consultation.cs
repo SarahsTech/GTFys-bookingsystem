@@ -20,10 +20,11 @@ namespace GTFys.Domain
         // Properties for the Patient, Physio, TreatmentType, and DateTime of the consultation
         public Patient Patient { get; set; }             // The patient involved in the consultation
         public Physio Physio { get; set; }               // The physiotherapist involved in the consultation
+        public int PhysioID { get; set; }               // The physiotherapist involved in the consultation booking
         public TreatmentType TreatmentType { get; set; }// The type of treatment provided during the consultation
         public DateTime StartTime { get; set; }          // The date and starttime of the consultation
         public DateTime EndTime { get; set; }            // The date and endtime of the consultation
-        public TimeSpan Duration { get; set; }           // Duration is calculated and set in the constructor, represents the length of a consultation
+        public int Duration { get; set; }           // Duration is calculated and set in the constructor, represents the length of a consultation in minutes
         public double Price { get; set; }                // Price is set in the constructur determined by the chosen treatment type
 
         // Default constructor
@@ -47,24 +48,42 @@ namespace GTFys.Domain
             SetPrice();
 
             // Calculate and set EndTime based on StartTime and Duration
-            EndTime = StartTime + Duration;
+            EndTime = StartTime.AddMinutes(Duration);
+        }
+
+        public Consultation(Patient patient, int physioID, TreatmentType treatmenType, DateTime startTime)
+        {
+            // Set the properties of the Consultation object based on the provided parameters
+            Patient = patient;
+            PhysioID = physioID;
+            TreatmentType = treatmenType;
+            StartTime = startTime;
+
+            // Calculate and set Duration based on TreatmentType
+            SetDuration();
+
+            // Set Price based on TreatmentType
+            SetPrice();
+
+            // Calculate and set EndTime based on StartTime and Duration
+            EndTime = StartTime.AddMinutes(Duration);
         }
 
         // Method to set the Duration based on TreatmentType
         private void SetDuration()
         {
             // Default Duration
-            Duration = TimeSpan.Zero;
+            Duration = 0;
 
             // Update Duration based on TreatmentType
             switch (TreatmentType) {
                 case TreatmentType.FirstConsultation:
                     // First consultation is 1 hour (60 minutes)
-                    Duration = TimeSpan.FromMinutes(60);
+                    Duration = 60;
                     break;
                 case TreatmentType.TrainingInstruction:
                     // Training instruction is 45 minutes
-                    Duration = TimeSpan.FromMinutes(45);
+                    Duration = 45;
                     break;
                     // Add more cases if new treatment types are added in the future
             }

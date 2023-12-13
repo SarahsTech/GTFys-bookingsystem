@@ -52,8 +52,7 @@ namespace GTFys.Application
         public async Task<int> ExecuteNonQueryAsync(string query, object parameters = null, CommandType commandType = CommandType.Text)
         {
 
-            try
-            {
+            try {
                 // Establish a new database connection
                 using (IDbConnection connection = new DatabaseConnection().Connect())
                 {
@@ -95,16 +94,19 @@ namespace GTFys.Application
                         }
 
                         // Execute the command asynchronously and return the number of affected rows
-                        return await command.ExecuteNonQueryAsync();
+                        int rowsAffected = await command.ExecuteNonQueryAsync();
+                        
+                        return rowsAffected > 0 ? rowsAffected : 0;
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-                return -1;
             }
         }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+                Debug.WriteLine("Error occurred: " + Environment.NewLine + ex.ToString());
+                return -1;
+        }
+}
 
         // Returns the result set of the query
         // Used for login authentication 

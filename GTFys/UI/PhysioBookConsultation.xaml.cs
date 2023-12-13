@@ -63,7 +63,7 @@ namespace GTFys.UI
                 // Call the PhysioBookConsultation method to attempt booking
                 isConsultationBooked = await physioRepo.PhysioBookConsultation(
                     PatientService.CurrentPatient,
-                    PhysioService.CurrentPhysio,
+                    physioID1,
                     treatmentType, selectedDateTime);
             }
 
@@ -308,10 +308,15 @@ namespace GTFys.UI
         }
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
-            //Close the window an go back to the patient window
-            this.Close();
-            PatientsOverview patientsOverview = new PatientsOverview();
-            Content = patientsOverview;
+            // Open a new instance of the login window if needed
+            PhysioFrontPageWindow frontPage = new PhysioFrontPageWindow();
+
+            // Close the current window hosting the page
+            Window parentWindow = Window.GetWindow(this);
+            if (parentWindow != null) {
+                frontPage.Show();
+                parentWindow.Close();
+            }
         }
 
     }

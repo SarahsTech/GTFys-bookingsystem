@@ -86,10 +86,15 @@ namespace GTFys.UI
         private void btnBookConsultation_Click(object sender, RoutedEventArgs e)
         {
             // Check if user has selected a patient
-            if(PatientService.CurrentPatient != null) {
+            if(PatientService.CurrentPatient != null) {              
                 // Open book consultation window
                 PhysioBookConsultation bookConsultation = new PhysioBookConsultation();
-                bookConsultation.Show();
+                // Close the current window hosting the page
+                Window parentWindow = Window.GetWindow(this);
+                if (parentWindow != null) {
+                    bookConsultation.Show();
+                    parentWindow.Close();
+                }
             }
             else {
                 // Show an error message to the user

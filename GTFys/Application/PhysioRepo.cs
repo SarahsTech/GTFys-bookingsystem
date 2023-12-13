@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -86,12 +87,12 @@ namespace GTFys.Application
         }
 
         // Method to update physio profile information
-        public async Task<bool> PhysioBookConsultation(Patient patient, Physio physio, UITreatmentType treatmentType, DateTime startTime)
+        public async Task<bool> PhysioBookConsultation(Patient patient, int physioID, UITreatmentType treatmentType, DateTime startTime)
         {
             // Determine TreatmentType
             TreatmentType type = MapToModelTreatmentType(treatmentType);
 
-            Consultation consultation = new Consultation() { Patient = patient, Physio = physio, TreatmentType = type, StartTime = startTime };
+            Consultation consultation = new Consultation(patient, physioID, type, startTime);
 
             try {
                 var query = "gtspBookConsultation";
@@ -102,7 +103,7 @@ namespace GTFys.Application
                     EndTime = consultation.EndTime,
                     Duration = consultation.Duration,
                     Price = consultation.Price,
-                    PhysioID = consultation.Physio.PhysioID,
+                    PhysioID = physioID,
                     PatientID = consultation.Patient.PatientID,
                 };
 
@@ -111,9 +112,8 @@ namespace GTFys.Application
                 return rowsAffected > 0;
             }
             catch (Exception ex) {
-                MessageBox.Show($"Fejl ved booking af konsultation: {ex.Message}");
-                // Log the error, and rethrow the exception
-                throw;
+                Debug.WriteLine(ex.Message);
+                return false;
             }
 
         }
@@ -129,14 +129,6 @@ namespace GTFys.Application
                     throw new ArgumentOutOfRangeException(nameof(uiTreatmentType), uiTreatmentType, null);
             }
         }
-
-        //public async Task<List<AvailableConsultationTime>> GetAvailableConsultationTimes(int physioID, DateTime date, int duration)
-        //{
-        //    var result = await dbAccess.ExecuteQueryAsync("gtspGetAvailableConsultationTimes", new { PhysioID = physioID, Date = date, Duration = duration }, CommandType.StoredProcedure);
-
-        //    // Convert the result to a List<AvailableConsultationTime>
-        //    // return result?.DataTableToList<AvailableConsultationTime>();
-        //}
 
 
     }
