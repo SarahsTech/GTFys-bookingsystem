@@ -31,11 +31,15 @@
 
 
 
-        <StackPanel Margin="90,117,90,40" > 
+        <StackPanel Margin="90,117,90,100" > 
             
             <!-- FUTURE CONSULTATION HERE -->
 
         </StackPanel>
+
+            <!-- "Book konsultation" Button to book a new consultation -->
+            <Button x:Name="btnBookConsultation" Content="Book konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="20" HorizontalAlignment="Left" Margin="610,413,0,0" VerticalAlignment="Top" Height="40" Width="158" BorderBrush="#FF707070" Click="btnBookConsultation_Click"  />
+
 
 
     </Grid>

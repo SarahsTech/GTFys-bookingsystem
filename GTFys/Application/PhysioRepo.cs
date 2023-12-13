@@ -86,7 +86,7 @@ namespace GTFys.Application
 
         }
 
-        // Method to update physio profile information
+        // Method book consultation as physio 
         public async Task<bool> PhysioBookConsultation(Patient patient, int physioID, UITreatmentType treatmentType, DateTime startTime)
         {
             // Determine TreatmentType

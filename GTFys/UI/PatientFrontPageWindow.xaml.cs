@@ -89,5 +89,17 @@ namespace GTFys.UI
             }
             return image;
         }
+
+        private void btnBookConsultation_Click(object sender, RoutedEventArgs e)
+        {
+            // Open a new instance of PatientBookConsultation window
+            PatientBookConsultation consultationWindow = new PatientBookConsultation();
+            // Close the current window hosting the page
+            Window parentWindow = Window.GetWindow(this);
+            if (parentWindow != null) {
+                consultationWindow.Show();
+                parentWindow.Close();
+            }
+        }
     }
 }

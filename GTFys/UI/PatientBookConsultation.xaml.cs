@@ -1,5 +1,4 @@
 ﻿using GTFys.Application;
-using GTFys.Domain;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,6 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,26 +19,23 @@ using System.Windows.Shapes;
 namespace GTFys.UI
 {
     /// <summary>
-    /// Interaction logic for PhysioBookConsultation.xaml
+    /// Interaction logic for PatientBookConsultation.xaml
     /// </summary>
-    ///  
-    public partial class PhysioBookConsultation : Window
+    public partial class PatientBookConsultation : Window
     {
-        public PhysioBookConsultation()
+        public PatientBookConsultation()
         {
             InitializeComponent();
-
-            // Set DataContext to the current patient
-            DataContext = PatientService.CurrentPatient;
 
             // Calls AddBlackOutDates() to black out weekends for booking
             AddBlackOutDates();
         }
-        // Create an instance of the PhysioRepo 
-        PhysioRepo physioRepo = new PhysioRepo();
+        // Create an instance of the PatientRepo 
+        PatientRepo patientRepo = new PatientRepo();
+
 
         private async void btnBookConsultation_Click(object sender, RoutedEventArgs e)
-        {     
+        {
 
             // Get the selected date and time combined
             DateTime selectedDateTime = GetSelectedDateTime();
@@ -61,7 +56,7 @@ namespace GTFys.UI
             // If values are selected, display available times
             if (physioID1 > 0 && selectedDateTime > DateTime.MinValue && duration > 0) {
                 // Call the PhysioBookConsultation method to attempt booking
-                isConsultationBooked = await physioRepo.PhysioBookConsultation(
+                isConsultationBooked = await patientRepo.PatientBookConsultation(
                     PatientService.CurrentPatient,
                     physioID1,
                     treatmentType, selectedDateTime);
@@ -73,7 +68,7 @@ namespace GTFys.UI
                 MessageBox.Show("Booking af konsultation bekræftet!", "Booking bekræftelse", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 // Open a new instance of the PhysioFrontPage
-                PhysioFrontPageWindow frontPage = new PhysioFrontPageWindow();
+                PatientFrontPageWindow frontPage = new PatientFrontPageWindow();
                 frontPage.Show();
 
                 // Close the current window
@@ -128,13 +123,15 @@ namespace GTFys.UI
             if (cbPhysio1.IsChecked == true && cbPhysio2.IsChecked == true) {
                 physioID1 = 1;
                 physioID2 = 2;
-                return; 
-            } else if (cbPhysio1.IsChecked == true && cbPhysio2.IsChecked == false) {
+                return;
+            }
+            else if (cbPhysio1.IsChecked == true && cbPhysio2.IsChecked == false) {
                 physioID1 = 1;
-                return; 
-            } else if(cbPhysio1.IsChecked == false && cbPhysio2.IsChecked == true) {
+                return;
+            }
+            else if (cbPhysio1.IsChecked == false && cbPhysio2.IsChecked == true) {
                 physioID1 = 2;
-                return; 
+                return;
             }
         }
         private (UITreatmentType, int) GetSelectedTreatmentTypeAndDuration()
@@ -172,10 +169,10 @@ namespace GTFys.UI
         private void rbFirstConsultation_Checked(object sender, RoutedEventArgs e)
         {
             if (calendarView.SelectedDate != null) {
-                if(cbPhysio1.IsChecked == true || cbPhysio2.IsChecked == true) {
+                if (cbPhysio1.IsChecked == true || cbPhysio2.IsChecked == true) {
                     // After updating the treatment type, call GetAvailableTimes
                     GetAvailableTimes();
-                }              
+                }
             }
         }
 
@@ -198,7 +195,8 @@ namespace GTFys.UI
                 cbPhysio2.IsChecked = true;
                 // After updating the checkboxes, call GetAvailableTimes
                 GetAvailableTimes();
-            }else if (cbPhysio1.IsChecked == false || cbPhysio2.IsChecked == false) {
+            }
+            else if (cbPhysio1.IsChecked == false || cbPhysio2.IsChecked == false) {
                 // Set IsChecked property of both checkboxes to true
                 cbPhysio1.IsChecked = true;
                 cbPhysio2.IsChecked = true;
@@ -209,14 +207,14 @@ namespace GTFys.UI
                 // Uncheck both checkboxes
                 cbPhysio1.IsChecked = false;
                 cbPhysio2.IsChecked = false;
-                dgAvailableTimes.ItemsSource = null; 
+                dgAvailableTimes.ItemsSource = null;
             }
         }
 
         private void CheckboxSelectionChanged(object sender, RoutedEventArgs e)
         {
             if (calendarView.SelectedDate != null) {
-                if ((rbFirstConsultation.IsChecked == true || rbTrainingInstruction.IsChecked == true) 
+                if ((rbFirstConsultation.IsChecked == true || rbTrainingInstruction.IsChecked == true)
                     && (cbPhysio1.IsChecked == true || cbPhysio2.IsChecked == true)) {
                     // After updating the checkboxes, call GetAvailableTimes
                     GetAvailableTimes();
@@ -327,7 +325,7 @@ namespace GTFys.UI
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
             // Open a new instance of the login window if needed
-            PhysioFrontPageWindow frontPage = new PhysioFrontPageWindow();
+            PatientFrontPageWindow frontPage = new PatientFrontPageWindow();
 
             // Close the current window hosting the page
             Window parentWindow = Window.GetWindow(this);
