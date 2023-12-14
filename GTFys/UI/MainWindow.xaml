@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid  Background="AliceBlue">
         <!-- Logo Image -->
-        <Image Source="/GTFys;component/Images/GTFysLogo.jpeg" Margin="4,8,3,288" />
+        <Image Source="/GTFys;component/Images/GTFysLogo.png" Margin="4,8,3,288" />
 
         <!-- Physiotherapist Button -->
         <Button x:Name="btnPhysio" Margin="20,182,420,65" Click="btnPhysio_Click" >

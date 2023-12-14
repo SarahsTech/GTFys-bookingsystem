@@ -9,7 +9,7 @@
     <Grid  Background="AliceBlue">
 
         <!-- TextBlock displaying "Opret Profil" -->
-        <TextBlock Text="Min forside" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="DemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="277" Margin="0,20,0,0"/>
+        <TextBlock Text="Min forside" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="SemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="277" Margin="0,20,0,0"/>
 
         <StackPanel Orientation="Horizontal" Margin="20,80,310,350">
             <Label Content="Vælg søgekriterie for konsultation:" FontFamily="Times New Roman" Width="180"/>
