@@ -27,6 +27,28 @@
             </StackPanel>
         </StackPanel>
 
+        <!-- StackPanel for Update and Delete buttons -->
+        <StackPanel Margin="0,400,0,40" Orientation="Horizontal" HorizontalAlignment="Center" Width="800">
+            <!-- StackPanel for Update button -->
+
+            
+            <!-- StackPanel for Book button -->
+            <StackPanel Width="250" Height="40">
+                <Button x:Name="btnBookConsultation" Content="Book konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" />
+            </StackPanel>
+
+            <!-- StackPanel for Update button -->
+            <StackPanel Width="250" Height="40">
+                <Button x:Name="btnUpdateConsultation" Content="Opdater konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" />
+            </StackPanel>
+
+            <!-- StackPanel for Delete button -->
+            <StackPanel Width="250" Height="40">
+                <Button x:Name="btnDeleteUser" Content="Slet konsultation" HorizontalAlignment="Center" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#FF6666" Foreground="Black" FontSize="20" Height="40" Width="150" BorderBrush="#FF707070"/>
+            </StackPanel>
+        </StackPanel>
+
+
         <!-- "Patient" Button for navigation to patient overview -->
         <Button  x:Name="btnPatients" Content="Patient overblik" Click="btnPatients_Click" TextElement.Foreground="MidnightBlue" FontSize="15" FontFamily="Times New Roman" Background="#99CCFF" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,0,0" Height="41" Width="112"/>
 
