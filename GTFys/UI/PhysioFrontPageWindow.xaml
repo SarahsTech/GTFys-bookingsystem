@@ -11,7 +11,7 @@
         <!-- TextBlock displaying "Opret Profil" -->
         <TextBlock Text="Min forside" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="SemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="277" Margin="0,20,0,0"/>
 
-        <StackPanel Orientation="Horizontal" Margin="20,80,310,350">
+        <StackPanel Orientation="Horizontal" Margin="33,80,322,350">
             <Label Content="Vælg søgekriterie for konsultation:" FontFamily="Times New Roman" Width="180"/>
 
             <!-- Combobox to select search criteria -->
@@ -21,11 +21,11 @@
             <TextBox x:Name="tbSearch" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="12,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="147" Height="20"/>
 
             <!-- "Søg" Button to search for a patient -->
-            <Button x:Name="btnSearch" Content="Søg" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="12" HorizontalAlignment="Left" Margin="12,0,0,0" VerticalAlignment="Top" Height="20" Width="51" BorderBrush="#FF707070" Click="btnSearch_Click" />
+            <Button x:Name="btnSearch" Content="Søg" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="12" Margin="12,0,0,0" VerticalAlignment="Top" Height="20" Width="62" BorderBrush="#FF707070" Click="btnSearch_Click" />
         </StackPanel>
 
-        <StackPanel Margin="312,127,312,100">
-            <DataGrid x:Name="dgConstultations" SelectionChanged="dgConstultations_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=200}"  CanUserAddRows="False" Height="220" Margin="10" VerticalAlignment="Stretch" FontFamily="Times New Roman" FontSize="15"></DataGrid>
+        <StackPanel Margin="291,132,312,100">
+            <DataGrid x:Name="dgConstultations" SelectionChanged="dgConstultations_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=200}"  CanUserAddRows="False" Height="236" Margin="10" FontFamily="Times New Roman" FontSize="15" Width="264"/>
         </StackPanel>
         <StackPanel Margin="20,127,604,100">
             <Viewbox Stretch="Fill" Margin="10" StretchDirection="UpOnly">
@@ -60,14 +60,16 @@
         </StackPanel>
 
         <!-- Button displaying "Min profil" -->
-        <StackPanel Margin="810,5,5,5">
+        <StackPanel Margin="810,1,0,0" Background="#99CCFF">
+            <!-- Log out button added in a separate StackPanel -->
             <Button x:Name="btnProfilePage" Width="60" Height="90" Background="AliceBlue" BorderThickness="0" Click="btnProfilePage_Click" HorizontalContentAlignment="Center">
-                <Button.Content>
+                <Border Background="#99CCFF">
                     <StackPanel Orientation="Vertical" Width="60" Height="90">
                         <Image x:Name="imgProfilePicture" Source="/GTFys;component/Images/GTFysDefaultProfilePicture.jpeg" Width="60" Height="60" />
                         <TextBlock Text="Min profil" TextElement.Foreground="MidnightBlue" FontFamily="Times New Roman" TextAlignment="Center" />
                     </StackPanel>
-                </Button.Content>
+                </Border>
+
             </Button>
             <!-- Log out button added in a separate StackPanel -->
             <StackPanel HorizontalAlignment="Center" Margin="0,340,0,0">
@@ -75,12 +77,13 @@
             </StackPanel>
         </StackPanel>
 
-        
+
+
         <!-- StackPanel for Update and Delete buttons -->
         <StackPanel Margin="0,390,0,30" Orientation="Horizontal" HorizontalAlignment="Center" Width="800">
             <!-- StackPanel for Update button -->
 
-            
+
             <!-- StackPanel for Book button -->
             <StackPanel Width="210" Height="40">
                 <Button x:Name="btnBookConsultation" Content="Book konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" />
