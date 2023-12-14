@@ -65,6 +65,50 @@ namespace GTFys.UI
             }
         }
 
+        private void calendarView_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Get the selected date from the calendar control
+            DateTime? selectedDate = calendarView.SelectedDate;
+
+            // Check if a date is selected and if it is a weekend
+            if (selectedDate.HasValue && (selectedDate.Value.DayOfWeek == DayOfWeek.Saturday || selectedDate.Value.DayOfWeek == DayOfWeek.Sunday)) {
+                // Clear the selected date to prevent weekend selection
+                calendarView.SelectedDate = null;
+                selectedDate = null;
+            }
+
+            //// Check if a treatment type has been selected
+            //bool isTreatmentTypeSelected = rbFirstConsultation.IsChecked == true || rbTrainingInstruction.IsChecked == true;
+
+            //// Check if at least one physio has been selected
+            //bool isPhysioSelected = cbPhysio1.IsChecked == true || cbPhysio2.IsChecked == true;
+
+            //// Additional conditions for your if statement
+            //if (isTreatmentTypeSelected && isPhysioSelected && selectedDate != null) {
+            //    GetAvailableTimes();
+            //}
+            //else {
+            //    return;
+            //}
+
+        }
+
+
+        private void dgConstultations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //// Check if a treatment type has been selected
+            //bool isTreatmentTypeSelected = rbFirstConsultation.IsChecked == true || rbTrainingInstruction.IsChecked == true;
+            //// Check if at least one physio has been selected
+            //bool isPhysioSelected = cbPhysio1.IsChecked == true || cbPhysio2.IsChecked == true;
+            //// Check if a date is selected
+            //bool isDateSelected = calendarView.SelectedDate.HasValue;
+            //// Check if an item is selected in the DataGrid
+            //bool isItemSelected = dgAvailableTimes.SelectedItem != null;
+            //// Enable or disable the "Book Consultation" button based on conditions
+            //btnBookConsultation.IsEnabled = isTreatmentTypeSelected && isPhysioSelected && isDateSelected && isItemSelected;
+        }
+
+
         private void btnPatients_Click(object sender, RoutedEventArgs e)
         {
             // Create an instance of PhysioProfilePage
@@ -100,6 +144,11 @@ namespace GTFys.UI
                 image.Freeze();
             }
             return image;
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

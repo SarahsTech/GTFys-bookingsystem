@@ -129,9 +129,7 @@
             <!-- Third StackPanel -->
             <StackPanel Grid.Column="2" Margin="10,350,10,50" VerticalAlignment="Center">
                 <StackPanel />
-                <DataGrid x:Name="dgAvailableTimes" SelectionChanged="dgAvailableTimes_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=200}"  CanUserAddRows="False" Height="250" Margin="10" VerticalAlignment="Stretch" FontFamily="Times New Roman" FontSize="25">
-
-                </DataGrid>
+                <DataGrid x:Name="dgAvailableTimes" SelectionChanged="dgAvailableTimes_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=200}"  CanUserAddRows="False" Height="250" Margin="10" VerticalAlignment="Stretch" FontFamily="Times New Roman" FontSize="25"></DataGrid>
                 <!-- "Book konsultation" Button to book a new consultation -->
                 <Button x:Name="btnBookConsultation" Content="Book konsultation" IsEnabled="False" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="30" Margin="10" Height="53" Width="254" BorderBrush="#FF707070" Click="btnBookConsultation_Click" VerticalAlignment="Bottom" />
             </StackPanel>
