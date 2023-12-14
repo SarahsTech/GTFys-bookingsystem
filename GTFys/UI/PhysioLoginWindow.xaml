@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:GTFys.UI"
         mc:Ignorable="d"
         Title="PhysioLoginWindow" Height="600" Width="500">
-    <Grid Margin="0,2,-1,-2">
+
+    <Grid Margin="0,2,-1,-2" Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -18,31 +19,29 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        
+
         <!-- Logo Image -->
-        <Image Source="/GTFys;component/Images/GTFysLogoMini.png" Margin="15,10,385,4" />
+        <Image Source="/GTFys;component/Images/GTFysLogo.png" Margin="13,4,12,2" Grid.RowSpan="2" Grid.Row="1" />
 
 
         <!-- Login Label -->
-        <Label Content="Log Ind" FontFamily="Verdana" FontSize="40" HorizontalAlignment="Center" Margin="0,27,0,27"/>
+        <Label Content="Log Ind" FontFamily="TimesNewRomans" FontWeight="Bold" FontSize="40" Foreground="MidnightBlue" HorizontalAlignment="Center" Margin="0,7,0,-20" Grid.Row="7"/>
 
 
         <!-- Username Label and TextBox -->
-        <StackPanel Grid.Row="2" Margin="4,29,-4,14" Grid.RowSpan="2">
-            <Label Content="Brugernavn" BorderBrush="black" BorderThickness="1" FontFamily="Verdana" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="350" Height="40"/>
-            <TextBox x:Name="tbPhysioUsername" TextWrapping="Wrap" BorderBrush="#99CCFF" BorderThickness="2" FontFamily="Verdana" FontSize="15" Margin="0,5" Width="350" Height="40"/>
+        <StackPanel Grid.Row="7" Margin="4,98,-4,-131">
+            <Label Content="Brugernavn" BorderBrush="black" BorderThickness="1" FontFamily="TimesNewRomans" FontWeight="SemiBold"  FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="350" Height="40"/>
+            <TextBox x:Name="tbPhysioUsername" TextWrapping="Wrap" BorderBrush="#99CCFF" BorderThickness="2" FontFamily="TimesNewRomans" FontSize="15" Margin="0,5" Width="350" Height="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         </StackPanel>
 
-        <!-- Password Label and TextBox -->
-        <StackPanel Grid.Row="4" Margin="2,13,-2,-27" Grid.RowSpan="4">
-            <Label x:Name="tbPysioPassword" Content="Kodeord" BorderBrush="black" BorderThickness="1" FontFamily="Verdana" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="350" Height="40"/>
-            <PasswordBox x:Name="tbPhysioPassword" FontFamily="Verdana" FontSize="15" BorderBrush="#99CCFF" BorderThickness="2" Margin="0,5" Width="350" Height="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <!-- Password Label and PasswordBox -->
+        <StackPanel Grid.Row="7" Margin="2,203,-2,-248">
+            <Label x:Name="tbPysioPassword" Content="Kodeord" Width="350" Height="40" BorderBrush="black" BorderThickness="1" FontFamily="TimesNewRomans" FontWeight="SemiBold" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <PasswordBox x:Name="tbPhysioPassword"  Margin="0,5" Width="350" Height="40" BorderBrush="#99CCFF" BorderThickness="2" FontFamily="TimesNewRomans" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         </StackPanel>
 
         <!-- Login Button -->
-        <Button Grid.Row="7" x:Name="btnLogin" Content="Log Ind" Background="#99CCFF" Foreground="White" FontFamily="Verdana" FontSize="15" BorderBrush="Black" BorderThickness="1" Margin="85,81,81,-68" Click="btnLogIn_Click" />
+        <Button Grid.Row="7" x:Name="btnLogin" Content="Log Ind" Background="#99CCFF" Foreground="White" FontFamily="Verdana" FontSize="15" BorderBrush="Black" BorderThickness="1" Margin="85,301,81,-289" Click="btnLogIn_Click" />
 
-        <!-- Password Forgotten TextBlock -->
-        <TextBlock Grid.Row="7" x:Name="tbPasswordForgotten" TextWrapping="Wrap" Text="Glemt Kodeord" FontFamily="Verdana" FontStyle="Oblique" FontSize="14" FontWeight="Bold" Foreground="#99CCFF" Margin="84,129,264,-102"/>
     </Grid>
 </Window>
