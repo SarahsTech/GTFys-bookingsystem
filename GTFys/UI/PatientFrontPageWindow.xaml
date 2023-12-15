@@ -41,21 +41,22 @@
 
             <!-- StackPanel for Update button -->
             <StackPanel Margin="90,0,50,0" Width="200" Height="40">
-                <Button x:Name="btnUpdateConsultation" Content="Opdater konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" Click="btnUpdateConsultation_Click" />
+                <Button x:Name="btnUpdateConsultation" Content="Opdater konsultation" Tag="{Binding ElementName=dgConstultations}" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" Click="btnUpdateConsultation_Click" />
             </StackPanel>
 
             <!-- StackPanel for Delete button -->
             <StackPanel Width="150" Height="40">
-                <Button x:Name="btnDeleteConsultation" Content="Slet konsultation" HorizontalAlignment="Center" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#FF6666" Foreground="Black" FontSize="20" Height="40" Width="150" BorderBrush="#FF707070" Click="btnDeleteConsultation_Click"/>
+                <Button x:Name="btnDeleteConsultation" Content="Slet konsultation" HorizontalAlignment="Center" Tag="{Binding ElementName=dgConstultations}" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#FF6666" Foreground="Black" FontSize="20" Height="40" Width="150" BorderBrush="#FF707070" Click="btnDeleteConsultation_Click"/>
             </StackPanel>
         </StackPanel>
 
 
-        <StackPanel Margin="10,132,312,100">
-            <DataGrid x:Name="dgConstultations" SelectionChanged="dgConstultations_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=200}"  CanUserAddRows="False" Height="236" Margin="10" FontFamily="Times New Roman" FontSize="18" Width="510"/>
+        <StackPanel Margin="10,80,312,100">
+            <Label Content="Mine kommende konsultationer:" FontFamily="Times New Roman" FontSize="18" Width="520" ></Label>
+            <DataGrid x:Name="dgConstultations" SelectionChanged="dgConstultations_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=200}"  CanUserAddRows="False" Height="240" Margin="10" FontFamily="Times New Roman" FontSize="18" Width="510"/>
         </StackPanel>
 
-        <StackPanel Orientation="Vertical" Margin="600,127,120,100">
+        <StackPanel Orientation="Vertical" Margin="600,80,120,100">
             <!-- Label and TextBox for Fysioterapeut name -->
             <StackPanel Orientation="Vertical" Margin="0">
                 <Label Content="Fysioterapeut:" FontFamily="Times New Roman" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
@@ -78,6 +79,12 @@
             <StackPanel Orientation="Vertical" Margin="0">
                 <Label Content="Tid:" FontFamily="Times New Roman" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <TextBox x:Name="tbTime" FontFamily="Times New Roman" FontSize="15" Text="" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="29" IsReadOnly="True"/>
+            </StackPanel>
+            
+            <!-- Label and TextBox for Price -->
+            <StackPanel Orientation="Vertical" Margin="0">
+                <Label Content="Pris:" FontFamily="Times New Roman" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBox x:Name="tbPrice" FontFamily="Times New Roman" FontSize="15" Text="" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="29" IsReadOnly="True"/>
             </StackPanel>
         </StackPanel>
 

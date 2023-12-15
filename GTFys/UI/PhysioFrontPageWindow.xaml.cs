@@ -116,10 +116,6 @@ namespace GTFys.UI
                 tbDate.Text = date;
             }
 
-            //Enable or disable the "Book Consultation" button based on conditions
-            if(rowSelected != null) {
-                btnBookConsultation.IsEnabled = true;
-            }
         }
 
         private void btnPatients_Click(object sender, RoutedEventArgs e)
@@ -182,10 +178,8 @@ namespace GTFys.UI
                             // Add the column names to the ComboBox
                             cbSearchConsultation.Items.Add("Navn");
                             cbSearchConsultation.Items.Add("CPR");
-                        }
-                        
+                        }                       
                     }
-
                     return;
                 }
             }
@@ -231,11 +225,20 @@ namespace GTFys.UI
 
         private async void btnDeleteConsultation_Click(object sender, RoutedEventArgs e)
         {
-            // Converts the object type to a datagrid object
-            DataGrid dg = sender as DataGrid;
+            // Attempt to cast the sender to a Button
+            Button btn = sender as Button;
 
+            // Check if the cast was successful
+            if (btn == null) {
+                MessageBox.Show("The sender is not a Button.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Retrieve the associated DataGrid from the Tag property
+            DataGrid dg = btn.Tag as DataGrid;
+  
             if (dg == null || dg.SelectedItem == null) {
-                MessageBox.Show("Du skal vælge en konsultation inden du sletter.", "Fejl ved sletning", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Du skal vælge en konsultation inden du sletter den.", "Fejl ved sletning", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -275,9 +278,60 @@ namespace GTFys.UI
             
         }
 
-        private void btnUpdateConsultation_Click(object sender, RoutedEventArgs e)
+        private async void btnUpdateConsultation_Click(object sender, RoutedEventArgs e)
         {
+            // Attempt to cast the sender to a Button
+            Button btn = sender as Button;
 
+            // Retrieve the associated DataGrid from the Tag property
+            DataGrid dg = btn.Tag as DataGrid;
+
+            if (dg == null || dg.SelectedItem == null) {
+                MessageBox.Show("Du skal vælge en konsultation inden du opdaterer den.", "Fejl ved sletning", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Store the consultationID
+            int consultationID = Convert.ToInt32(((DataRowView)dg.SelectedItem).Row["ID"]);
+
+            // Show a dialog to get confirmation from the user 
+            MessageBoxResult result = MessageBox.Show("Hvis du opdaterer, vil den nuværende konsultation blive slettet. Bagefter vil du få muligheden for at booke en ny konsultation." +
+                "\nEr du sikker på, at du vil opdatere konsultationen?", "Bekræftelse", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            // Check answer from user 
+            if (result == MessageBoxResult.Yes && consultationID > 0) {
+                try {
+
+                    ConsultationRepo consultationRepo = new ConsultationRepo();
+
+                    // Call the repository method to delete the consultation
+                    bool isDeleted = await consultationRepo.DeleteConsultation(consultationID);
+
+                    if (isDeleted) {
+                        // Show a success message to the user
+                        MessageBoxResult bookConsultationResult = MessageBox.Show("Den nuværende konsultation blev slettet!\nTryk 'OK' for at booke en ny konsultation.", "Opdatér konsultation", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                        // Reload consultation grid
+                        LoadConsultationGrid();
+
+                        // Check if OK is pressed
+                        if (bookConsultationResult == MessageBoxResult.OK) {
+                            // Create an instance of Patientsoverview page
+                            PatientsOverview patientsOverview = new PatientsOverview();
+                            this.Content = patientsOverview;
+                        }               
+                    }
+                    else {
+                        // Show an error message to the user
+                        MessageBox.Show("Opdatering mislykkedes! \nPrøv igen.", "Opdatering mislykkedes", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                catch (Exception ex) {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
+            }
+            else {
+                return;
+            }
         }
 
         private void btnBookConsultation_Click(object sender, RoutedEventArgs e)

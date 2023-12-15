@@ -91,12 +91,12 @@
 
             <!-- StackPanel for Update button -->
             <StackPanel Margin="90,0,50,0" Width="200" Height="40">
-                <Button x:Name="btnUpdateConsultation" Content="Opdater konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" Click="btnUpdateConsultation_Click" />
+                <Button x:Name="btnUpdateConsultation" Content="Opdater konsultation" Tag="{Binding ElementName=dgConstultations}" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" Click="btnUpdateConsultation_Click" />
             </StackPanel>
 
             <!-- StackPanel for Delete button -->
             <StackPanel Width="150" Height="40">
-                <Button x:Name="btnDeleteConsultation" Content="Slet konsultation" HorizontalAlignment="Center" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#FF6666" Foreground="Black" FontSize="20" Height="40" Width="150" BorderBrush="#FF707070" Click="btnDeleteConsultation_Click"/>
+                <Button x:Name="btnDeleteConsultation" Content="Slet konsultation" Tag="{Binding ElementName=dgConstultations}" HorizontalAlignment="Center" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#FF6666" Foreground="Black" FontSize="20" Height="40" Width="150" BorderBrush="#FF707070" Click="btnDeleteConsultation_Click"/>
             </StackPanel>
         </StackPanel>
 
