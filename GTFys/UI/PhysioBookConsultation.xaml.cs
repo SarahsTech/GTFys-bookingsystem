@@ -36,8 +36,9 @@ namespace GTFys.UI
             // Calls AddBlackOutDates() to black out weekends for booking
             AddBlackOutDates();
         }
-        // Create an instance of the PhysioRepo 
-        PhysioRepo physioRepo = new PhysioRepo();
+        // Create an instance of the repositories 
+        PatientRepo patientRepo = new PatientRepo();
+        ConsultationRepo consultationRepo = new ConsultationRepo();
 
         private async void btnBookConsultation_Click(object sender, RoutedEventArgs e)
         {     
@@ -61,7 +62,7 @@ namespace GTFys.UI
             // If values are selected, display available times
             if (physioID1 > 0 && selectedDateTime > DateTime.MinValue && duration > 0) {
                 // Call the PhysioBookConsultation method to attempt booking
-                isConsultationBooked = await physioRepo.PhysioBookConsultation(
+                isConsultationBooked = await consultationRepo.BookConsultation(
                     PatientService.CurrentPatient,
                     physioID1,
                     treatmentType, selectedDateTime);
@@ -318,12 +319,7 @@ namespace GTFys.UI
             }
         }
 
-        // TreatmentType to map the type of treatment
-        public enum UITreatmentType
-        {
-            FirstConsultation,
-            TrainingInstruction
-        }
+        
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
             // Open a new instance of the login window if needed
@@ -337,5 +333,12 @@ namespace GTFys.UI
             }
         }
 
+    }
+
+    // TreatmentType to map the type of treatment
+    public enum UITreatmentType
+    {
+        FirstConsultation,
+        TrainingInstruction
     }
 }
