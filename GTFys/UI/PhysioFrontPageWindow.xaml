@@ -86,7 +86,7 @@
 
             <!-- StackPanel for Book button -->
             <StackPanel Width="210" Height="40">
-                <Button x:Name="btnBookConsultation" Content="Book konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" Click="btnBookConsultation_Click" />
+                <Button x:Name="btnBookConsultation" Content="Book konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" Click="btnBookConsultation_Click"  />
             </StackPanel>
 
             <!-- StackPanel for Update button -->
