@@ -11,6 +11,7 @@
     <None Remove="Images\GTFysDefaultProfilePicture.jpeg" />
     <None Remove="Images\GTFysLogo.png" />
     <None Remove="Images\GTFysLogoMini.png" />
+    <None Remove="Images\GTFysSmallLogo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +25,7 @@
     </Resource>
     <Resource Include="Images\GTFysLogo.png" />
     <Resource Include="Images\GTFysLogoMini.png" />
+    <Resource Include="Images\GTFysSmallLogo.png" />
   </ItemGroup>
 
   <ItemGroup>
