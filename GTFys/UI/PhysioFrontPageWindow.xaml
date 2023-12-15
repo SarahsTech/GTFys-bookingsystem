@@ -11,21 +11,21 @@
         <!-- TextBlock displaying "Opret Profil" -->
         <TextBlock Text="Min forside" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="SemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="277" Margin="0,20,0,0"/>
 
-        <StackPanel Orientation="Horizontal" Margin="33,80,322,350">
+        <StackPanel Orientation="Horizontal" Margin="33,80,310,350">
             <Label Content="Vælg søgekriterie for konsultation:" FontFamily="Times New Roman" Width="180"/>
 
             <!-- Combobox to select search criteria -->
-            <ComboBox x:Name="cbSearchPatient" d:ItemsSource="{d:SampleData ItemCount=15}" HorizontalAlignment="Left" Margin="12,0,0,0" VerticalAlignment="Top" Width="120" FontFamily="Times New Roman" FontSize="12"/>
+            <ComboBox x:Name="cbSearchConsultation" d:ItemsSource="{d:SampleData ItemCount=15}" HorizontalAlignment="Left" Margin="12,0,0,0" VerticalAlignment="Top" Width="120" FontFamily="Times New Roman" FontSize="12"/>
 
             <!-- TextBox to search for a patient with specifics -->
             <TextBox x:Name="tbSearch" HorizontalAlignment="Left" FontFamily="Times New Roman" Margin="12,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="147" Height="20"/>
 
             <!-- "Søg" Button to search for a patient -->
-            <Button x:Name="btnSearch" Content="Søg" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="12" Margin="12,0,0,0" VerticalAlignment="Top" Height="20" Width="62" BorderBrush="#FF707070" Click="btnSearch_Click" />
+            <Button x:Name="btnSearch" Content="Søg" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="12" Margin="12,0,0,0" VerticalAlignment="Top" Height="20" Width="50" BorderBrush="#FF707070" Click="btnSearch_Click" />
         </StackPanel>
 
         <StackPanel Margin="291,132,312,100">
-            <DataGrid x:Name="dgConstultations" SelectionChanged="dgConstultations_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=200}"  CanUserAddRows="False" Height="236" Margin="10" FontFamily="Times New Roman" FontSize="15" Width="264"/>
+            <DataGrid x:Name="dgConstultations" SelectionChanged="dgConstultations_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=200}"  CanUserAddRows="False" Height="220" Margin="10" FontFamily="Times New Roman" FontSize="15" Width="264"/>
         </StackPanel>
         <StackPanel Margin="20,127,604,100">
             <Viewbox Stretch="Fill" Margin="10" StretchDirection="UpOnly">
@@ -86,17 +86,17 @@
 
             <!-- StackPanel for Book button -->
             <StackPanel Width="210" Height="40">
-                <Button x:Name="btnBookConsultation" Content="Book konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" />
+                <Button x:Name="btnBookConsultation" Content="Book konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" Click="btnBookConsultation_Click" />
             </StackPanel>
 
             <!-- StackPanel for Update button -->
             <StackPanel Margin="90,0,50,0" Width="200" Height="40">
-                <Button x:Name="btnUpdateConsultation" Content="Opdater konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" />
+                <Button x:Name="btnUpdateConsultation" Content="Opdater konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" Click="btnUpdateConsultation_Click" />
             </StackPanel>
 
             <!-- StackPanel for Delete button -->
             <StackPanel Width="150" Height="40">
-                <Button x:Name="btnDeleteUser" Content="Slet konsultation" HorizontalAlignment="Center" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#FF6666" Foreground="Black" FontSize="20" Height="40" Width="150" BorderBrush="#FF707070"/>
+                <Button x:Name="btnDeleteConsultation" Content="Slet konsultation" HorizontalAlignment="Center" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#FF6666" Foreground="Black" FontSize="20" Height="40" Width="150" BorderBrush="#FF707070" Click="btnDeleteConsultation_Click"/>
             </StackPanel>
         </StackPanel>
 

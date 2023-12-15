@@ -101,5 +101,30 @@ namespace GTFys.UI
                 parentWindow.Close();
             }
         }
+
+        private void btnUpdateConsultation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDeleteConsultation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dgConstultations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //// Check if a treatment type has been selected
+            //bool isTreatmentTypeSelected = rbFirstConsultation.IsChecked == true || rbTrainingInstruction.IsChecked == true;
+            //// Check if at least one physio has been selected
+            //bool isPhysioSelected = cbPhysio1.IsChecked == true || cbPhysio2.IsChecked == true;
+            //// Check if a date is selected
+            //bool isDateSelected = calendarView.SelectedDate.HasValue;
+            //// Check if an item is selected in the DataGrid
+            //bool isItemSelected = dgAvailableTimes.SelectedItem != null;
+            //// Enable or disable the "Book Consultation" button based on conditions
+            //btnBookConsultation.IsEnabled = isTreatmentTypeSelected && isPhysioSelected && isDateSelected && isItemSelected;
+        }
+
     }
 }
