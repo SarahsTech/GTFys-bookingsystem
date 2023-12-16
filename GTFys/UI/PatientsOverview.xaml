@@ -11,7 +11,7 @@
 
         <!-- Title TextBlock -->
         <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,31,0,419">
-            <TextBlock TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="DemiBold" FontFamily="Verdana"> 
+            <TextBlock TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="DemiBold" FontFamily="Verdana" Margin="-1,-21,1,21"> 
             <Underline>Patient oversigt</Underline>
             </TextBlock>
         </Grid>
@@ -22,12 +22,12 @@
         </Grid>
 
         <!-- Logo Image Grid -->
-        <Grid Margin="761,10,8,366">
-            <Image Source="/GTFys;component/Images/GTFysSmallLogo.png" />
+        <Grid Margin="762,-4,7,380">
+            <Image Source="/GTFys;component/Images/GTFysSmallLogo.png" Margin="16,10,2,5" />
         </Grid>
 
         <!-- Search Criteria StackPanel -->
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="36,91,0,0">
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="37,77,0,0">
             <StackPanel Orientation="Horizontal" Height="52" Width="544">
 
                 <!-- Label for Search Criteria -->
@@ -45,14 +45,14 @@
         </Grid>
 
         <!-- Combined Grid for DataGrid and Patient Details -->
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,145,0,0" Height="270">
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="36,131,0,0" Height="270">
 
             <!-- DataGrid for Patients -->
             <DataGrid x:Name="dgPatients" SelectionChanged="dgPatients_SelectionChanged"
                   d:ItemsSource="{d:SampleData ItemCount=200}" CanUserAddRows="False" Margin="0,0,288,0"/>
 
             <!-- Patient Details StackPanel -->
-            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="594,14,0,0">
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="595,1,0,0">
                 <StackPanel Width="240">
 
                     <!-- Labels and TextBoxes for Patient Details -->
@@ -76,13 +76,13 @@
         </Grid>
 
         <!-- Action Buttons UniformGrid -->
-        <UniformGrid Rows="1" VerticalAlignment="Top" Margin="0,433,0,0">
+        <UniformGrid Rows="1" VerticalAlignment="Top" Margin="1,410,-1,0">
             <!-- Create Patient Button -->
             <Button x:Name="btnCreatePatient" Content="Opret patient" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="20" Width="180" BorderBrush="#FF707070" Click="btnCreatePatient_Click"/>
             <!-- Delete Patient Button -->
             <Button x:Name="btnDeletePatient" Content="Slet patient" FontFamily="Times New Roman" TextElement.Foreground="Black" Background="#FF6666" FontSize="20" Width="180" BorderBrush="#FF707070" Click="btnDeletePatient_Click" />
             <!-- Book Consultation Button -->
-            <Button x:Name="btnBookConsultation" Content="Book konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="20" Width="180" BorderBrush="#FF707070" Click="btnBookConsultation_Click" />
+            <Button x:Name="btnBookConsultation" Content="Book konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" FontSize="20" Width="180" Height="40" BorderBrush="#FF707070" Click="btnBookConsultation_Click" />
         </UniformGrid>
 
     </Grid>
