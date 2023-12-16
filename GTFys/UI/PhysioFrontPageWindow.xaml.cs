@@ -137,7 +137,12 @@ namespace GTFys.UI
                 // Set the default profile picture if the profile picture is null or empty
                 imgProfilePicture.Source = new BitmapImage(new Uri("/GTFys;component/Images/DefaultProfilePicture.jpeg", UriKind.Relative));
             }
-           
+
+            if (cbSearchConsultation.Items.Count == 0) {
+                // Add the search criterias to the ComboBox
+                cbSearchConsultation.Items.Add("Navn");
+                cbSearchConsultation.Items.Add("CPR");
+            }
         }
 
         private void LoadConsultationGrid(string searchText = null, DateTime? consultationDate = null)
@@ -173,12 +178,7 @@ namespace GTFys.UI
                         // Load the content to the datatable
                         dt.Load(reader);
                         dgConstultations.ItemsSource = dt.DefaultView;
-
-                        if(cbSearchConsultation == null) {
-                            // Add the column names to the ComboBox
-                            cbSearchConsultation.Items.Add("Navn");
-                            cbSearchConsultation.Items.Add("CPR");
-                        }                       
+                     
                     }
                     return;
                 }
