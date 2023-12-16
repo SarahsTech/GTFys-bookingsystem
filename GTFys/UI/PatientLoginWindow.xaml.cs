@@ -68,6 +68,11 @@ namespace GTFys.UI
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
+            // Set currents to null
+            PhysioService.CurrentPhysio = null;
+            PatientService.CurrentPatient = null; 
+
+            // Open the main window
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             Close(); // Close the current window

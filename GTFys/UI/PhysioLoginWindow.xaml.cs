@@ -41,11 +41,6 @@ namespace GTFys.UI
                 this.Close();
             }
             else {
-
-                /* Det er en god praksis at håndtere brugergrænsefladeinteraktioner og visning af beskeder i code-behind eller ViewModel, 
-                 * når du har fået svar på, om login er godkendt eller ej. Dette adskiller præsentationslogikken fra din dataadgangslogik, 
-                 * hvilket gør din kode mere modulær og lettere at vedligeholde.
-                 */ 
                 // Show an error message to the user
                 MessageBox.Show("Login fejlede. Kontroller dit brugernavn og adgangskode og prøv igen.", "Login Fejl", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -53,6 +48,11 @@ namespace GTFys.UI
 
         private void GoBackButton_Click(object sender, RoutedEventArgs e)
         {
+            // Set currents to null
+            PhysioService.CurrentPhysio = null;
+            PatientService.CurrentPatient = null;
+
+            // Open the main window
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             Close(); // Close the current window
