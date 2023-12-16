@@ -68,12 +68,12 @@ namespace GTFys.UI
                     // Show a success message to the user
                     MessageBox.Show("Profil oprettet!", "Opret profil", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    // Close the current window (CreateUserWindow)
-                    this.Close();
-
                     // Open a new instance of the PatientLoginWindow
                     PatientLoginWindow patientLoginWindow = new PatientLoginWindow();
                     patientLoginWindow.Show();
+
+                    // Close the current window (CreateUserWindow)
+                    this.Close();
                 }
                 else {
                     // Show an error message to the user
