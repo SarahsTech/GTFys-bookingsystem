@@ -86,49 +86,7 @@ namespace GTFys.Application
 
         }
 
-        // Method book consultation as physio 
-        public async Task<bool> PhysioBookConsultation(Patient patient, int physioID, UITreatmentType treatmentType, DateTime startTime)
-        {
-            // Determine TreatmentType
-            TreatmentType type = MapToModelTreatmentType(treatmentType);
-
-            Consultation consultation = new Consultation(patient, physioID, type, startTime);
-
-            try {
-                var query = "gtspBookConsultation";
-
-                var parameters = new {
-                    TreatmentType = consultation.TreatmentType.ToString(),
-                    StartTime = consultation.StartTime,
-                    EndTime = consultation.EndTime,
-                    Duration = consultation.Duration,
-                    Price = consultation.Price,
-                    PhysioID = physioID,
-                    PatientID = consultation.Patient.PatientID,
-                };
-
-                var rowsAffected = await dbAccess.ExecuteNonQueryAsync(query, parameters, CommandType.StoredProcedure);
-
-                return rowsAffected > 0;
-            }
-            catch (Exception ex) {
-                Debug.WriteLine(ex.Message);
-                return false;
-            }
-
-        }
-        // Maps the UITreatmentType to Consultation TreatmentType
-        public static TreatmentType MapToModelTreatmentType(UITreatmentType uiTreatmentType)
-        {
-            switch (uiTreatmentType) {
-                case UITreatmentType.FirstConsultation:
-                    return TreatmentType.FirstConsultation;
-                case UITreatmentType.TrainingInstruction:
-                    return TreatmentType.TrainingInstruction;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(uiTreatmentType), uiTreatmentType, null);
-            }
-        }
+        
 
 
     }
