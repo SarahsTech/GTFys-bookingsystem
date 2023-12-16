@@ -29,11 +29,14 @@
             <Button Content="Tilbage" Click="GoBackButton_Click" TextElement.Foreground="MidnightBlue" Background="#99CCFF" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,5,0,0"/>
 
             <!-- GTFys Logo -->
-            <Image Source="/GTFys;component/Images/GTFysLogoMini.png" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,1,0" Height="120" Width="113" />
+            <Image Source="/GTFys;component/Images/GTFysSmallLogo.png" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,1,0" Height="120" Width="113" />
 
-            <!-- TextBlock displaying "Opret Profil" -->
-            <TextBlock Text="Profil" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="DemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="277" Margin="0,20,0,0"/>
-
+            <!-- Title TextBlock with Underline -->
+            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center"
+              FontSize="35" FontWeight="SemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="276" Margin="0,31,0,0">
+              <Underline>Min profil</Underline>
+            </TextBlock>
+            
             <!-- Grid for input fields -->
             <Grid HorizontalAlignment="Center" Margin="0,105,0,93" Width="744">
                 <!-- Column Definitions -->
