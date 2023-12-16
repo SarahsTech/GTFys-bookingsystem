@@ -9,84 +9,103 @@
     <Grid Background="AliceBlue">
         <Frame x:Name="FrontPage" Margin="0,50,0,0 "/>
 
-        <!-- TextBlock displaying "Opret Profil" -->
-        <TextBlock Text="Min forside" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center" FontSize="35" FontWeight="DemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="277" Margin="0,20,0,0"/>
+        <!-- Title TextBlock with Underline -->
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="MidnightBlue" TextAlignment="Center"
+         FontSize="35" FontWeight="SemiBold" FontFamily="Verdana" VerticalAlignment="Top" Height="52" Width="276" Margin="0,31,0,0">
+        <Underline>Min forside</Underline>
+        </TextBlock>
 
-        <StackPanel Margin="810,5,5,5">
+        <!-- Logo Image Grid -->
+        <Grid Margin="0,5,751,353">
+            <Image Source="/GTFys;component/Images/GTFysSmallLogo.png" />
+        </Grid>
+
+        <!-- Profile and LogOut Buttons Grid -->
+        <Grid Margin="810,-1,0,0" Background="#99CCFF">
+            <Grid.RowDefinitions>
+
+                <!-- Profile Button Row -->
+                <RowDefinition Height="Auto"/>
+
+                <!-- Main Content Row -->
+                <RowDefinition Height="*" />
+
+                <!-- LogOut Button Row -->
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Profile Button -->
             <Button x:Name="btnProfilePage" Width="60" Height="90" Background="AliceBlue" BorderThickness="0" Click="btnProfilePage_Click" HorizontalContentAlignment="Center">
-                <Button.Content>
+                <Border Background="#99CCFF">
                     <StackPanel Orientation="Vertical" Width="60" Height="90">
                         <Image x:Name="imgProfilePicture" Source="/GTFys;component/Images/GTFysDefaultProfilePicture.jpeg" Width="60" Height="60" />
                         <TextBlock Text="Min profil" TextElement.Foreground="MidnightBlue" FontFamily="Times New Roman" TextAlignment="Center" />
                     </StackPanel>
-                </Button.Content>
+                </Border>
             </Button>
 
-            <!-- Log out button added in a separate StackPanel -->
-            <StackPanel HorizontalAlignment="Center" Margin="0,340,0,0">
-                <Button x:Name="btnLogOut" Content="Log ud" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="12" Click="btnLogOut_Click" Width="60" />
+
+            <!-- Separator Rectangle -->
+            <Rectangle Grid.Row="1" Height="10" Fill="Transparent" />
+
+            <!-- LogOut Button -->
+            <Button x:Name="btnLogOut" Content="Log ud" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#FF6666" Foreground="Black" FontSize="15" Click="btnLogOut_Click" Width="60" Height="21" Grid.Row="2"/>
+        </Grid>
+
+        <!-- Buttons UniformGrid -->
+        <UniformGrid Rows="1" HorizontalAlignment="Left" Margin="0,419,0,6" Width="808">
+
+            <!-- Book Consultation Button -->
+            <Button x:Name="btnBookConsultation" Content="Book konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" Click="btnBookConsultation_Click"/>
+
+            <!-- Update Consultation Button -->
+            <Button x:Name="btnUpdateConsultation" Content="Opdater konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" Click="btnUpdateConsultation_Click" Margin="5,0,5,0"/>
+
+            <!-- Delete Consultation Button -->
+            <Button x:Name="btnDeleteConsultation" Content="Slet konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#FF6666" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" Click="btnDeleteConsultation_Click"/>
+        </UniformGrid>
+
+        <!-- Calendar, DataGrid, and Patient Info StackPanel -->
+        <Grid Margin="1,148,0,70">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" MinWidth="467.413"/>
+                <ColumnDefinition Width="Auto" MinWidth="191"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- DataGrid -->
+            <DataGrid x:Name="dgConstultations" SelectionChanged="dgConstultations_SelectionChanged"
+          d:ItemsSource="{d:SampleData ItemCount=200}" CanUserAddRows="False" FontFamily="Times New Roman" FontSize="15" Margin="10,16,117,8" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+            <!-- Patient Information StackPanel -->
+            <StackPanel Orientation="Vertical" Grid.Column="2" Margin="98,11,-117,7">
+
+                <!-- Patient Name -->
+                <StackPanel Orientation="Vertical" Margin="0">
+                    <Label Content="Physioterapeut" FontFamily="Times New Roman" FontSize="15" HorizontalAlignment="Left" Width="200"/>
+                    <TextBox x:Name="tbPhysioterapeut" FontFamily="Times New Roman" FontSize="15" TextWrapping="Wrap" Text="" HorizontalAlignment="Left" Width="200" Height="28" IsReadOnly="True"/>
+                </StackPanel>
+
+                <!-- Treatment Type -->
+                <StackPanel Orientation="Vertical" Margin="0">
+                    <Label Content="Behandlingstype" FontFamily="Times New Roman" FontSize="15" HorizontalAlignment="Left" Width="200"/>
+                    <TextBox x:Name="tbTreatmentType" FontFamily="Times New Roman" FontSize="15" TextWrapping="Wrap" Text="" HorizontalAlignment="Left" Width="200" Height="28" IsReadOnly="True"/>
+                </StackPanel>
+
+                <!-- Date -->
+                <StackPanel Orientation="Vertical" Margin="0">
+                    <Label Content="Dato" FontFamily="Times New Roman" FontSize="15" HorizontalAlignment="Left" Width="200"/>
+                    <TextBox x:Name="tbDate" FontFamily="Times New Roman" FontSize="15" TextWrapping="Wrap" HorizontalAlignment="Left" Text="" Width="200" Height="28" IsReadOnly="True"/>
+                </StackPanel>
+
+                <!-- Time -->
+                <StackPanel Orientation="Vertical" Margin="0" Height="66">
+                    <Label Content="Tid" FontFamily="Times New Roman" FontSize="15" HorizontalAlignment="Left" Width="200"/>
+                    <TextBox x:Name="tbTime" FontFamily="Times New Roman" FontSize="15" Text="" TextWrapping="Wrap" HorizontalAlignment="Left" Width="200" Height="28" IsReadOnly="True"/>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </Grid>
 
-
-        <!-- StackPanel for Update and Delete buttons -->
-        <StackPanel Margin="0,390,0,30" Orientation="Horizontal" HorizontalAlignment="Center" Width="800">
-            <!-- StackPanel for Update button -->
-
-
-            <!-- StackPanel for Book button -->
-            <StackPanel Width="210" Height="40">
-                <Button x:Name="btnBookConsultation" Content="Book konsultation" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" Click="btnBookConsultation_Click" />
-            </StackPanel>
-
-            <!-- StackPanel for Update button -->
-            <StackPanel Margin="90,0,50,0" Width="200" Height="40">
-                <Button x:Name="btnUpdateConsultation" Content="Opdater konsultation" Tag="{Binding ElementName=dgConstultations}" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#99CCFF" Foreground="Black" FontSize="20" Height="40" Width="180" BorderBrush="#FF707070" Click="btnUpdateConsultation_Click" />
-            </StackPanel>
-
-            <!-- StackPanel for Delete button -->
-            <StackPanel Width="150" Height="40">
-                <Button x:Name="btnDeleteConsultation" Content="Slet konsultation" HorizontalAlignment="Center" Tag="{Binding ElementName=dgConstultations}" FontFamily="Times New Roman" TextElement.Foreground="MidnightBlue" Background="#FF6666" Foreground="Black" FontSize="20" Height="40" Width="150" BorderBrush="#FF707070" Click="btnDeleteConsultation_Click"/>
-            </StackPanel>
-        </StackPanel>
-
-
-        <StackPanel Margin="10,80,312,100">
-            <Label Content="Mine kommende konsultationer:" FontFamily="Times New Roman" FontSize="18" Width="520" ></Label>
-            <DataGrid x:Name="dgConstultations" SelectionChanged="dgConstultations_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=200}"  CanUserAddRows="False" Height="240" Margin="10" FontFamily="Times New Roman" FontSize="18" Width="510"/>
-        </StackPanel>
-
-        <StackPanel Orientation="Vertical" Margin="600,80,120,100">
-            <!-- Label and TextBox for Fysioterapeut name -->
-            <StackPanel Orientation="Vertical" Margin="0">
-                <Label Content="Fysioterapeut:" FontFamily="Times New Roman" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <TextBox x:Name="tbPhysio" FontFamily="Times New Roman" FontSize="15" TextWrapping="Wrap" Text="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="29" IsReadOnly="True"/>
-            </StackPanel>
-
-            <!-- Label and TextBox for TreatmentType  -->
-            <StackPanel Orientation="Vertical" Margin="0">
-                <Label Content="Behandlingstype:" FontFamily="Times New Roman" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <TextBox x:Name="tbTreatmentType" FontFamily="Times New Roman" FontSize="15" TextWrapping="Wrap" Text="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="29" IsReadOnly="True"/>
-            </StackPanel>
-
-            <!-- Label and TextBox for dato -->
-            <StackPanel Orientation="Vertical" Margin="0">
-                <Label Content="Dato:" FontFamily="Times New Roman" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <TextBox x:Name="tbDate" FontFamily="Times New Roman" FontSize="15" TextWrapping="Wrap" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="150" Height="29" IsReadOnly="True"/>
-            </StackPanel>
-
-            <!-- Label and TextBox for Time -->
-            <StackPanel Orientation="Vertical" Margin="0">
-                <Label Content="Tid:" FontFamily="Times New Roman" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <TextBox x:Name="tbTime" FontFamily="Times New Roman" FontSize="15" Text="" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="29" IsReadOnly="True"/>
-            </StackPanel>
-            
-            <!-- Label and TextBox for Price -->
-            <StackPanel Orientation="Vertical" Margin="0">
-                <Label Content="Pris:" FontFamily="Times New Roman" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <TextBox x:Name="tbPrice" FontFamily="Times New Roman" FontSize="15" Text="" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="29" IsReadOnly="True"/>
-            </StackPanel>
-        </StackPanel>
 
     </Grid>
 </Window>

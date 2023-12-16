@@ -20,7 +20,14 @@
         </Grid.RowDefinitions>
 
         <!-- Logo Image -->
-        <Image Source="/GTFys;component/Images/GTFysSmallLogo.png" Margin="6,9,392,43" />
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6,9,392,43">
+            <Image Source="/GTFys;component/Images/GTFysSmallLogo.png" />
+        </Grid>
+
+        <!-- Button to go back to MainWindow-->
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
+            <Button Content="MainWindow" Click="GoBackButton_Click" FontFamily="Times New Roman" TextElement.Foreground="Black" Background="#E6E6E6" HorizontalAlignment="Left" Margin="407,-11,0,0" Height="18" VerticalAlignment="Top"/>
+        </Grid>
 
         <!-- Login Label -->
         <Label Content="Log Ind" FontFamily="TimesNewRoman" FontWeight="Bold" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,35,0,0">
@@ -60,6 +67,7 @@
 
         <!-- Create User Button -->
         <Button Grid.Row="7" x:Name="btnCreateUser" Content="Opret Bruger" Background="#99CCFF" Foreground="Black" FontFamily="TimesNewRomans" FontSize="20" BorderBrush="Black" BorderThickness="1" Margin="89,195,77,-184" Click="btnCreateUser_Click" />
+    
     </Grid>
 </Window>
 
