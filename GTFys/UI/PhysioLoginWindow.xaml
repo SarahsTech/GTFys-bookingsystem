@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GTFys.UI"
         mc:Ignorable="d"
-        Title="PhysioLoginWindow" Height="600" Width="500">
+        Title="PhysioLoginWindow" Height="600" Width="500" WindowStartupLocation="CenterScreen">
 
     <Grid Margin="0,2,-1,-2" Background="AliceBlue">
 

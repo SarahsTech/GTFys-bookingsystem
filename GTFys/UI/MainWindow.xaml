@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GTFys.UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid  Background="AliceBlue">
         <!-- Logo Image -->
         <Image Source="/GTFys;component/Images/GTFysLogo.png" Margin="4,8,3,288" />

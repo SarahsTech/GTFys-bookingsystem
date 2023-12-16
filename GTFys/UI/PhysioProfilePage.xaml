@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:GTFys.UI"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="900"
-      Title="PhysioProfilePage">
+      Title="PhysioProfilePage" >
 
     <Grid Margin="1,-1,-1,-10">
         <!-- Row Definitions -->

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GTFys.UI"
         mc:Ignorable="d"
- Title="PatientFrontPageWindow" Height="500" Width="900">
+ Title="PatientFrontPageWindow" Height="500" Width="900" WindowStartupLocation="CenterScreen">
     <Grid Background="AliceBlue">
         <Frame x:Name="FrontPage" Margin="0,50,0,0 "/>
 

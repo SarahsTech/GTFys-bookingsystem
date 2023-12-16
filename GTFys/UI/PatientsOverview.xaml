@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:GTFys.UI"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="900"
-      Title="PatientsOverview" Width="900" Height="500">
+      Title="PatientsOverview" Width="900" Height="500" >
     <Grid Background="AliceBlue">
 
         <!-- Title TextBlock -->
