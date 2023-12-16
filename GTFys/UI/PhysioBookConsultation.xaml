@@ -40,6 +40,7 @@
                 <Label x:Name="lblEmail" Content="{Binding Source={x:Static other:PatientService.CurrentPatient}, Path=Email}"  FontFamily="Times New Roman" FontSize="20" Height="33"/>
             </StackPanel>
         </StackPanel>
+        
         <!-- Treatment type selection -->
         <Border BorderBrush="MidnightBlue" BorderThickness="2" CornerRadius="10" Margin="241,131,282,485">
             <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="657">
@@ -91,7 +92,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- First StackPanel -->
+            <!-- First StackPanel "Vælg behandler" -->
             <StackPanel Grid.Column="0" Margin="20,333,70,10">
                 <!-- Treatment type selection -->
                 <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -124,20 +125,16 @@
                 </WrapPanel>
             </StackPanel>
 
-
-
-            <!-- Second StackPanel -->
+            <!-- Second StackPanel "Vælg dato"-->
             <StackPanel Margin="325,316,5,9" Grid.ColumnSpan="2">
-                <Label Content="Vælg tid:" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" Height="35" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Content="Vælg dato:" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" Height="35" Grid.Column="1" Grid.ColumnSpan="2" />
                 <Viewbox Stretch="Fill" StretchDirection="UpOnly" Height="369">
                     <Calendar x:Name="calendarView" Width="182" Height="171" SelectionMode="SingleDate" SelectedDatesChanged="calendarView_SelectedDatesChanged" />
                 </Viewbox>
 
             </StackPanel>
 
-
-
-            <!-- Third StackPanel -->
+            <!-- Third StackPanel "Vælg tid" -->
             <StackPanel Grid.Column="1" Margin="398,312,22,0" VerticalAlignment="Top" Height="501" Grid.ColumnSpan="2">
                 <Label Content="Vælg tid:" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" Height="44" Grid.Column="1" Grid.ColumnSpan="2" />
                 <StackPanel />
