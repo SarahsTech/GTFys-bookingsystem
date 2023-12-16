@@ -51,5 +51,12 @@ namespace GTFys.UI
             }
         }
 
+        private void GoBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            Close(); // Close the current window
+        }
+
     }
 }
