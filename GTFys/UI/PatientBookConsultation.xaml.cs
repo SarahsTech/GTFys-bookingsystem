@@ -30,8 +30,7 @@ namespace GTFys.UI
             // Calls AddBlackOutDates() to black out weekends for booking
             AddBlackOutDates();
         }
-        // Create an instance of the repositories 
-        PatientRepo patientRepo = new PatientRepo();
+        // Create an instance of ConsultationRepo
         ConsultationRepo consultationRepo = new ConsultationRepo();
 
 

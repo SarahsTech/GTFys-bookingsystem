@@ -106,41 +106,7 @@ namespace GTFys.Application
                 Debug.WriteLine("Error occurred: " + Environment.NewLine + ex.ToString());
                 return -1;
         }
-}
-
-        // Returns the result set of the query
-        // Used for login authentication 
-        public async Task<object> ExecuteScalarAsync(string query, object parameters = null, CommandType commandType = CommandType.Text)
-        {
-            try {
-                // Establish a new database connection
-                using (IDbConnection connection = new DatabaseConnection().Connect()) {
-                    // Create a new SQL command using the provided query and connection
-                    using (SqlCommand command = new SqlCommand(query, (SqlConnection)connection)) {
-                        // Set the command type (e.g., Text or StoredProcedure)
-                        command.CommandType = commandType;
-
-                        // If parameters are provided, add them to the command
-                        if (parameters != null) {
-                            foreach (var property in parameters.GetType().GetProperties()) {
-                                // Add parameters to the command based on the properties of the parameters object
-                                command.Parameters.AddWithValue("@" + property.Name, property.GetValue(parameters));
-                            }
-                        }
-
-                        // Execute the command asynchronously and retrieve the scalar result
-                        var result = await command.ExecuteScalarAsync();
-
-                        // Return the result as an object
-                        return result;
-                    }
-                }
-            } catch (Exception ex) {
-                Debug.WriteLine(ex.Message);
-                return -1; 
-            }
-            
-        }
+    }
 
         // Method to execute a SQL query and return the result as a DataRow
         public async Task<object> ExecuteQueryAsync(string query, object parameters, CommandType commandType = CommandType.Text)
