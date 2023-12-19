@@ -149,8 +149,6 @@ namespace GTFys.Application
                 throw;
             }
         }
-
-
     }
 
 }

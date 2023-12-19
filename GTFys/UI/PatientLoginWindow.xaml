@@ -56,10 +56,7 @@
 
         <!-- Login Button -->
         <Button Grid.Row="7" x:Name="btnLogin" Content="Log Ind" Background="#99CCFF" Foreground="Black" FontFamily="TimesNewRomans" FontSize="20" BorderBrush="Black" BorderThickness="1" Margin="85,38,81,-25" Click="btnLogIn_Click" />
-
-        <!-- Password Forgotten TextBlock -->
-        <TextBlock Grid.Row="7" x:Name="tbPasswordForgotten" TextWrapping="Wrap" Text="Glemt Kodeord" FontFamily="Verdana" FontStyle="Oblique" FontSize="14" FontWeight="Bold" Foreground="#99CCFF" Margin="84,93,264,-65"/>
-
+     
         <!-- Grey create user section -->
         <Border Grid.Row="7" Background="#E6E6E6" Margin="1,140,-1,-217">
             <TextBlock Text="Er du ikke oprettet endnu?" Foreground="Black" FontFamily="Verdana" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10"/>

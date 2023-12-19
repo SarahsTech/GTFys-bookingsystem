@@ -108,8 +108,8 @@ namespace GTFys.Application
         }
     }
 
-        // Method to execute a SQL query and return the result as a DataRow
-        public async Task<object> ExecuteQueryAsync(string query, object parameters, CommandType commandType = CommandType.Text)
+    // Method to execute a SQL query and return the result as a DataRow
+    public async Task<object> ExecuteQueryAsync(string query, object parameters, CommandType commandType = CommandType.Text)
         {
             try
             {
@@ -198,5 +198,6 @@ namespace GTFys.Application
         }
 
     }
+    
 
 }

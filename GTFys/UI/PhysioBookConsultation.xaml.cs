@@ -62,8 +62,7 @@ namespace GTFys.UI
             if (physioID1 > 0 && selectedDateTime > DateTime.MinValue && duration > 0) {
                 // Call the PhysioBookConsultation method to attempt booking
                 isConsultationBooked = await consultationRepo.BookConsultation(
-                    PatientService.CurrentPatient,
-                    physioID1,
+                    PatientService.CurrentPatient, physioID1,
                     treatmentType, selectedDateTime);
             }
 

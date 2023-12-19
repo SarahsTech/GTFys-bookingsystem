@@ -15,7 +15,7 @@ namespace GTFys.Application
     public class ConsultationRepo
     {
         DatabaseAccess dbAccess = new DatabaseAccess();
-        public ConsultationRepo() 
+        public ConsultationRepo()
         {
 
         }
