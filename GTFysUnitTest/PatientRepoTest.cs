@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace GTFysUnitTest
 {
     [TestClass]
-    public class PatientRepoUnitTest
+    public class PatientRepoTest
     {
         [TestMethod]
         public async Task PatientRepo_CreateUser_Successful()

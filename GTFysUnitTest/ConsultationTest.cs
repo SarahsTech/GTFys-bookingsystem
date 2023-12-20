@@ -5,11 +5,11 @@ using System.Windows;
 namespace GTFysUnitTest
 {
     [TestClass]
-    public class Consultation
+    public class ConsultationTest
     {
         // Domain layer: Consultation 
         [TestMethod]
-        public void ConsultationTest()
+        public void ConsultationTest1()
         {
             // Arrange 
             // Create instances of Patient and Physio for the consultation

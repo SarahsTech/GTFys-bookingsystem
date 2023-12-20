@@ -32,9 +32,9 @@ namespace GTFysUnitTest
                 ZipCode = 1000,
                 ProfilePicture = null
             };
-            int physioID = 1;  // Replace with the actual physio ID
+            int physioID = 1;  // Physio ID
             UITreatmentType treatmentType = UITreatmentType.FirstConsultation;
-            DateTime startTime = new DateTime(2023, 11, 15, 8, 0, 0);  // Randomly in the past
+            DateTime startTime = new DateTime(2023, 11, 15, 8, 0, 0); 
 
             // Act 
             bool bookingSuccessful = await consultationRepo.BookConsultation(patient, physioID, treatmentType, startTime);
@@ -42,8 +42,6 @@ namespace GTFysUnitTest
             // Assert 
             Assert.IsTrue(bookingSuccessful, "Consultation booking failed");
         }
-    
-
         [TestMethod]
         public async Task ConsultationRepo_BookConsultation_Failure()
         {
@@ -59,26 +57,6 @@ namespace GTFysUnitTest
             // Assert 
             Assert.IsFalse(bookingSuccessful, "Consultation booking unexpectedly succeeded");
         }
-
-        //[TestMethod]
-        //public async Task ConsultationRepo_DeleteOldestConsultation_Successful()
-        //{
-        //    // Arrange
-        //    ConsultationRepo consultationRepo = new ConsultationRepo();
-        //    DatabaseAccess dbAccess = new DatabaseAccess();
-
-        //    // Act
-        //    int? oldestConsultationID = await dbAccess.GetOldestConsultationIDAsync();
-        //    bool deletionSuccessful = false;
-
-        //    if (oldestConsultationID.HasValue) {
-        //        deletionSuccessful = await consultationRepo.DeleteConsultation(oldestConsultationID.Value);
-        //    }
-
-        //    // Assert
-        //    Assert.IsTrue(deletionSuccessful, "Consultation deletion failed");
-        //}
-
     }
 
 }

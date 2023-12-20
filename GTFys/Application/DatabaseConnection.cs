@@ -15,7 +15,7 @@ namespace GTFys.Application
     public class DatabaseConnection
     {
         // Private field to store the connection string
-        private string _connectionString;
+        private readonly string _connectionString;
 
         // Constructor to initialize the DatabaseConnection object
         public DatabaseConnection()
@@ -26,6 +26,9 @@ namespace GTFys.Application
             // Retrieve the connection string from the configuration
             _connectionString = config.GetConnectionString("MyDBConnection");
         }
+
+        // Property to expose the connection string (only used for testing)
+        public string ConnectionString => _connectionString;
 
         // Method to establish a database connection
         // Returns: An IDbConnection representing the open database connection

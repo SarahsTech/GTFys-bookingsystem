@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace GTFysUnitTest
 {
     [TestClass]
-    public class PhysioRepoUnitTest
+    public class PhysioRepoTest
     {
         // Application layer: PhysioRepo 
         [TestMethod]
