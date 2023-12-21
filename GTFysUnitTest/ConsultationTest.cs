@@ -7,7 +7,6 @@ namespace GTFysUnitTest
     [TestClass]
     public class ConsultationTest
     {
-        // Domain layer: Consultation 
         [TestMethod]
         public void ConsultationTest1()
         {
@@ -60,16 +59,13 @@ namespace GTFysUnitTest
             Assert.AreEqual(treatmentType, consultation.TreatmentType, "TreatmentType property not set correctly");
             Assert.AreEqual(startTime, consultation.StartTime, "StartTime property not set correctly");
 
-            // Check if the Duration is calculated and set correctly
-            // Duration property expected as 60 
+            // Check if the Duration is calculated and set correctly (Duration property expected as 60)
             Assert.AreEqual(60, consultation.Duration, "Duration property not set correctly");
 
-            // Check if the EndTime is calculated and set correctly
-            // // Price property expected as StartTime + 60 minutes 
+            // Check if the EndTime is calculated and set correctly (Price property expected as StartTime + 60 minutes)
             Assert.AreEqual(startTime.AddMinutes(60), consultation.EndTime, "EndTime property not set correctly");
 
-            // Check if the Price is set correctly based on the TreatmentType
-            // Price property expected as 800 
+            // Check if the Price is set correctly based on the TreatmentType (Price property expected as 800)
             Assert.AreEqual(800, consultation.Price, "Price property not set correctly");
         }
 
