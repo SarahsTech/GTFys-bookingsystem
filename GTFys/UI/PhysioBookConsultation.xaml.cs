@@ -196,13 +196,18 @@ namespace GTFys.UI
                 cbPhysio1.IsChecked = true;
                 cbPhysio2.IsChecked = true;
                 // After updating the checkboxes, call GetAvailableTimes
-                GetAvailableTimes();
+                if (calendarView.SelectedDate.HasValue && (rbFirstConsultation.IsChecked == true || rbTrainingInstruction.IsChecked == true)) {
+                    GetAvailableTimes();
+                }
+                
             }else if (cbPhysio1.IsChecked == false || cbPhysio2.IsChecked == false) {
                 // Set IsChecked property of both checkboxes to true
                 cbPhysio1.IsChecked = true;
                 cbPhysio2.IsChecked = true;
                 // After updating the checkboxes, call GetAvailableTimes
-                GetAvailableTimes();
+                if (calendarView.SelectedDate.HasValue && (rbFirstConsultation.IsChecked == true || rbTrainingInstruction.IsChecked == true)) {
+                    GetAvailableTimes();
+                }
             }
             else if (cbPhysio1.IsChecked == true || cbPhysio2.IsChecked == true) {
                 // Uncheck both checkboxes
