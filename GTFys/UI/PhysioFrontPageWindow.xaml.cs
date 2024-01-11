@@ -261,7 +261,7 @@ namespace GTFys.UI
                         // Show a success message to the user
                         MessageBox.Show("Konsultationen blev slettet!", "Slet konsultation", MessageBoxButton.OK, MessageBoxImage.Information);
                         // Reload consultation grid
-                        LoadConsultationGrid();
+                        LoadConsultationGrid(null, calendarView.SelectedDate);
                     }
                     else {
                         // Show an error message to the user
